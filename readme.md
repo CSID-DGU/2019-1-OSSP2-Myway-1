@@ -2,4 +2,4 @@
 ====================
 Voice Recognition Game
 
--Developing Tool : UNITY..
+-Developing Tool : UNITY
