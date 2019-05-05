@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterPage implements OnInit {
   password: string = '';
   // tslint:disable-next-line:no-inferrable-types
   cpassword: string = '';
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,7 @@ export class RegisterPage implements OnInit {
     try {
       const res =  this.afAuth.auth.createUserWithEmailAndPassword(username, password);
       console.log(res);
+      this.navCtrl.navigateBack('/tabs/tab1');
   } catch (error) {
         console.dir(error);
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   password: string = '';
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,7 @@ export class LoginPage implements OnInit {
     try {
         const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password);
         console.log('login succeed');
+        this.navCtrl.navigateBack('/tabs/tab1');
       } catch (err) {
       console.dir(err);
       console.log('Check id or password');
