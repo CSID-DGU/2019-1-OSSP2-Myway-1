@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,12 @@ export class LoginPage implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   password: string = '';
 
-  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, private alertCtrl: AlertController) { }
+  constructor(
+    public stor: Storage,
+    public navCtrl: NavController,
+    public afAuth: AngularFireAuth,
+    private alertCtrl: AlertController
+    ) { }
 
   ngOnInit() {
   }
@@ -25,7 +31,8 @@ export class LoginPage implements OnInit {
     const { username, password } = this;
     try {
         const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password);
-        this.navCtrl.navigateBack('/tabs/tab1');
+        this.stor.set('id', username);
+        this.navCtrl.navigateForward(`/tabs/tab1/${username}`);
       } catch (err) {
       this.alertCtrl.create({
         header: '',
@@ -42,4 +49,3 @@ export class LoginPage implements OnInit {
 }
 
 
-  

@@ -1,5 +1,7 @@
 {
   "name": "makePro",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

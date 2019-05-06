@@ -17,13 +17,15 @@ export class RegisterPage implements OnInit {
   password: string = '';
   // tslint:disable-next-line:no-inferrable-types
   cpassword: string = '';
-  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth,private alertCtrl: AlertController) { }
-
+  constructor(
+    public navCtrl: NavController,
+    public afAuth: AngularFireAuth,
+    private alertCtrl: AlertController
+    ) { }
   ngOnInit() {
   }
   async register() {
     const { username, password, cpassword } = this;
-
     if (password !== cpassword) {
       return this.alertCtrl.create({
         header: '',
@@ -36,7 +38,7 @@ export class RegisterPage implements OnInit {
         alertEl.present();
       });
     }
-    if(username === "" || password === ""){
+    if (username === '' || password === '') {
       this.alertCtrl.create({
         header: '',
         message: '아이디와 비밀번호를 확인해주세요',
@@ -53,8 +55,6 @@ export class RegisterPage implements OnInit {
       const res =  this.afAuth.auth.createUserWithEmailAndPassword(username, password);
       this.navCtrl.navigateBack('/tabs/tab1');
   } catch (error) {
-   
     }
   }
-
 }
