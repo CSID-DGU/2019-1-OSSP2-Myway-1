@@ -11,7 +11,38 @@
       </div>
     </div>
   </ion-grid>
-  <ion-grid style = "height: 20%">
+  <ion-row justify-content-center align-items-start style="height: 100%">
+    <ion-searchbar placeholder="전공, 프로젝트를 검색해보세요"></ion-searchbar>
+  </ion-row>
+
+<ion-list> 
+<ion-item class="my-item" *ngFor="let r of myPets" (tap)="login(r)">
+<ion-col col-6>
+<ion-thumbnail item-left>
+<img src = "assets/img/{{r.num}}.jpg" alt ="your image" width="400">
+</ion-thumbnail>
+</ion-col>
+<ion-col>
+<ion-row>
+<h2><strong>{{r.name}}</strong></h2>
+</ion-row>
+</ion-col>
+<ion-col>
+<ion-row>
+<h3>{{r.kind}}</h3>
+<p> {{r.color |slice:0:500}}</p>
+</ion-row>
+</ion-col>
+<p></p>
+</ion-item>
+<hr class="stlye14">
+</ion-list>
+
+
+
+
+
+  <!-- <ion-grid style = "height: 20%">
     <ion-row justify-content-center align-items-end style="height: 100%">
      플젝앱
     </ion-row>
@@ -20,6 +51,6 @@
     <ion-row justify-content-center align-items-start style="height: 100%">
       <ion-searchbar placeholder="전공, 프로젝트를 검색해보세요"></ion-searchbar>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>
 
