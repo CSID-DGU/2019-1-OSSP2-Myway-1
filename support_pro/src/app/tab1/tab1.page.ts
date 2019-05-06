@@ -47,6 +47,4 @@ export class Tab1Page {
       color : 'white'
     }
   ]
-
-
 }
