@@ -1,13 +1,17 @@
 <ion-content>
   <ion-grid style = "height: 20%">
-    <div>
+    <div margin-vertical text-right>
       {{userid}}
       <div *ngIf="userid != null">
         <ion-button (click)="logout()">Logout</ion-button>
+        <ion-button fill = "outline" color ="primary" id="chatbot" item-right>
+          <ion-icon slot ="start" name = "happy"></ion-icon>챗봇</ion-button>
       </div>
       <div *ngIf="userid == null">
         <ion-button [routerLink]="['/login']" routerDirection="forward" >Login</ion-button>
         <ion-button [routerLink]="['/register']" routerDirection="forward">SignUp</ion-button>
+        <ion-button fill = "outline" color ="primary" id="chatbot" item-right>
+          <ion-icon slot ="start" name = "happy"></ion-icon>챗봇</ion-button>
       </div>
     </div>
   </ion-grid>
