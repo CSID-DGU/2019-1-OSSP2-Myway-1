@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color = "primary">
+      <ion-buttons slot = "start">
+          <ion-back-button text="" defaultHref = "/tabs/tab1"></ion-back-button>
+        </ion-buttons>
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,17 +10,17 @@
 <ion-content padding>
   <ion-list>
       <ion-item>
-        <ion-label position="floating">Username</ion-label>
+        <ion-label position="floating">이메일</ion-label>
         <ion-input type="text" [(ngModel)]="username"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Password</ion-label>
+        <ion-label position ="floating">비밀번호 - 6자리 이상 </ion-label>
         <ion-input type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-label position="floating">비밀번호 확인</ion-label>
         <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
       </ion-item>
   </ion-list>
-  <ion-button fill="solid" expand="block" color="dark" (click)="register()">Sign up</ion-button>
+  <ion-button fill="solid" expand="block" color="dark" (click)="register()">등록</ion-button>
 </ion-content>
