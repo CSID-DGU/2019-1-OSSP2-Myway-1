@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { ChatModule} from '../chat/chat.module';
+
 @NgModule({
   imports: [
     IonicModule,
