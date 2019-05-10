@@ -34,17 +34,18 @@ export class Tab1Page {
   navigateToPageSignUp() {
     this.navCtrl.navigateForward('RegisterPage');
   }
-  myPets =[
+  // tslint:disable-next-line:member-ordering
+  myPets = [
     {
-      num:2,
+      num: 2,
       kind: 'Cat',
       name: '#아두이노',
       color : 'white'
     }, {
-      num:1,
+      num: 1,
       kind: 'dog',
       name: '#자바',
       color : 'white'
     }
-  ]
+  ];
 }
