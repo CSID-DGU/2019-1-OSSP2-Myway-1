@@ -1,14 +1,15 @@
+<br>
+<div>
+<ng-container class = "con" *ngFor = "let message of messages | async" no padding>
 
-<h1>Supporting bot</h1>
-
-<ng-container *ngFor = "let message of messages | async">
-
-  <div class="message" [ngClass]= "{ 'from': message.sentBy === 'bot',
+  <div *ngIf= "message.content != null" class="message" [ngClass]= "{ 'from': message.sentBy === 'bot',
                                       'to': message.sentBy === 'user'}">
                                       {{message.content}}
   </div>
 </ng-container>
-
-<label for = "nameField">메세지 </label>
-<input [(ngModel)] = "formValue" (keyup.enter)="sendMessage()" type="text" width= 10% ><br>
-<button (click)="sendMessage()">Send</button>
+</div>
+<div class = "writingSection" text-right display = "inline">
+<!--<label for = "nameField">메세지 </label>-->
+<input [(ngModel)] = "formValue" (keyup.enter)="sendMessage()" type="text" >
+<input type="button" (click)="sendMessage()" value = "보내기">
+</div>

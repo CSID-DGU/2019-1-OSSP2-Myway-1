@@ -21,3 +21,15 @@
 .message.from + .message.from {
 margin-top: -10px;
 }
+.writingSection {
+    position: fixed;
+    bottom : 0;
+    width: 100%;
+}
+input{ margin : 0;}
+input[type="text"] {
+    width: 75%;
+}
+input[type = "button"] {
+    width:25%
+}
