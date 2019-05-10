@@ -8,3 +8,9 @@ npm install --save @ionic/storage
 
 ### CHATBOT FOR QUESTIONS
 
+npm install api-ai-javascript -D
+
+npm install rxjs-compat --save
+
+npm install milligram
+
