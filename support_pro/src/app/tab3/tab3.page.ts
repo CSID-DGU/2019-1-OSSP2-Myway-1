@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { registerContentQuery } from '@angular/core/src/render3';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-tab3',
@@ -8,10 +9,11 @@ import { registerContentQuery } from '@angular/core/src/render3';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-
-  titleInput ; profInput; sdateInput; edateInput; conInput;
+  public Userid: string;
+  UserInput; titleInput ; profInput; sdateInput; edateInput; conInput;
   classInput; majorInput;
   data = {
+    user: '',
     title: '',
     major: '',
     classN: '',
@@ -20,8 +22,16 @@ export class Tab3Page {
     edate: '',
     content: ''
   };
-  constructor(public db: AngularFireDatabase) {}
+  constructor(public stor: Storage, public db: AngularFireDatabase) {
+    this.stor.get('id').then((val) => {
+      this.Userid = val;
+    });
+  }
+    isReadonly() {
+      return true;
+    }
     register() {
+      this.data.user = this.Userid;
       this.data.title = this.titleInput;
       this.data.major = this.majorInput;
       this.data.classN = this.classInput;
