@@ -1,6 +1,10 @@
-<ion-content>
-  <ion-grid style = "height: 20%">
-    <div margin-vertical text-right>
+
+<ion-header>
+  <ion-toolbar  style="height: 50px;">
+    <ion-title>
+      붓 다 
+    </ion-title>
+    <div margin-vertical text-right style="height: 10px;">
       {{userid}}
       <div *ngIf="userid != null">
         <ion-button (click)="logout()">Logout</ion-button>
@@ -10,47 +14,39 @@
         <button [routerLink]="['/register']" routerDirection="forward">SignUp</button>
       </div>
     </div>
-  </ion-grid>
-  <ion-row justify-content-center align-items-start style="height: 100%">
-    <ion-searchbar placeholder="전공, 프로젝트를 검색해보세요"></ion-searchbar>
-  </ion-row>
+  </ion-toolbar>
+</ion-header>
 
-<ion-list> 
-<ion-item class="my-item" *ngFor="let r of myPets" (tap)="login(r)">
-<ion-col col-6>
-<ion-thumbnail item-left>
-<img src = "assets/img/{{r.num}}.jpg" alt ="your image" width="400">
-</ion-thumbnail>
-</ion-col>
-<ion-col>
-<ion-row>
-<h2><strong>{{r.name}}</strong></h2>
-</ion-row>
-</ion-col>
-<ion-col>
-<ion-row>
-<h3>{{r.kind}}</h3>
-<p> {{r.color |slice:0:500}}</p>
-</ion-row>
-</ion-col>
-<p></p>
-</ion-item>
-<hr class="stlye14">
-</ion-list>
-
-
-
-
-
-  <!-- <ion-grid style = "height: 20%">
-    <ion-row justify-content-center align-items-end style="height: 100%">
-     플젝앱
-    </ion-row>
-  </ion-grid>
-  <ion-grid >
-    <ion-row justify-content-center align-items-start style="height: 100%">
+<ion-content>
+  <ion-grid style = "height: 20%">
+    
+    <ion-row justify-content-center align-items-start >
       <ion-searchbar placeholder="전공, 프로젝트를 검색해보세요"></ion-searchbar>
     </ion-row>
-  </ion-grid> -->
+
+
+
+    <ion-row>
+      <ion-col *ngFor="let item of items" col-12 no-padding>
+        <ion-card (tap)="loadList()"  >
+          <img src="/assets/img/ionic.png" width="100px" height="80px"/>
+<ion-card-content >
+    <!-- class="fixline" -->
+    <ion-card-header class="text" >
+        {{item.tag}}
+        <p>
+          {{item.major}}
+        </p>
+      </ion-card-header>
+</ion-card-content>
+
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
 </ion-content>
 
