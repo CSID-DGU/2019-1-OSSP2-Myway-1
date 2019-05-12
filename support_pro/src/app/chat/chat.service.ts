@@ -23,7 +23,7 @@ export class ChatService {
     this.conversation.next([msg]);
   }
 
-  converse(msg: string) {
+  converse(msg: string){
     const userMessage = new Message(msg, 'user');
     this.update(userMessage);
 

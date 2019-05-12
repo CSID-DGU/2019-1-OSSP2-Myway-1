@@ -21,11 +21,9 @@ export class ChatDialogComponent implements OnInit {
    .scan((acc, val) => acc.concat(val));
   }
 
-  sendMessage() {
-    if (this.formValue !== ''){
+  sendMessage(){
     this.chat.converse(this.formValue);
     this.formValue = '';
-    }
   }
 
 }

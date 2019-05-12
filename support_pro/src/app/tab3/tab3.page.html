@@ -9,6 +9,7 @@
 <ion-content>
                 <ion-card>
                         <ion-card-content>
+                           
                             <ion-item>
                                 <ion-label position ="floating">제목</ion-label>
                                 <ion-input type = "text" [(ngModel)]="titleInput"></ion-input>
@@ -30,16 +31,15 @@
                           </ion-item>
                           <ion-item>  
                             <ion-label position ="floating">담당교원</ion-label>
-                            <ion-input type = "number" [(ngModel)]="profInput"></ion-input>
+                            <ion-input type = "text" [(ngModel)]="profInput"></ion-input>
                         </ion-item>
-                        <!--캘린더로-->
                         <ion-item>  
                           <ion-label position ="floating">플젝 시작</ion-label>
-                          <ion-input type = "number" [(ngModel)]="sdateInput"></ion-input>
+                          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="sdateInput"></ion-datetime>
                       </ion-item>
                       <ion-item>  
                         <ion-label position ="floating">플젝 종료</ion-label>
-                        <ion-input type = "number" [(ngModel)]="edateInput"></ion-input>
+                        <ion-datetime displayFormat="MM/DD/YYYY" [min]="sdateInput" [(ngModel)]="edateInput"></ion-datetime>
                     </ion-item>
 
                     <ion-item>
@@ -48,7 +48,8 @@
                    </ion-item>
 
                    <ion-item>
-                     <ion-label> 등등등</ion-label>
+                    <ion-label position ="floating">해시태그</ion-label>
+                    <ion-input type = "text" [(ngModel)]="hashtag"></ion-input>
                    </ion-item>
                  </ion-card-content>
              </ion-card> 
