@@ -17,15 +17,6 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab1/:userid',
-        children: [
-          {
-            path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
-          }
-        ]
-      },
-      {
         path: 'tab2',
         children: [
           {

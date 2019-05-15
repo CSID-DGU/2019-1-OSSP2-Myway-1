@@ -6,4 +6,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <br>
+  <br>
+  <table align="center" class="type05">
+    <tbody>
+    <tr>
+      <th>아이디</th>
+      <td>{{userid}}
+        <button *ngIf="userid != null" (click)="logout()">Logout</button>
+        <div *ngIf="userid == null">로그인이 필요합니다.</div>
+        <button *ngIf="userid == null" [routerLink]="['/login']" routerDirection="forward">Login</button> 
+        <button *ngIf="userid == null" [routerLink]="['/register']" routerDirection="forward">SignUp</button>
+      </td>
+    </tr>
+    <tr>
+        <th>작성한 글</th>
+        <td>0개</td>
+    </tr>
+    <tr>
+        <th>좋아요한 글</th>
+        <td>0개</td>
+    </tr>
+    <tr>
+        <th>스크랩한 글</th>
+        <td>0개</td>
+    </tr>
+  </tbody>
+  </table>
+</ion-content>

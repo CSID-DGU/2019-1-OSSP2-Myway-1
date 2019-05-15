@@ -4,16 +4,6 @@
     <ion-title>
       붓 다 
     </ion-title>
-    <div margin-vertical text-right style="height: 10px;">
-      {{userid}}
-      <div *ngIf="userid != null">
-        <ion-button (click)="logout()">Logout</ion-button>
-      </div>
-      <div *ngIf="userid == null">
-        <button [routerLink]="['/login']" routerDirection="forward" >Login</button> 
-        <button [routerLink]="['/register']" routerDirection="forward">SignUp</button>
-      </div>
-    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -23,8 +13,6 @@
     <ion-row justify-content-center align-items-start >
       <ion-searchbar placeholder="전공, 프로젝트를 검색해보세요"></ion-searchbar>
     </ion-row>
-
-
 
     <ion-row>
       <ion-col *ngFor="let item of items" col-12 no-padding>
@@ -39,7 +27,6 @@
         </p>
       </ion-card-header>
 </ion-card-content>
-
 
 
         </ion-card>

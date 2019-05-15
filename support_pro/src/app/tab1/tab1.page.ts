@@ -31,16 +31,6 @@ export class Tab1Page {
       });
 
     }
-  logout() {
-    this.userid = null;
-    this.stor.set('id', null);
-  }
-  navigateToPageLogin() {
-    this.navCtrl.navigateForward('LoginPage');
-  }
-  navigateToPageSignUp() {
-    this.navCtrl.navigateForward('RegisterPage');
-  }
   getData(){
     this.db.list('regisTxt/').valueChanges().subscribe(
       data => {

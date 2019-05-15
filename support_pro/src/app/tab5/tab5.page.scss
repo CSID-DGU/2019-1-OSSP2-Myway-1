@@ -1,1 +1,22 @@
-
+table.type05 {
+    width: 95%;
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+}
+table.type05 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    border-bottom: 1px solid #ccc;
+    background: #efefef;
+}
+table.type05 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid #ccc;
+}

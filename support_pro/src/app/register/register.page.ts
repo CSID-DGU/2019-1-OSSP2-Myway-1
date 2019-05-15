@@ -53,7 +53,7 @@ export class RegisterPage implements OnInit {
     }
     try {
       const res =  this.afAuth.auth.createUserWithEmailAndPassword(username, password);
-      this.navCtrl.navigateBack('/tabs/tab1');
+      this.navCtrl.navigateBack('/tabs/tab5');
   } catch (error) {
     }
   }
