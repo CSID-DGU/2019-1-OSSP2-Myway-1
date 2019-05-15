@@ -1,5 +1,7 @@
 ﻿2019-1-OSSP2-Myway-1
 ====================
+npm install --save-dev @angular-devkit/build-angular
+
 ### 세션 유지(IonicStorageModule)
 
 ionic cordova plugin add cordova-sqlite-storage
