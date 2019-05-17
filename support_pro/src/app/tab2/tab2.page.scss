@@ -1,1 +1,23 @@
 
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+
+}
+.other-message {
+    background-color: var(--ion-color-tertiary);
+    color:#fff;
+    
+}
+
+.my-message {
+    background-color: var(--ion-color-secondary);
+    color:#fff;
+}
+.time {
+    color: #dfdfdf;
+    float: right;
+    font-size: small;
+}

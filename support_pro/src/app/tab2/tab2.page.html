@@ -1,18 +1,49 @@
-
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot = "start" color = "primary">
-          <ion-back-button text="" defaultHref = "/tabs/tab1"></ion-back-button>
-        </ion-buttons>
-    <ion-title>붓다</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)= "Delete()" >
-      <ion-icon name="trash" slot="icon-only"></ion-icon>
-    </ion-button>
-    </ion-buttons>
+  <ion-toolbar color = "pirmary">
+    <ion-title>
+      Ionic Chat
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-chat-dialog></app-chat-dialog>
-</ion-content>
+   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button ion-fab color="danger">
+          <ion-icon name="mic"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+ 
+      <ion-grid>
+        <ion-row  *ngFor="let message of messages" >
+       <!--  <ion-avatar slot="start" *ngIf = "message.sender == 'api'">
+            <img src = "">
+          </ion-avatar>
+          <ion-avatar slot="end" *ngIf = "message.sender == 'me'">
+              <img src = "">
+          </ion-avatar>--> 
+          <ion-col size ="8" *ngIf = "message.sender == 'api'" class = "message other-message">
+           <span>{{ message.text}}</span> 
+           <div class="time" text-right><br>
+            {{message.createdAt | date:'short' }}</div>
+          </ion-col>
+          <ion-col offset="3" size="8" *ngIf = "message.sender == 'me'" class = "message my-message">
+            <span> {{ message.text}}</span> 
+            <div class="time" text-right><br>
+              {{message.createdAt | date:'short' }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-item> 
+        <ion-input type="text" autosize maxRows="4" [(ngModel)]="text" class="message-input" (keyup.enter)="ask()"></ion-input>
+      
+        <ion-button expand="block" fill="clear" color = "primary" [disabled]="text ===''"  class ="msg-btn"
+         (click)="ask() ">
+         <ion-icon name="send" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-item>
+  </ion-toolbar>
+</ion-footer>
