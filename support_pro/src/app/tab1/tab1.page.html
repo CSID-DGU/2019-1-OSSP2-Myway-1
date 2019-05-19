@@ -1,7 +1,7 @@
 
 <ion-header>
   <ion-toolbar  style="height: 50px;">
-    <ion-title>
+    <ion-title >
       붓 다 
     </ion-title>
   </ion-toolbar>
@@ -16,7 +16,9 @@
 
     <ion-row>
       <ion-col *ngFor="let item of items" col-12 no-padding>
-        <ion-card (tap)="loadList()"  >
+        
+        <ion-card (click)="loadList(item)"  >
+          
           <img src="/assets/img/ionic.png" width="100px" height="80px"/>
 <ion-card-content >
     <!-- class="fixline" -->

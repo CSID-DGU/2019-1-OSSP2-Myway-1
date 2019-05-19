@@ -39,7 +39,8 @@ export class Tab1Page {
       }
     )
   }
-  loadList(){
+  loadList(items){
+    this.stor.set('hashtag',items.tag);
     this.navCtrl.navigateForward('/post-list');
   }
 

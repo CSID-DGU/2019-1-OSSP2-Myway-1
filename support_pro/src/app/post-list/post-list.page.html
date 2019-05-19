@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>postList</ion-title>
+    <ion-title>{{hashtag}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-col *ngFor="let item of items" col-12 no-padding>
+        
+        <ion-card (click)="loadList(item)"  >
+          
+          <!-- <img src="/assets/img/ionic.png" width="100px" height="80px"/> -->
+<ion-card-content >
+    <!-- class="fixline" -->
+    <ion-card-header class="text" >
+        {{item.tag}}
+        <p>
+          {{item.title}}
+        </p>
+      </ion-card-header>
+</ion-card-content>
+        </ion-card>
+      </ion-col>
 
 </ion-content>
