@@ -27,11 +27,11 @@ export class AppComponent {
         },
 // tslint:disable-next-line: only-arrow-functions
         function(result) {
-          alert(result)
+          alert(result);
          },
 // tslint:disable-next-line: only-arrow-functions
-        function (error) {
-          alert(error)
+        function(error) {
+          alert(error);
           }
     );
     });
