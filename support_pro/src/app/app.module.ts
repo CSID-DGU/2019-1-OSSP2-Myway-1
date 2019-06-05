@@ -12,11 +12,16 @@ import { AppComponent } from './app.component';
 //import { AngularFireModule } from 'angularfire2'; //
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from 'angularfire2/database'; //
+<<<<<<< HEAD
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
+=======
+import {AngularFireStorageModule} from 'angularfire2/storage';
+>>>>>>> 61b9cd4a961377be308f0efe15abd6a424a24499
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { config } from './firebase.credentials';
 import { IonicStorageModule } from '@ionic/storage';
+import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,10 +32,12 @@ import { IonicStorageModule } from '@ionic/storage';
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(config),
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
   providers: [
+    Camera,
     StatusBar,
     SplashScreen,
     AngularFirestore,
