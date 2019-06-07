@@ -5,6 +5,7 @@ import { registerContentQuery } from '@angular/core/src/render3';
 import { Storage } from '@ionic/storage';
 import {AlertController } from '@ionic/angular';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-tab3',
@@ -100,5 +101,15 @@ export class Tab3Page {
         alert('글이 등록되었습니다.');
         this.db.list('regisTxt').push(this.regisTxt);
       }
+    }
+
+    /* 방금 저장한 이미지 url 불러오나 확인*/
+    /*picname에 값이 들어가야 되기 때문에 위처럼 확인함*/
+      showImage() {
+// tslint:disable-next-line: prefer-const
+      let storageRef = firebase.storage().ref();
+      const imageRef = storageRef.child(`picture/${this.picname}`);
+      console.log(imageRef.getDownloadURL());
+      return imageRef.getDownloadURL();
     }
 }
