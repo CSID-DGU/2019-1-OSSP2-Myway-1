@@ -14,7 +14,8 @@ import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 export class Tab3Page {
   contentImg;
   download;
-  sPicture;
+  pictureRef;
+  picname;
   imageURI;
   public Userid: string;
   // tslint:disable-next-line:no-inferrable-types
@@ -59,6 +60,11 @@ export class Tab3Page {
         // tslint:disable-next-line:prefer-const
         let newName = `${new Date().getTime()}.png`;
         this.imageURI = imageURI;
+        this.picname = newName;
+        // this.st.ref(`${newName}`).put(imageURI)
+        // .then((savedPicture) => {
+
+        // });
         this.st.ref(`picture/${newName}`).putString(imageURI, 'base64', {contentType: 'image/png'});
       }, (err) => {
         console.log('err:' + JSON.stringify(err));
@@ -90,7 +96,7 @@ export class Tab3Page {
         this.regisTxt.edate = this.edateInput;
         this.regisTxt.content = this.conInput;
         this.regisTxt.tag = this.hashtag;
-        this.regisTxt.img = '';
+        this.regisTxt.img = this.picname;
         alert('글이 등록되었습니다.');
         this.db.list('regisTxt').push(this.regisTxt);
       }
