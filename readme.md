@@ -3,7 +3,9 @@
 npm install --save-dev @angular-devkit/build-angular
 
 ### 사진 업로드
-cordova로 실행해야함
+ionic cordova plugin add cordova-plugin-camera
+
+npm install @ionic-native/camera
 
 ### 세션 유지(IonicStorageModule)
 
@@ -19,3 +21,5 @@ npm install rxjs-compat --save
 
 npm install milligram
 
+### 실행 방법
+ionic cordova run [<platform>] [options]
