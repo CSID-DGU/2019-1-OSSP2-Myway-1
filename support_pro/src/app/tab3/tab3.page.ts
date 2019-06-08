@@ -90,7 +90,7 @@ export class Tab3Page {
         this.regisTxt.edate = this.edateInput;
         this.regisTxt.content = this.conInput;
         this.regisTxt.tag = this.hashtag;
-        this.regisTxt.img = '';
+        this.regisTxt.img = this.download;
         alert('글이 등록되었습니다.');
         this.db.list('regisTxt').push(this.regisTxt);
       }
