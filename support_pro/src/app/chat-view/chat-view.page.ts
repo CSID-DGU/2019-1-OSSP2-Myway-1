@@ -25,7 +25,7 @@ export class ChatViewPage implements OnInit {
   send(){
     if(this.text!=''){
       this.fs.collection('chats').add({
-        Name:this.af.auth.currentUser.email,
+        Email:this.af.auth.currentUser.email,
         Message:this.text,
         UserID:this.af.auth.currentUser.uid,
         Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
