@@ -9,8 +9,19 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab4Page {
   
+  chattingRef:any;
+  uid:string;
+
   constructor(public fs:AngularFirestore,public af:AngularFireAuth, public nav:NavController ){
 
+    this.fs.collection('chatting').add({
+      uid1: "yoo@naver.com",
+      uid2:"hoj2887@naver.com"
+    })
+    this.uid=localStorage.getItem('useid');
+    this.chattingRef=this.fs.collection('useid',ref=>ref.orderBy('Timestamp')).valueChanges();
+
+    //this.nav.navigateForward('/chat-view');
   }
   select(){
     this.nav.navigateRoot('/chat-view');

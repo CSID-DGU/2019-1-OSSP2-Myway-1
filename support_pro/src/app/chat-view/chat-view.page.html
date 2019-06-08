@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tab4"></ion-back-button>
+    </ion-buttons>
     <ion-title>Chatroom</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +14,7 @@
     </div>
     <div class="you" *ngIf="uid!=chat.UserID">
       <span class="name">
-        {{chat.Name}}
+        {{chat.email}}
       </span><br>
         {{chat.Message}}
     </div>
