@@ -2,12 +2,13 @@
     display:flex;
     flex-direction:column;
     .you{
-        margin:10px;
+        //margin:10px;
         width:100%;
-        height:30px;
+        height:50px;
         align-self:flex-start;
-        background:rgba(243, 223, 157, 0.5);
-        font-size:15;
-        line-height:1.4;
+        background:rgba(183, 223, 255, 0.904);
+        font-size:20;
+        text-align:center;
+        line-height:2;
     }
 }

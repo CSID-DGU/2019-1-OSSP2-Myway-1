@@ -8,10 +8,14 @@
 
 <ion-content>
    {{Email}} <!-- 현재 로그인한 이메일 확인 용-->
-  <div class="chatting" *ngFor="let chatting of chattingRef | async ">
-    <div class="you" *ngIf="Email==chatting.me">
-      {{chatting.you}}
+  <ion-list>
+    <div class="chatting" *ngFor="let chatting of chattingRef | async">
+      <div  class="you" ion-item *ngIf="Email==chatting.me">
+        {{chatting.you}}
+        <span style="float:right">
+          <ion-button (click)="openChat()">Go</ion-button>
+        </span>
+      </div>
     </div>
-  </div>
-  
+  </ion-list>
 </ion-content>
