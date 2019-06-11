@@ -9,47 +9,36 @@
 <ion-content>
 <ion-card>
 
-  <ion-card-content>
+  <ion-card-content *ngFor="let item of item">
       <ion-item>
-          <ion-label position ="floating">사진</ion-label>
+          <ion-label position ="floating">{{item.img}}</ion-label>
       </ion-item>
       <ion-item>
-          <ion-label position ="floating"></ion-label>
+          <ion-label position ="floating">{{item.user}}</ion-label>
       </ion-item>
-      <ion-item>
-          <ion-label position ="floating">제목</ion-label>
-      </ion-item>
-
     <ion-item>
-        <ion-label position ="floating">제목</ion-label>
+        <ion-label position ="floating">{{item.major}}</ion-label>
     </ion-item>
 
     <ion-item>
-        <ion-label position ="floating">전공</ion-label>
+        <ion-label position ="floating">{{item.classN}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label position ="floating">{{item.prof}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label position ="floating">{{item.sdate}}</ion-label>
     </ion-item>
 
     <ion-item>
-        <ion-label position ="floating">수업명</ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label position ="floating">담당교원</ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label position ="floating">시작일</ion-label>
+        <ion-label position ="floating">{{item.edate}}</ion-label>
     </ion-item>
 
     <ion-item>
-        <ion-label position ="floating">종료일</ion-label>
-    </ion-item>
-
-    <ion-item>
-        <ion-label position ="floating">내용</ion-label>
+        <ion-label position ="floating">{{item.content}}</ion-label>
     </ion-item>
     <ion-item>
-        <ion-label position ="floating">해시태그</ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label position ="floating">이미지</ion-label>
+        <ion-label position ="floating">{{item.tag}}</ion-label>
     </ion-item>
 
   </ion-card-content>

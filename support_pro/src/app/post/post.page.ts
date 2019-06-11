@@ -11,7 +11,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class PostPage implements OnInit {
 public title:string;
 item:any;
-  constructor( public plat: Platform,
+  constructor( 
+    public plat: Platform,
     public activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
     public db: AngularFireDatabase,
