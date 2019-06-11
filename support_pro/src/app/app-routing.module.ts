@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'post-list/:tag', loadChildren: './post-list/post-list.module#PostListPageModule' },
-  { path: 'chat-view/:you', loadChildren: './chat-view/chat-view.module#ChatViewPageModule' }
+  { path: 'chat-view/:you', loadChildren: './chat-view/chat-view.module#ChatViewPageModule' },
+  { path: 'post/:title', loadChildren: './post/post.module#PostPageModule' }
 
 ];
 @NgModule({
