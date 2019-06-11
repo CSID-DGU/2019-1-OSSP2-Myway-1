@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { Storage } from '@ionic/storage';
-
+import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-chat-view',
   templateUrl: './chat-view.page.html',
@@ -17,15 +17,15 @@ export class ChatViewPage implements OnInit {
   me:string;
   you:string;
   Email:string;
-  constructor(public af:AngularFireAuth,public fs:AngularFirestore, public stor:Storage) { 
-    this.stor.get('me').then((val)=>{
-      this.me=val
-    });
-    this.stor.get('you').then((val)=>{
-      this.you=val
-    });
+  constructor(
+    public af:AngularFireAuth,
+    public fs:AngularFirestore, 
+    public stor:Storage,
+    public ac:ActivatedRoute) { 
     this.Email=this.af.auth.currentUser.email;
     this.chatRef=this.fs.collection('chats',ref=>ref.orderBy('Timestamp')).valueChanges();
+    let you=this.ac.snapshot.paramMap.get('you');
+    this.you=you;
   }
 
   ngOnInit() {

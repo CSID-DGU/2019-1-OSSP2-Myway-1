@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'tabs/tab1/:userid', loadChildren: './tab1/tab1.module#Tab1PageModule'},
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
-  { path: 'post-list', loadChildren: './post-list/post-list.module#PostListPageModule' },  { path: 'chat-view', loadChildren: './chat-view/chat-view.module#ChatViewPageModule' }
+  { path: 'post-list', loadChildren: './post-list/post-list.module#PostListPageModule' },
+  { path: 'chat-view/:you', loadChildren: './chat-view/chat-view.module#ChatViewPageModule' }
 
 ];
 @NgModule({

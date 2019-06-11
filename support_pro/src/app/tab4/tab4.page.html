@@ -13,7 +13,9 @@
       <div  class="you" ion-item *ngIf="Email==chatting.me">
         {{chatting.you}}
         <span style="float:right">
-          <ion-button (click)="openChat()">Go</ion-button>
+          <ion-button (click)="openChat(chatting.you)">
+            <ion-icon name="arrow-forward"></ion-icon>
+          </ion-button>
         </span>
       </div>
     </div>
