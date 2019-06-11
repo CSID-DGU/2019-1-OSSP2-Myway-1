@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -20,7 +21,8 @@ export class Tab1Page {
     public stor: Storage,
     public activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
-    public db:AngularFireDatabase
+    public db:AngularFireDatabase,
+    public router:Router
     ) {
       this.getData();
       this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
@@ -29,19 +31,20 @@ export class Tab1Page {
           this.userid = val;
         });
       });
-
     }
+    //tag별로 보여주는거 
   getData(){
     this.db.list('regisTxt/').valueChanges().subscribe(
       data => {
-        console.log(data)
         this.items = data
       }
     )
   }
-  loadList(items){
-    this.stor.set('hashtag',items.tag);
-    this.navCtrl.navigateForward('/post-list');
+  //tag누르면 다음페이지로 이동 
+  loadList(item:any){
+    // this.stor.set('hashtag',items.tag);
+    // this.navCtrl.navigateForward('/post-list');
+    this.router.navigate(['post-list',item.tag]);
   }
 
 }

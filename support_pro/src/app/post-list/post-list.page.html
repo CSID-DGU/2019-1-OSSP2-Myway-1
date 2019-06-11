@@ -5,12 +5,11 @@
 </ion-header>
 
 <ion-content>
-<ion-button (click)= "loadList(hashtag)">here</ion-button>
     <ion-col *ngFor="let item of items" col-12 no-padding>
         
         <ion-card (click)="loadList(item)"  >
           
-          <!-- <img src="/assets/img/ionic.png" width="100px" height="80px"/> -->
+          <img src="/assets/img/ionic.png" width="100px" height="80px"/>
 <ion-card-content >
     <!-- class="fixline" -->
     <ion-card-header class="text" >
