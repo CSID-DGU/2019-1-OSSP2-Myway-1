@@ -64,8 +64,9 @@ public likeState: string = 'unliked';
       public fs: AngularFirestore,
       public af: AngularFireAuth,
       public router: Router) {
-        // this.item = this.activatedRoute.snapshot.paramMap.get('title');
-        // console.log(this.item);
+      this.userid=this.activatedRoute.snapshot.paramMap.get('userid');
+      var strArray = this.userid.split('@');
+      this.userid=strArray[0];
       this.title = this.activatedRoute.snapshot.paramMap.get('title');
       this.load();
       }
@@ -175,6 +176,7 @@ public likeState: string = 'unliked';
       if (this.scrapState === 'unscrap') {
         this.scrapState = 'scrap';
         this.starName = 'star';
+        this.db.object(`userInfo/${this.userid}/like`).set(this.item);
       } else {
         this.scrapState = 'unscrap';
         this.starName = 'star-outline';

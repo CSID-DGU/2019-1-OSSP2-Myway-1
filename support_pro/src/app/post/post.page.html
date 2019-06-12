@@ -9,43 +9,68 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 <ion-card>
   <ion-card-content *ngFor="let item of item">
       <ion-item>
-          <ion-label position ="floating">{{item.img}}</ion-label>
+          <ion-label position ="floating">
+                <img src="{{item.img}}"/>
+          </ion-label>
       </ion-item>
       <ion-item>
-          <ion-button position ="floating" (click)="gotoChat(item.user)">{{item.user}}</ion-button>
+          <ion-label position ="floating">
+              <table>
+                  <tr>
+                      <td><ion-button (click)="gotoChat(item.user)"><ion-icon name="contact"></ion-icon>{{item.user}}</ion-button></td>
+                      <td>
+                        <ion-icon (click)="toggleLikeState()" tappable [@heart]="likeState" size="large" name="heart"></ion-icon>
+                        <ion-icon (click)="toggleScrapState()" tappable [@star]="scrapState" size="large" name="star"></ion-icon>
+                    </td>
+                  </tr>
+              </table>
+            </ion-label>
       </ion-item>
-      <ion-item>
-      <ion-icon (click)="toggleLikeState()" (click)="consolePrint()" tappable [@heart]="likeState" size="large" name="heart"></ion-icon>
-      <ion-icon (click)="toggleScrapState()" tappable [@star]="scrapState" size="large" name="star"></ion-icon>
-    </ion-item>
     <ion-item>
-        <ion-label position ="floating">{{item.major}}</ion-label>
+        <ion-label position ="floating">
+            <b>전공&nbsp;</b> {{item.major}}
+        </ion-label>
     </ion-item>
 
     <ion-item>
-        <ion-label position ="floating">{{item.classN}}</ion-label>
+        <ion-label position ="floating">
+            <b>수업명&nbsp;</b> {{item.classN}}
+        </ion-label>
     </ion-item>
     <ion-item>
-        <ion-label position ="floating">{{item.prof}}</ion-label>
+        <ion-label position ="floating">
+            <b>담당교원&nbsp;</b> {{item.prof}}
+        </ion-label>
     </ion-item>
     <ion-item>
-        <ion-label position ="floating">{{item.sdate}}</ion-label>
-    </ion-item>
-
-    <ion-item>
-        <ion-label position ="floating">{{item.edate}}</ion-label>
-    </ion-item>
-
-    <ion-item>
-        <ion-label position ="floating">{{item.content}}</ion-label>
+        <ion-label position ="floating">
+            <b>수행기간&nbsp;</b>{{item.sdate}}~{{item.edate}}
+        </ion-label>
     </ion-item>
     <ion-item>
-        <ion-label position ="floating">{{item.tag}}</ion-label>
+        <ion-label position ="floating">
+            <b>깃허브&nbsp;</b> <a href="{{item.git}}">{{item.git}}</a>
+        </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>
+        <ion-content
+            [scrollEvents]="true"
+            (ionScrollStart)="logScrollStart()"
+            (ionScroll)="logScrolling($event)"
+            (ionScrollEnd)="logScrollEnd()" class="content">
+            <p><b>내용</b></p>{{item.content}}
+        </ion-content>
+    </ion-label>   
+    </ion-item>
+    <ion-item>
+        <ion-label position ="floating">
+            <b>해시태그&nbsp;</b> {{item.tag}}
+        </ion-label>
     </ion-item>
 
   </ion-card-content>
