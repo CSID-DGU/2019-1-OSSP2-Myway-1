@@ -31,7 +31,7 @@ import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
     AngularFireModule.initializeApp(config),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [
     Camera,
