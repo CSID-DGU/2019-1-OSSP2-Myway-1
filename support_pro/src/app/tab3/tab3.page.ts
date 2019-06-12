@@ -33,6 +33,8 @@ export class Tab3Page {
   titleInput: string = '' ; profInput: string = ''; sdateInput: string = ''; edateInput: string = '';
    // tslint:disable-next-line:no-inferrable-types
    conInput: string = ''; hashtag: string = ''; classInput: string = ''; majorInput: string = '';
+   // tslint:disable-next-line:no-inferrable-types
+   gitadd: string = '';
     regisTxt = {
       user: '',
       title: '',
@@ -43,7 +45,8 @@ export class Tab3Page {
       edate: '',
       content: '',
       tag: '',
-      img: ''
+      img: '',
+      git: ''
   };
   constructor(
     public stor: Storage,
@@ -109,6 +112,7 @@ export class Tab3Page {
         this.regisTxt.content = this.conInput;
         this.regisTxt.tag = this.hashtag;
         this.regisTxt.img = this.picname;
+        this.regisTxt.git = this.gitadd;
         alert('글이 등록되었습니다.');
 
         /* 전체 게시글 카운트 */

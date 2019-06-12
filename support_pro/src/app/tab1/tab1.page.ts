@@ -14,6 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  searchQuery: string;
   public userid: string;
   data: Observable<any>;
   items: any;
