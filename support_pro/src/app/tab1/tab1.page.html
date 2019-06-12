@@ -2,14 +2,14 @@
 <ion-header>
   <ion-toolbar  style="height: 50px;">
     <ion-title >
+      <br>
       붓 다 
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid style = "height: 20%">
-    
+  <ion-grid style = "height: 200%">
     <ion-row justify-content-center align-items-start >
       <ion-searchbar placeholder="전공, 프로젝트를 검색해보세요"></ion-searchbar>
     </ion-row>
@@ -19,15 +19,13 @@
         
         <ion-card (click)="loadList(item)"  >
           
-          <img src="{{item.img}}" width="100px" height="80px"/>
-<ion-card-content >
-    <!-- class="fixline" -->
-    <ion-card-header class="text" >
+          <img src="{{item.img}}" width="150px" height="120px"/>
+<ion-card-content class="fixline">
+    #{{item.tag}}
+
+    <!-- <ion-card-header class="text" >
         {{item.tag}}
-        <p>
-          {{item.major}}
-        </p>
-      </ion-card-header>
+      </ion-card-header> -->
 </ion-card-content>
 
 
