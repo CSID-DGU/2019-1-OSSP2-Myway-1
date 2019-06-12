@@ -12,6 +12,7 @@ import { defineBase, query } from '@angular/core/src/render3';
   styleUrls: ['./post-list.page.scss'],
 })
 export class PostListPage implements OnInit {
+  public userid:string;
 public hashtag: string;
 items: any;
   constructor(
@@ -23,6 +24,7 @@ items: any;
     public router:Router
   ) {
     this.hashtag = this.activatedRoute.snapshot.paramMap.get('tag');
+    this.userid=this.activatedRoute.snapshot.paramMap.get('userid');
     this.loadList();
   }
 
@@ -34,7 +36,7 @@ this.db.list('regisTxt/', ref => ref.orderByChild('tag').equalTo(this.hashtag)).
 }
 
 getPost(item:any){
-  this.router.navigate(['post',item.title]);
+  this.router.navigate(['post',item.title,this.userid]);
 }
   ngOnInit() {
   }
