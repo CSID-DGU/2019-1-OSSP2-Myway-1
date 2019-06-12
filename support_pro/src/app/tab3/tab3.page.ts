@@ -97,6 +97,8 @@ export class Tab3Page {
             alertEI.present();
           });
       } else {
+        this.sdateInput = this.sdateInput.substring(0, 10);
+        this.edateInput = this.edateInput.substring(0, 10);
         this.regisTxt.user = this.Userid;
         this.regisTxt.title = this.titleInput;
         this.regisTxt.major = this.majorInput;
