@@ -18,24 +18,24 @@
       <ion-item>  
         <ion-label>전공</ion-label>
         <ion-select placeholder="Select One" [(ngModel)]="majorInput" >
-          <ion-select-option value="com">컴퓨터공학</ion-select-option>
-          <ion-select-option value="robot">기계로봇</ion-select-option>
+          <ion-select-option value="컴퓨터공학과">컴퓨터공학</ion-select-option>
+          <ion-select-option value="기계로봇공학과">기계로봇</ion-select-option>
         </ion-select>
       </ion-item>
 
       <!-- default로 보이는게 있게끔 -->
       <ion-item>  
         <ion-label>수업명</ion-label>
-        <div *ngIf="majorInput == 'com'">
+        <div *ngIf="majorInput == '컴퓨터공학과'">
           <ion-select placeholder="Select One" [(ngModel)]="classInput">
-            <ion-select-option value="CSE4074">공개sw</ion-select-option>
-            <ion-select-option value="CSE2022"> 심화프로그래밍</ion-select-option>
+            <ion-select-option value="공개소프트웨어">공개sw</ion-select-option>
+            <ion-select-option value="심화프로그래밍"> 심화프로그래밍</ion-select-option>
           </ion-select>
         </div>
-        <div *ngIf="majorInput == 'robot'">
+        <div *ngIf="majorInput == '기계로봇공학과'">
           <ion-select placeholder="Select One" [(ngModel)]="classInput">
-            <ion-select-option value="MEC2020">창의적공학설계</ion-select-option>
-            <ion-select-option value="MEC2034"> 로봇프로그래밍</ion-select-option>
+            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
+            <ion-select-option value="로봇프로그래밍"> 로봇프로그래밍</ion-select-option>
           </ion-select>
         </div>
       </ion-item>
