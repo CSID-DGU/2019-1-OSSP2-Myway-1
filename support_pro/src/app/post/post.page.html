@@ -23,7 +23,7 @@
                   <tr>
                       <td><ion-button (click)="gotoChat(item.user)"><ion-icon name="contact"></ion-icon>{{item.user}}</ion-button></td>
                       <td>
-                        <ion-icon (click)="toggleLikeState()" (click)="consolePrint()" tappable [@heart]="likeState" size="large" name="heart"></ion-icon>
+                        <ion-icon (click)="toggleLikeState()" tappable [@heart]="likeState" size="large" name="heart"></ion-icon>
                         <ion-icon (click)="toggleScrapState()" tappable [@star]="scrapState" size="large" name="star"></ion-icon>
                     </td>
                   </tr>

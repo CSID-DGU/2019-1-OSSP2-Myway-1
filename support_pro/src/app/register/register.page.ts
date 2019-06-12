@@ -18,12 +18,11 @@ export class RegisterPage implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   cpassword: string = '';
 
-  // tslint:disable-next-line:no-inferrable-types
-  userid: string = '';
+  userid:string;
 
-  userInfo = {
-    like: '',
-    scrap: ''
+  userInfo={
+    like: "",
+    scrap: ""
   };
   constructor(
     public navCtrl: NavController,
@@ -60,10 +59,11 @@ export class RegisterPage implements OnInit {
       });
       return;
     }
-    const strArray = this.username.split('@');
+
+    var strArray =this.username.split('@');
     this.userid = strArray[0];
     this.db.object(`userInfo/${this.userid}`).set(this.userInfo);
-    try {
+    try {      
       const res =  this.afAuth.auth.createUserWithEmailAndPassword(username, password);
       this.navCtrl.navigateBack('/tabs/tab5');
   } catch (error) {
