@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { NavController , AlertController} from '@ionic/angular';
 import { Storage } from '@ionic/storage';
@@ -44,7 +45,8 @@ export class Tab1Page {
   loadList(item:any){
     // this.stor.set('hashtag',items.tag);
     // this.navCtrl.navigateForward('/post-list');
-    this.router.navigate(['post-list',item.tag]);
+    this.router.navigate(['post-list',item.tag,this.userid]);
   }
 
 }
+
