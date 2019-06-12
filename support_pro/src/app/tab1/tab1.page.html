@@ -15,17 +15,15 @@
     </ion-row>
 
     <ion-row>
-      <ion-col *ngFor="let item of items" col-12 no-padding>
+      <ion-col *ngFor="let item of items" col-6 no-padding>
         
         <ion-card (click)="loadList(item)"  >
           
-          <img src="{{item.img}}" width="100px" height="80px"/>
-<ion-card-content >
+          <img src="{{item.img}}" width="150px" height="120px"/>
+<ion-card-content class="fixline" >
     <!-- class="fixline" -->
         {{item.tag}}
-        <p>
-          {{item.major}}
-        </p>
+       
 </ion-card-content>
 
 
