@@ -4,7 +4,6 @@ import { auth } from 'firebase/app';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -18,9 +17,13 @@ export class RegisterPage implements OnInit {
   password: string = '';
   // tslint:disable-next-line:no-inferrable-types
   cpassword: string = '';
+
+  // tslint:disable-next-line:no-inferrable-types
+  userid: string = '';
+
   userInfo = {
-    like: 0,
-    scrap: 0
+    like: '',
+    scrap: ''
   };
   constructor(
     public navCtrl: NavController,
@@ -57,6 +60,9 @@ export class RegisterPage implements OnInit {
       });
       return;
     }
+    const strArray = this.username.split('@');
+    this.userid = strArray[0];
+    this.db.object(`userInfo/${this.userid}`).set(this.userInfo);
     try {
       const res =  this.afAuth.auth.createUserWithEmailAndPassword(username, password);
       this.navCtrl.navigateBack('/tabs/tab5');
@@ -64,3 +70,4 @@ export class RegisterPage implements OnInit {
     }
   }
 }
+
