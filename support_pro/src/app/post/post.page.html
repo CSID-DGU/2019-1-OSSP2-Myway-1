@@ -9,12 +9,13 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 <ion-card>
   <ion-card-content *ngFor="let item of item">
       <ion-item>
-          <ion-label position ="floating">{{item.img}}</ion-label>
+          <ion-label position ="floating">
+                <img src="{{item.img}}"/>
+          </ion-label>
       </ion-item>
       <ion-item>
           <ion-label position ="floating">{{item.user}}</ion-label>

@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,15 @@ export class RegisterPage implements OnInit {
   password: string = '';
   // tslint:disable-next-line:no-inferrable-types
   cpassword: string = '';
+  userInfo = {
+    like: 0,
+    scrap: 0
+  };
   constructor(
     public navCtrl: NavController,
     public afAuth: AngularFireAuth,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public db: AngularFireDatabase
     ) { }
   ngOnInit() {
   }

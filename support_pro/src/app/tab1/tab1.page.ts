@@ -16,14 +16,14 @@ import {Router} from '@angular/router';
 export class Tab1Page {
   public userid: string;
   data: Observable<any>;
-  items:any;
+  items: any;
   constructor(
     public plat: Platform,
     public stor: Storage,
     public activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
-    public db:AngularFireDatabase,
-    public router:Router
+    public db: AngularFireDatabase,
+    public router: Router
     ) {
       this.getData();
       this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
@@ -33,19 +33,19 @@ export class Tab1Page {
         });
       });
     }
-    //tag별로 보여주는거 
-  getData(){
+    // tag별로 보여주는거
+  getData() {
     this.db.list('regisTxt/').valueChanges().subscribe(
       data => {
-        this.items = data
+        this.items = data;
       }
-    )
+    );
   }
-  //tag누르면 다음페이지로 이동 
-  loadList(item:any){
+  // tag누르면 다음페이지로 이동
+  loadList(item: any) {
     // this.stor.set('hashtag',items.tag);
     // this.navCtrl.navigateForward('/post-list');
-    this.router.navigate(['post-list',item.tag,this.userid]);
+    this.router.navigate(['post-list', item.tag, this.userid]);
   }
 
 }

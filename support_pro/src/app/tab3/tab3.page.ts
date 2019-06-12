@@ -22,11 +22,12 @@ export class Tab3Page {
   public hash_1: any;
 // tslint:disable-next-line: variable-name
   public tmp_hash_1: number;
+  tmpimgurl: any;
   showItemKEy = '';
   check = false;         // 수업별 게시글 수 카운트
   checkMajor = false;    // 전공별 게시글 수 카운트
   checkHashtag = false; // 해시태그별 게시글 수 카운트
-
+  contentCount = false; // 전체 게시글 수 카운트
   public Userid: string;
   // tslint:disable-next-line:no-inferrable-types
   titleInput: string = '' ; profInput: string = ''; sdateInput: string = ''; edateInput: string = '';
@@ -43,10 +44,6 @@ export class Tab3Page {
       content: '',
       tag: '',
       img: ''
-  };
-  hashtagList = {
-    hashT : '',
-    count: 0
   };
   constructor(
     public stor: Storage,
@@ -111,7 +108,28 @@ export class Tab3Page {
         this.regisTxt.tag = this.hashtag;
         this.regisTxt.img = this.picname;
         alert('글이 등록되었습니다.');
-        this.db.list('regisTxt').push(this.regisTxt);
+
+        /* 전체 게시글 카운트 */
+        this.db.object(`contentCount/`).valueChanges().subscribe(val => {
+          while ( this.contentCount === false) {
+          this.hash_1 = val;
+          this.tmp_hash_1 = this.hash_1;
+          console.log(val, this.tmp_hash_1, this.hash_1);
+          // 전체 게시글 저장
+          this.db.object(`regisTxt/${this.tmp_hash_1}`).set(this.regisTxt);
+          this.showImage();
+          this.tmp_hash_1 += 1;
+          console.log('전체 게시글?' + this.classInput, this.tmp_hash_1);
+          // 전체 게시글 수 저장
+          this.db.object(`contentCount/`).set(this.tmp_hash_1);
+          this.contentCount = true;
+            }
+          return 0;
+     });
+        this.contentCount = false;
+
+       // this.db.list('regisTxt').push(this.regisTxt);
+
         /* 수업별 게시글 카운트*/
         this.db.object(`classList/${this.classInput}/`).valueChanges().subscribe(val => {
           while ( this.check === false) {
@@ -126,6 +144,7 @@ export class Tab3Page {
           return 0;
    });
         this.check = false;
+
         /*전공별 게시글 카운트*/
         this.db.object(`majorList/${this.majorInput}/`).valueChanges().subscribe(val => {
           while ( this.checkMajor === false) {
@@ -140,16 +159,55 @@ export class Tab3Page {
           return 0;
    });
         this.checkMajor = false;
-      }
-    }
 
+         /*해시태그별 게시글 카운트*/
+        this.db.object(`hashtagList/${this.hashtag}/`).valueChanges().subscribe(val => {
+        while ( this.checkHashtag === false) {
+        this.hash_1 = val;
+        this.tmp_hash_1 = this.hash_1;
+        console.log(val, this.tmp_hash_1, this.hash_1);
+        this.tmp_hash_1 += 1;
+        console.log(this.classInput, this.tmp_hash_1);
+        this.db.object(`hashtagList/${this.hashtag}/`).set(this.tmp_hash_1);
+        this.checkHashtag = true;
+          }
+        return 0;
+   });
+        this.checkHashtag = false;
+
+      } // else
+    }
     /* 방금 저장한 이미지 url 불러오나 확인*/
     /*picname에 값이 들어가야 되기 때문에 위처럼 확인함*/
       showImage() {
 // tslint:disable-next-line: prefer-const
       let storageRef = firebase.storage().ref();
-      const imageRef = storageRef.child(`picture/${this.picname}`);
+// tslint:disable-next-line: prefer-const
+      let imageRef = storageRef.child(`picture/${this.picname}`);
       console.log(imageRef.getDownloadURL());
-      return imageRef.getDownloadURL();
+      this.contentCount = false;
+      imageRef.getDownloadURL()
+      .then((imageURI) => {
+        console.log(imageURI);
+        this.tmpimgurl = imageURI;
+        console.log('tmpImgurl은' + this.tmpimgurl);
+
+        this.db.object(`contentCount/`).valueChanges().subscribe(val => {
+          while ( this.contentCount === false) {
+          console.log('들어옴');
+          this.hash_1 = val;  // 전체 게시글 수 저장
+          this.tmp_hash_1 = this.hash_1;
+          this.tmp_hash_1 = this.tmp_hash_1 - 1;
+          this.db.object(`regisTxt/${this.tmp_hash_1}/img`).set(this.tmpimgurl);
+          // 게시글 저장
+         // this.db.object(`contentCount/`).set(this.tmp_hash_1);
+          this.contentCount = true;
+            }
+          return 0;
+     });
+        this.contentCount = false;
+       // this.regisTxt.img = imageURI;
+        // console.log(this.regisTxt.img);
+      });
     }
 }

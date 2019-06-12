@@ -10,7 +10,7 @@
 <ion-content>
     <ion-col *ngFor="let item of items" col-12 no-padding>
         <ion-card (click)="getPost(item)"  >
-          <img src="/assets/img/ionic.png" width="100px" height="80px"/>
+          <img src="{{item.img}}" width="100px" height="80px"/>
 <ion-card-content >
     <!-- class="fixline" -->
     <ion-card-header class="text" >
