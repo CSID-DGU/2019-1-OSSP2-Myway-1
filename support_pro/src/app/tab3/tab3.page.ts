@@ -18,6 +18,15 @@ export class Tab3Page {
   pictureRef;
   picname;
   imageURI;
+  // tslint:disable-next-line: variable-name
+  public hash_1: any;
+// tslint:disable-next-line: variable-name
+  public tmp_hash_1: number;
+  showItemKEy = '';
+  check = false;         // 수업별 게시글 수 카운트
+  checkMajor = false;    // 전공별 게시글 수 카운트
+  checkHashtag = false; // 해시태그별 게시글 수 카운트
+
   public Userid: string;
   // tslint:disable-next-line:no-inferrable-types
   titleInput: string = '' ; profInput: string = ''; sdateInput: string = ''; edateInput: string = '';
@@ -35,7 +44,10 @@ export class Tab3Page {
       tag: '',
       img: ''
   };
-
+  hashtagList = {
+    hashT : '',
+    count: 0
+  };
   constructor(
     public stor: Storage,
     private alertCtrl: AlertController,
@@ -100,6 +112,34 @@ export class Tab3Page {
         this.regisTxt.img = this.picname;
         alert('글이 등록되었습니다.');
         this.db.list('regisTxt').push(this.regisTxt);
+        /* 수업별 게시글 카운트*/
+        this.db.object(`classList/${this.classInput}/`).valueChanges().subscribe(val => {
+          while ( this.check === false) {
+        this.hash_1 = val;
+        this.tmp_hash_1 = this.hash_1;
+        console.log(val, this.tmp_hash_1, this.hash_1);
+        this.tmp_hash_1 += 1;
+        console.log(this.classInput, this.tmp_hash_1);
+        this.db.object(`classList/${this.classInput}/`).set(this.tmp_hash_1);
+        this.check = true;
+          }
+          return 0;
+   });
+        this.check = false;
+        /*전공별 게시글 카운트*/
+        this.db.object(`majorList/${this.majorInput}/`).valueChanges().subscribe(val => {
+          while ( this.checkMajor === false) {
+        this.hash_1 = val;
+        this.tmp_hash_1 = this.hash_1;
+        console.log(val, this.tmp_hash_1, this.hash_1);
+        this.tmp_hash_1 += 1;
+        console.log(this.classInput, this.tmp_hash_1);
+        this.db.object(`majorList/${this.majorInput}/`).set(this.tmp_hash_1);
+        this.checkMajor = true;
+          }
+          return 0;
+   });
+        this.checkMajor = false;
       }
     }
 

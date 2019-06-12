@@ -1,9 +1,9 @@
 export const config = {
-    apiKey: "AIzaSyBS2VjijWulFSj3qQOzXyGeRvfRq1BXOjE",
-    authDomain: "supportpro-44e21.firebaseapp.com",
-    databaseURL: "https://supportpro-44e21.firebaseio.com",
-    projectId: "supportpro-44e21",
-    storageBucket: "supportpro-44e21.appspot.com",
-    messagingSenderId: "733863677574",
-    appId: "1:733863677574:web:997ed4b71aede2a9"
+    apiKey: 'AIzaSyAqDKy-a5Slnb_cx1f46iIvPj5ak8eN97U',
+    authDomain: 'supportingbot.firebaseapp.com',
+    databaseURL: 'https://supportingbot.firebaseio.com',
+    projectId: 'supportingbot',
+    storageBucket: 'supportingbot.appspot.com',
+    messagingSenderId: '351066243989',
+    appId: '1:351066243989:web:01eebc1071ec37c6'
 };
