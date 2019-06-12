@@ -19,6 +19,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { config } from './firebase.credentials';
 import { IonicStorageModule } from '@ionic/storage';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    BrowserAnimationsModule
   ],
   providers: [
     Camera,
