@@ -11,7 +11,7 @@
 
 <ion-content>
 <ion-card>
-
+    <ion-icon (click)="toggleLikeState()" tappable [@heart]="likeState" size="large" name="heart"></ion-icon>
   <ion-card-content *ngFor="let item of item">
       <ion-item>
           <ion-label position ="floating">{{item.img}}</ion-label>
