@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
@@ -70,9 +69,9 @@ public likeState: string = 'unliked';
       this.title = this.activatedRoute.snapshot.paramMap.get('title');
       this.load();
       }
-public iconName: string = 'heart-empty';
-public scrapState: string = 'unscrap';
-public starName: string = 'star-outline';
+      public iconName: string = 'heart-empty';
+      public scrapState: string = 'unscrap';
+      public starName: string = 'star-outline';
     load() {
       this.db.list('regisTxt/', ref => ref.orderByChild('title').equalTo(this.title)).valueChanges().subscribe(
         data => {
@@ -108,6 +107,60 @@ public starName: string = 'star-outline';
         });
       await alert.present();
     }
+    /*
+    async gotoChat(you : string){
+      this.check=false;
+      const alert = await this.atrCtrl.create({
+          header: 'Confirm!',
+          message: '<strong>'+you+'</strong>'+'와 채팅하시겠습니까??',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: (blah) => {
+                console.log('Confirm Cancel: blah');
+              }
+            }, {
+              text: 'Okay',
+              handler: () => {
+                console.log('Confirm Okay');
+                this.chattingRef=this.fs.collection('chatting',ref=>ref.orderBy('Timestamp')).valueChanges();
+                var tmp1=this.af.auth.currentUser.email;
+                var tmp2=you;
+
+                const db=firebase.firestore();
+                const collection=db.collection('chatting');
+
+                collection.get().then(snapshot=>{
+                  while(this.check===false){
+                    snapshot.forEach(doc=>{
+                      console.log("uid1="+doc.data().uid1);
+                      console.log("uid2="+doc.data().uid2);
+                      if((tmp1==doc.data().uid1 && tmp2==doc.data().uid2) || (tmp1==doc.data().uid2 && tmp2==doc.data().uid1)){
+                        console.log("same");
+                        this.router.navigate(['chat-view',you]);
+                        this.check=true;
+                      }
+                    });
+                  }
+                });
+                if(!this.check)
+                {
+                  console.log("DDD");
+                  this.fs.collection('chatting').add({
+                    uid1:this.af.auth.currentUser.email,
+                    uid2:you,
+                    Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                  });
+                  this.router.navigate(['chat-view',you]);
+                }
+              }
+            }
+          ]
+      });
+        await alert.present();
+    }*/
     toggleLikeState() {
       if (this.likeState === 'unliked') {
         this.likeState = 'liked';
@@ -131,4 +184,3 @@ public starName: string = 'star-outline';
   }
 
 }
-
