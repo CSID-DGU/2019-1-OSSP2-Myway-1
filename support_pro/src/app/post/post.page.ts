@@ -53,7 +53,9 @@ export class PostPage implements OnInit {
   Email: string;
   chattingRef: any;
   public userid: string;
-
+// tslint:disable-next-line: variable-name
+  tmp_hash_1: number;
+  tmp: string;
 public likeState: string = 'unliked';
     constructor(
       public plat: Platform,
@@ -166,9 +168,47 @@ public likeState: string = 'unliked';
       if (this.likeState === 'unliked') {
         this.likeState = 'liked';
         this.iconName = 'heart';
+        /*각 게시글 별 좋아요 수 계산 (더하기)*/
+        firebase.database().ref().once('value').then((snapshot) => {
+          // tslint:disable-next-line: prefer-const
+                    let c = snapshot.child('contentCount').val();  //전체 게시글 수
+                    this.tmp_hash_1 = c;
+          // tslint:disable-next-line: align
+                    for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+          // tslint:disable-next-line: prefer-const
+                      let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+                      this.tmp = tmpLikeCount1;
+                      if ( this.title === this.tmp ) {
+          // tslint:disable-next-line: no-var-keyword
+                           var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
+                           likeCount = likeCount + 1;
+                           this.db.object(`regisTxt/${i}/like`).set(likeCount);
+                         }
+                  }
+                  });
       } else {
         this.likeState = 'unliked';
         this.iconName = 'heart-empty';
+         /*각 게시글 별 좋아요 수 계산(빼기)*/
+         firebase.database().ref().once('value').then((snapshot) => {
+          // tslint:disable-next-line: prefer-const
+                    let c = snapshot.child('contentCount').val();  // 전체 게시글 수
+                    this.tmp_hash_1 = c;
+          // tslint:disable-next-line: align
+                    for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+          // tslint:disable-next-line: prefer-const
+                      let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+                      this.tmp = tmpLikeCount1;
+                      if ( this.title === this.tmp) {
+          // tslint:disable-next-line: no-var-keyword
+                           var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
+                           if ( likeCount !== 0) {
+                           likeCount = likeCount - 1;
+                           this.db.object(`regisTxt/${i}/like`).set(likeCount);
+                           }
+                         }
+                  }
+              });
       }
     }
 

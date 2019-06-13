@@ -28,13 +28,14 @@ export class Tab3Page {
   checkMajor = false;    // 전공별 게시글 수 카운트
   checkHashtag = false; // 해시태그별 게시글 수 카운트
   contentCount = false; // 전체 게시글 수 카운트
-  tagCount=false; // 해시태그 개수 카운트
-  new=true; // 새로운 해시태크인지 체크
+  
   public hashCnt: any;
-  public tmp_hashCnt:number;
+  public tmp_hashCnt: number;
   public Userid: string;
   public tmpCnt: any;
-  public tmpH:number;
+  public tmpH: number;
+  public tmp: number;
+  like: number;
   // tslint:disable-next-line:no-inferrable-types
   titleInput: string = '' ; profInput: string = ''; sdateInput: string = ''; edateInput: string = '';
    // tslint:disable-next-line:no-inferrable-types
@@ -52,7 +53,8 @@ export class Tab3Page {
       content: '',
       tag: '',
       img: '',
-      git: ''
+      git: '',
+      like: 0
   };
   constructor(
     public stor: Storage,
@@ -119,6 +121,7 @@ export class Tab3Page {
         this.regisTxt.tag = this.hashtag;
         this.regisTxt.img = this.picname;
         this.regisTxt.git = this.gitadd;
+        this.regisTxt.like = 0;
         alert('글이 등록되었습니다.');
 
         /* 전체 게시글 카운트 */
@@ -172,58 +175,35 @@ export class Tab3Page {
    });
         this.checkMajor = false;
 
-         /*해시태그별 게시글 카운트*/
-        //this.db.object(`hashtagList/${this.hashtag}/`).valueChanges().subscribe(val => {
-        //while ( this.checkHashtag === false) {
-        //this.hash_1 = val;
-        //this.tmp_hash_1 = this.hash_1;
-        //console.log(val, this.tmp_hash_1, this.hash_1);
-        //this.tmp_hash_1 += 1;
-        //console.log(this.classInput, this.tmp_hash_1);
-        //this.db.object(`hashtagList/${this.hashtag}/`).set(this.tmp_hash_1);
-        //this.checkHashtag = true;
-        //  }
-        //return 0;
-        //});
-       // this.checkHashtag = false;
-       var i=0;
-       var realI;
-       this.new=true;
-       this.db.object(`hashTagCnt/`).valueChanges().subscribe(val=>{
-         while(this.tagCount===false){
-           this.hashCnt=val;
-           this.tmp_hashCnt=this.hashCnt;
-           while(i!==val){
-             console.log(i);
-             this.db.object(`hashtagList/${i}/`).valueChanges().subscribe(val=>{
-               console.log(val);
-               if(this.hashtag===val){
-                 this.new=false;
-                 realI=i;               
-               }
-             });
-             i++;
-           }
-           if(this.new===true){
-             console.log("new");
-             this.tmp_hashCnt+=1;
-             this.db.object(`hashTagCnt/`).set(this.tmp_hashCnt);
-             this.db.object(`hashtagList/${this.tmp_hashCnt}/${this.hashtag}/`).set(1);
-             this.tagCount=true;
-           }
-           else{
-             console.log("old");
-             this.db.object(`hashtagList/${realI}/${this.hashtag}/`).valueChanges().subscribe(val=>{
-               this.tmpCnt=val;
-               this.tmpH=this.tmpCnt;
-               this.tmpH=this.tmpH+1;
-               this.db.object(`hashtagList/${realI}/${this.hashtag}/`).set(this.tmpH);
-             });
-             this.tagCount=true;
-           }
-         }
-       });
-       this.tagCount=false;
+        /*해시태그별 카운트*/
+        firebase.database().ref().once('value').then((snapshot) => {
+          // tslint:disable-next-line: prefer-const
+                    let c = snapshot.child('hashCount').val();  // 전체 해시태그 수
+                    console.log('전체 해시태그 수는', c);
+                    this.tmp_hash_1 = c;
+                    this.checkHashtag = false;
+          // tslint:disable-next-line: align
+                    for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+                      console.log('지금 i는!!', i);
+          // tslint:disable-next-line: prefer-const
+                      let tmpLikeCount1 = snapshot.child(`hashtagList/${i}/${this.hashtag}`).val();
+                      console.log('그냥 읽어온 hashtag수', tmpLikeCount1);
+                      // 이미 있던 해시태그라면?
+                      if ( tmpLikeCount1 !== null) {
+                        this.tmp = tmpLikeCount1; // 해시태그 수
+                        this.tmp = this.tmp + 1;
+                        this.db.object(`hashtagList/${i}/${this.hashtag}`).set(this.tmp);
+                        this.checkHashtag = true;
+                      }
+                  }
+                    if ( this.checkHashtag === false) {
+                    this.tmp = c;
+                    this.db.object(`hashtagList/${this.tmp}/${this.hashtag}`).set(1); // 해시태그 저장
+                    this.tmp = this.tmp + 1; // 전체 해시태그 수 올려주고
+                    this.db.object('hashCount').set(this.tmp); // 전체 해시태그 수 저장
+
+                  }
+              });
 
       } // else
     }
