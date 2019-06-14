@@ -15,15 +15,14 @@
     </ion-row>
 
     <ion-row>
-      <ion-col *ngFor="let item of items" col-6 no-padding>
-        
+      <ion-col *ngFor="let item of posttags" col-6 no-padding>
         <ion-card (click)="loadList(item)"  >
-          
-          <img src="{{item.img}}" width="150px" height="120px"/>
+          <img src="{{imgurls[item]}}" width="150px" height="120px"/>
+
 <ion-card-content class="fixline" >
     <!-- class="fixline" -->
-        {{item.tag}}
-       
+        {{item}}
+       <p>게시글 수:&nbsp;{{postnum[item]}}</p>
 </ion-card-content>
 
 

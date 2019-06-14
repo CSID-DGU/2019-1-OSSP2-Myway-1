@@ -18,6 +18,7 @@ export class Tab3Page {
   pictureRef;
   picname;
   imageURI;
+  hcount = 0; // 해시태그 여러개 입력한 경우를 위한 카운트
   // tslint:disable-next-line: variable-name
   public hash_1: any;
 // tslint:disable-next-line: variable-name
@@ -28,8 +29,8 @@ export class Tab3Page {
   checkMajor = false;    // 전공별 게시글 수 카운트
   checkHashtag = false; // 해시태그별 게시글 수 카운트
   contentCount = false; // 전체 게시글 수 카운트
-  
   public hashCnt: any;
+  // tslint:disable-next-line:variable-name
   public tmp_hashCnt: number;
   public Userid: string;
   public tmpCnt: any;
@@ -39,7 +40,7 @@ export class Tab3Page {
   // tslint:disable-next-line:no-inferrable-types
   titleInput: string = '' ; profInput: string = ''; sdateInput: string = ''; edateInput: string = '';
    // tslint:disable-next-line:no-inferrable-types
-   conInput: string = ''; hashtag: string = ''; classInput: string = ''; majorInput: string = '';
+   conInput: string = ''; hashtag = []; classInput: string = ''; majorInput: string = '';
    // tslint:disable-next-line:no-inferrable-types
    gitadd: string = '';
     regisTxt = {
@@ -51,7 +52,7 @@ export class Tab3Page {
       sdate: '',
       edate: '',
       content: '',
-      tag: '',
+      tag: [],
       img: '',
       git: '',
       like: 0
@@ -96,7 +97,7 @@ export class Tab3Page {
     }
     register() {
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
-         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === '' ) {
+         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] ) {
           this.alertCtrl.create({
             header: '',
             message: '내용을 전부 입력해주세요',
@@ -178,7 +179,9 @@ export class Tab3Page {
         /*해시태그별 카운트*/
         firebase.database().ref().once('value').then((snapshot) => {
           // tslint:disable-next-line: prefer-const
-                    let c = snapshot.child('hashCount').val();  // 전체 해시태그 수
+          let c = snapshot.child('hashCount').val();  // 전체 해시태그 수
+          console.log('해시태그 길이' + this.hashtag.length);
+          while (this.hcount < this.hashtag.length) {
                     console.log('전체 해시태그 수는', c);
                     this.tmp_hash_1 = c;
                     this.checkHashtag = false;
@@ -186,23 +189,27 @@ export class Tab3Page {
                     for ( let i = 0; i < this.tmp_hash_1; i++ ) {
                       console.log('지금 i는!!', i);
           // tslint:disable-next-line: prefer-const
-                      let tmpLikeCount1 = snapshot.child(`hashtagList/${i}/${this.hashtag}`).val();
+                      let tmpLikeCount1 = snapshot.child(`hashtagList/${i}/${this.hashtag[this.hcount]}`).val();
                       console.log('그냥 읽어온 hashtag수', tmpLikeCount1);
                       // 이미 있던 해시태그라면?
                       if ( tmpLikeCount1 !== null) {
                         this.tmp = tmpLikeCount1; // 해시태그 수
                         this.tmp = this.tmp + 1;
-                        this.db.object(`hashtagList/${i}/${this.hashtag}`).set(this.tmp);
+                        this.db.object(`hashtagList/${i}/${this.hashtag[this.hcount]}`).set(this.tmp);
                         this.checkHashtag = true;
+                        this.hcount = this.hcount + 1; // 글당 해시태그 수
                       }
                   }
                     if ( this.checkHashtag === false) {
                     this.tmp = c;
-                    this.db.object(`hashtagList/${this.tmp}/${this.hashtag}`).set(1); // 해시태그 저장
+                    this.db.object(`hashtagList/${this.tmp}/${this.hashtag[this.hcount]}`).set(1); // 해시태그 저장
                     this.tmp = this.tmp + 1; // 전체 해시태그 수 올려주고
                     this.db.object('hashCount').set(this.tmp); // 전체 해시태그 수 저장
-
+                    this.hcount = this.hcount + 1; // 글당 해시태그 수
+                    c = c + 1;
                   }
+                }
+          this.hcount = 0;
               });
 
       } // else
@@ -214,17 +221,17 @@ export class Tab3Page {
       let storageRef = firebase.storage().ref();
 // tslint:disable-next-line: prefer-const
       let imageRef = storageRef.child(`picture/${this.picname}`);
-      console.log(imageRef.getDownloadURL());
+      // console.log(imageRef.getDownloadURL());
       this.contentCount = false;
       imageRef.getDownloadURL()
       .then((imageURI) => {
-        console.log(imageURI);
+        // console.log(imageURI);
         this.tmpimgurl = imageURI;
-        console.log('tmpImgurl은' + this.tmpimgurl);
+        // console.log('tmpImgurl은' + this.tmpimgurl);
 
         this.db.object(`contentCount/`).valueChanges().subscribe(val => {
           while ( this.contentCount === false) {
-          console.log('들어옴');
+          // console.log('들어옴');
           this.hash_1 = val;  // 전체 게시글 수 저장
           this.tmp_hash_1 = this.hash_1;
           this.tmp_hash_1 = this.tmp_hash_1 - 1;
