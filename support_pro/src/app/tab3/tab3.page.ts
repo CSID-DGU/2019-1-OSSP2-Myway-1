@@ -100,7 +100,7 @@ export class Tab3Page {
     }
     register() {
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
-         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] ) {
+         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] || this.picname==='' ) {
           this.alertCtrl.create({
             header: '',
             message: '내용을 전부 입력해주세요',
@@ -121,7 +121,7 @@ export class Tab3Page {
         this.regisTxt.prof = this.profInput;
         this.regisTxt.sdate = this.sdateInput;
         this.regisTxt.edate = this.edateInput;
-        this.regisTxt.content = this.conInput;
+        this.regisTxt.content = this.conInput.replace('\n', '<br>');
         this.regisTxt.tag = this.hashtag;
         this.regisTxt.img = this.picname;
         this.regisTxt.git = this.gitadd;

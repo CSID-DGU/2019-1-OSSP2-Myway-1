@@ -1,22 +1,40 @@
-table.type05 {
-    width: 95%;
-    border-collapse: separate;
-    border-spacing: 1px;
+#b{
+    width: 100%;
     text-align: center;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
+    margin-top: 50px;
+ }
+
+
+body {
+   font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 14px;
 }
-table.type05 th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: middle;
-    border-bottom: 1px solid #ccc;
-    background: #efefef;
+
+.wrap {
+	width:100%;
+    text-align: center;
+    margin-top: 150px;
 }
-table.type05 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: middle;
-    border-bottom: 1px solid #ccc;
+
+button.lout{
+    display: block;
+    margin: 0px auto;
+	border-radius: 4px;
+}
+
+button.butn {
+	display: block;
+    margin: 20px auto;
+    width: 200px;
+	text-decoration: none;
+    border-radius: 4px;
+    padding: 20px 30px;
+    color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+button.butn:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
 }
