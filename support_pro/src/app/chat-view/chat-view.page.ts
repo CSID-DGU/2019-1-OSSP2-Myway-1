@@ -124,39 +124,61 @@ export class ChatViewPage implements OnInit {
     await alert.present();
   }
 
-  deleteList(){ // 채팅 목록 삭제
-    const db=firebase.firestore();
-    const collection=db.collection('chatting');
-    const collection2=db.collection('chats');
-    collection.get().then(snapshot=>{
-      snapshot.forEach(doc=>{
-        let get1=doc.data().uid1;
-        let get2=doc.data().uid2;
-        let getIndex=doc.data().num;
-        this.tmp1=get1;
-        this.tmp2=get2;
-        this.number=getIndex;
-        if((this.tmp1===this.you && this.tmp2===this.currentU) || (this.tmp2===this.you && this.tmp1===this.currentU)){
-          db.collection("chatting").doc((this.number).toString()).delete();
-          console.log("Delete list");
-          collection2.get().then(snapshot=>{
-            snapshot.forEach(doc=>{
-              let getEmail=doc.data().Email;
-              let getYou=doc.data().You;
-              let getCIdx=doc.data().num;
-              this.tmpEmail=getEmail;
-              this.tmpYou=getYou;
-              this.chatnum=getCIdx;
-              if((this.tmpEmail===this.currentU && this.tmpYou===this.you)|| (this.tmpEmail===this.you && this.tmpYou===this.currentU)){
-                console.log(doc.data().Message);
-                db.collection("chats").doc((this.chatnum).toString()).delete();
-                console.log("Delete contents");
-              }
+  async deleteList(){ // 채팅 목록 삭제
+
+    const al = await this.atrCtrl.create({
+      header:'확인!',
+      message: '채팅방을 삭제하시겠습니까?',
+      buttons:[
+        {
+          text:'Cancel',
+          role:'cancel',
+          cssClass:'secondary',
+          handler:(blah)=>{
+            console.log("삭제 안함");
+          }
+        },
+        {
+          text:'Okay',
+          handler:()=>{
+            console.log('채팅방 삭제');
+            const db=firebase.firestore();
+            const collection=db.collection('chatting');
+            const collection2=db.collection('chats');
+            collection.get().then(snapshot=>{
+              snapshot.forEach(doc=>{
+                let get1=doc.data().uid1;
+                let get2=doc.data().uid2;
+                let getIndex=doc.data().num;
+                this.tmp1=get1;
+                this.tmp2=get2;
+                this.number=getIndex;
+                if((this.tmp1===this.you && this.tmp2===this.currentU) || (this.tmp2===this.you && this.tmp1===this.currentU)){
+                  db.collection("chatting").doc((this.number).toString()).delete();
+                  console.log("Delete list");
+                  collection2.get().then(snapshot=>{
+                    snapshot.forEach(doc=>{
+                      let getEmail=doc.data().Email;
+                      let getYou=doc.data().You;
+                      let getCIdx=doc.data().num;
+                      this.tmpEmail=getEmail;
+                      this.tmpYou=getYou;
+                      this.chatnum=getCIdx;
+                      if((this.tmpEmail===this.currentU && this.tmpYou===this.you)|| (this.tmpEmail===this.you && this.tmpYou===this.currentU)){
+                        console.log(doc.data().Message);
+                        db.collection("chats").doc((this.chatnum).toString()).delete();
+                        console.log("Delete contents");
+                      }
+                    });
+                  });
+                }
+                this.alertDelete();
+              });
             });
-          });
+          }
         }
-        this.alertDelete();
-      });
+      ]
     });
+    await al.present();
   }
 }
