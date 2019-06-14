@@ -21,6 +21,7 @@ export class Tab2Page {
   title: any;
   public userid: string;
   constructor(public navCtrl: NavController, public ngZone: NgZone, public router: Router, public stor: Storage) {
+    this.check = 0;
     this.messages.push({
       text: '왜 왔는가?',
       sender: 'api',
@@ -30,6 +31,7 @@ export class Tab2Page {
 
 
   ask() {
+    this.check = 0;
     if (this.text !== '') {
     this.messages.push({
       text: this.text,
@@ -44,10 +46,10 @@ export class Tab2Page {
   }
   }
   goToDia( str: string) {
-    if(this.text.includes(this.substring)){ // '깃'이 요청에 있으면
-      //this.gitaddress = 'https://www.google.com/'
+    this.check = 0;
+    if (this.text.includes(this.substring)) { // '깃'이 요청에 있으면
       this.check = 1; this.ch = 1;
-    } else if(this.text.includes('좋아요 수')) {
+    } else if (this.text.includes('좋아요 수')) {
       this.check = 2;
     } else {
       this.check = 0; this.ch = 0;
@@ -74,7 +76,7 @@ export class Tab2Page {
    this.stor.get('id').then((val) => {
     this.userid = val;
   });
-   this.title = '태그 성공 기원';
+   this.title = '힘을 내자 유나 언니';
    this.router.navigate(['post', this.title, this.userid]);
   }
  

@@ -32,9 +32,23 @@
             <div class="time" text-right><br>
               {{message.createdAt | date:'short' }}</div>
           </ion-col>
+        <ion-col>
+          <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}"> 깃 으로 이동0 </ion-button>
+          <ion-button *ngIf = "check == 2" (click) = "goto()"> 1위 </ion-button>
+          <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 2위 </ion-button>
+          <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 3위 </ion-button>
+        </ion-col>
+          <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}"> 깃 으로 이동1 </ion-button>
+          <ion-button *ngIf = "check == 2" (click) = "goto()"> 1위 </ion-button>
+          <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 2위 </ion-button>
+          <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 3위 </ion-button>
         </ion-row>
+        <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}"> 깃 으로 이동2 </ion-button>
+        <ion-button *ngIf = "check == 2" (click) = "goto()"> 1위 </ion-button>
+        <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 2위 </ion-button>
+        <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 3위 </ion-button>
       </ion-grid>
-      <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}"> 깃 으로 이동 </ion-button>
+      <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}"> 깃 으로 이동3 </ion-button>
       <ion-button *ngIf = "check == 2" (click) = "goto()"> 1위 </ion-button>
       <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 2위 </ion-button>
       <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 3위 </ion-button>
@@ -43,6 +57,10 @@
 <ion-footer>
   <ion-toolbar color="light">
     <ion-item> 
+        <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}"> 깃 으로 이동4 </ion-button>
+      <ion-button *ngIf = "check == 2" (click) = "goto()"> 1위 </ion-button>
+      <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 2위 </ion-button>
+      <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 3위 </ion-button>
         <ion-input type="text" autosize maxRows="4" [(ngModel)]="text" class="message-input" (keyup.enter)="ask()"></ion-input>
       
         <ion-button expand="block" fill="clear" color = "primary" [disabled]="text ===''"  class ="msg-btn"
