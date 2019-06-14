@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     try {
         const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password);
         this.stor.set('id', username);
-        window.location.href = '/tabs/tab5';
+        window.location.href = '/tabs/tab1';
       } catch (err) {
       this.alertCtrl.create({
         header: '',
