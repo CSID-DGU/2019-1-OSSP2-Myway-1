@@ -16,7 +16,7 @@ export class Tab2Page {
   textTmp: string;
   check: number;
   substring = '깃';
-  ch: number;
+  ch = 0; // 싫어요 체크
   decomstr;
   public gitaddress: string;
 
@@ -73,6 +73,12 @@ export class Tab2Page {
           this.check = 2;
         } else if (this.textTmp.includes('어떤 전공의')) {    // 쿼리: 제일 인기있는 게시글?
           this.check = 4;
+        } else if (this.textTmp.includes('태그들 관련')) {
+          this.check = 5;
+        } else if (this.textTmp.includes('태그의')) {
+          this.check = 6;
+        }else if (this.textTmp.includes('좋다')) {
+          this.check = 7;
         } else {
           this.check = 0;
         }
@@ -124,6 +130,29 @@ export class Tab2Page {
  allgood() {
     this.text = '전체 게시글 중 인기 많은 게시글';
     this.ask();
+ }
+ recommand() {
+    this.text = '프로젝트 추천';
+    this.ask();
+ }
+ many() {
+  this.text = '관심 많습니다!!';
+  this.ask();
+ }
+ good() {
+  this.text = '좋은 생각이에요!';
+  this.ask();
+ }
+ bad() {
+   if (this.ch === 2) {
+    this.text = '지금까지 다 싫어요';
+    this.ask();
+    this.ch = 0;
+   } else {
+  this.text = '다시 추천해 주세요';
+  this.ask();
+  this.ch = this.ch + 1;
+   }
  }
 }
 
