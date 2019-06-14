@@ -22,7 +22,8 @@
               <img src = "">
           </ion-avatar>--> 
           <ion-col size ="8" *ngIf = "message.sender == 'api'" class = "message other-message">
-           <span>{{ message.text}}</span> 
+           <span>{{ message.text}}
+           </span> 
            <div class="time" text-right><br>
             {{message.createdAt | date:'short' }}</div>
           </ion-col>
@@ -33,6 +34,10 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+      <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}"> 깃 으로 이동 </ion-button>
+      <ion-button *ngIf = "check == 2" (click) = "goto()"> 1위 </ion-button>
+      <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 2위 </ion-button>
+      <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 3위 </ion-button>
     </ion-content>
 
 <ion-footer>
@@ -48,3 +53,4 @@
       </ion-item>
   </ion-toolbar>
 </ion-footer>
+
