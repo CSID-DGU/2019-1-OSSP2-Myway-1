@@ -81,6 +81,9 @@ export class Tab3Page {
       this.camera.getPicture(options).then((imageURI) => {
         // tslint:disable-next-line:prefer-const
         let newName = `${new Date().getTime()}.png`;
+        console.log(imageURI);
+        // 이미지 미리보기
+        document.getElementById('imgboard').setAttribute('src', 'data:image/jpeg;base64,' + imageURI);
         this.imageURI = imageURI;
         this.picname = newName;
         // this.st.ref(`${newName}`).put(imageURI)
@@ -118,7 +121,7 @@ export class Tab3Page {
         this.regisTxt.prof = this.profInput;
         this.regisTxt.sdate = this.sdateInput;
         this.regisTxt.edate = this.edateInput;
-        this.regisTxt.content = this.conInput;
+        this.regisTxt.content = this.conInput.replace('\n', '<br>');
         this.regisTxt.tag = this.hashtag;
         this.regisTxt.img = this.picname;
         this.regisTxt.git = this.gitadd;

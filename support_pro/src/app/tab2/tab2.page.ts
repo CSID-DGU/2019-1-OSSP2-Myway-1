@@ -13,16 +13,20 @@ export class Tab2Page {
   [x: string]: any;
   messages: any[] = [];
   text: string;
+  textTmp: string;
   check: number;
   substring = '깃';
   ch: number;
+  decomstr;
   public gitaddress: string;
+
   @ViewChild(IonContent) content: IonContent;
   title: any;
   public userid: string;
   constructor(public navCtrl: NavController, public ngZone: NgZone, public router: Router, public stor: Storage) {
+    this.check = -1;
     this.messages.push({
-      text: '왜 왔는가?',
+      text: '무엇이 궁금한 가? \n 직접 물어봐도 되고, 아래 버튼을 눌러보고 싶으면 눌러보게..',
       sender: 'api',
       createAt: new Date().getTime()
     });
@@ -30,6 +34,7 @@ export class Tab2Page {
 
 
   ask() {
+    //this.check = 0;
     if (this.text !== '') {
     this.messages.push({
       text: this.text,
@@ -44,40 +49,82 @@ export class Tab2Page {
   }
   }
   goToDia( str: string) {
-    if(this.text.includes(this.substring)){ // '깃'이 요청에 있으면
-      //this.gitaddress = 'https://www.google.com/'
-      this.check = 1; this.ch = 1;
-    } else if(this.text.includes('좋아요 수')) {
-      this.check = 2;
-    } else {
-      this.check = 0; this.ch = 0;
-    }
     ApiAIPromises.requestText({
       query: this.text
     })
     .then(({result: {fulfillment: {speech}}}) => {
        this.ngZone.run(() => {
         // this.messages = speech;
+        this.textTmp = speech;
         this.messages.push({
           text: speech,
           sender : 'api',
           createAt: new Date().getTime()
         });
-        if (this.check === 1) { this.gitaddress = 'https://www.google.com/'; }
+        // 쿼리: 제일 인기있는 게시글 // 쿼리: 깃 주소와 게시글
+        if (this.textTmp.includes('제일 인기있는')) {
+          this.decomstr = this.textTmp.split('\'');
+          this.gitaddress = this.decomstr[3]; // 깃 주소
+          this.title = this.decomstr[1]; // 글 제목
+          this.check = 1;
+        } else if (this.textTmp.includes('우리 앱은')) { // 쿼리: 앱 설명
+           this.check = 3;
+        } else if (this.textTmp.includes('좋아요 수')) {
+          this.check = 2;
+        } else if (this.textTmp.includes('어떤 전공의')) {    // 쿼리: 제일 인기있는 게시글?
+          this.check = 4;
+        } else {
+          this.check = 0;
+        }
         setTimeout(() => {
           this.content.scrollToBottom(200);
         });
        });
     });
+    this.check = 0;
   }
   goto() {
    this.stor.get('id').then((val) => {
     this.userid = val;
   });
-   this.title = '태그 성공 기원';
+   //this.title = '힘을 내자 유나 언니';
    this.router.navigate(['post', this.title, this.userid]);
   }
- 
+  manual() {
+      this.text = '앱 설명';
+      this.ask();
+      //this.check = 3;
+  }
+ yes() {
+      this.text = '네!!';
+      this.ask();
+      //this.check = 0;
+ }
+ no() {
+      this.text = '아니요..';
+      this.ask();
+     // this.check = 0;
+ }
+ popularContent() {
+   this.text = '인기 많은 게시글';
+   this.ask();
+ }
+ compu() {
+    this.text = '컴퓨터공학과의 인기 많은 게시글';
+    this.ask();
+ }
+ elec() {
+    this.text = '전자전기공학과의 인기 많은 게시글';
+    this.ask();
+ }
+ info() {
+    this.text = '정보통신공학과의 인기 많은 게시글';
+    this.ask();
+ }
+ allgood() {
+    this.text = '전체 게시글 중 인기 많은 게시글';
+    this.ask();
+ }
 }
 
 

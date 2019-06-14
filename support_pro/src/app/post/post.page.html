@@ -58,18 +58,26 @@
     </ion-item>
     <ion-item>
         <ion-label>
+        <b>내용</b>
         <ion-content
             [scrollEvents]="true"
             (ionScrollStart)="logScrollStart()"
             (ionScroll)="logScrolling($event)"
             (ionScrollEnd)="logScrollEnd()" class="content">
-            <p><b>내용</b></p>{{item.content}}
+           {{tmpC}}
         </ion-content>
     </ion-label>   
     </ion-item>
     <ion-item>
         <ion-label position ="floating">
-            <b>해시태그&nbsp;</b> {{item.tag}}
+            <b>해시태그&nbsp;</b> 
+            <ion-content
+            [scrollEvents]="true"
+            (ionScrollStart)="logScrollStart()"
+            (ionScroll)="logScrolling($event)"
+            (ionScrollEnd)="logScrollEnd()" class="tags">
+            {{item.tag}}
+            </ion-content>
         </ion-label>
     </ion-item>
 

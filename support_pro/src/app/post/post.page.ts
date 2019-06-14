@@ -53,16 +53,18 @@ export class PostPage implements OnInit {
   Email: string;
   chattingRef: any;
   public userid: string;
-  check=false; // 채팅 목록
-  size:number; // 채팅 목록 수
-  getSize:any;
-  getuid1:string;
-  getuid2:string;
-  index:number;
-  first=true; // 처음 추가되는 채팅목록인지
+  check = false; // 채팅 목록
+  size: number; // 채팅 목록 수
+  getSize: any;
+  getuid1: string;
+  getuid2: string;
+  index: number;
+  first = true; // 처음 추가되는 채팅목록인지
 // tslint:disable-next-line: variable-name
   tmp_hash_1: number;
   tmp: string;
+  public tmpC: string;
+// tslint:disable-next-line:no-inferrable-types
 public likeState: string = 'unliked';
     constructor(
       public plat: Platform,
@@ -73,9 +75,9 @@ public likeState: string = 'unliked';
       public fs: AngularFirestore,
       public af: AngularFireAuth,
       public router: Router) {
-      this.userid=this.activatedRoute.snapshot.paramMap.get('userid');
+      this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
       var strArray = this.userid.split('@');
-      this.userid=strArray[0];
+      this.userid = strArray[0];
       this.title = this.activatedRoute.snapshot.paramMap.get('title');
       this.load();
       }
@@ -86,17 +88,22 @@ public likeState: string = 'unliked';
       this.db.list('regisTxt/', ref => ref.orderByChild('title').equalTo(this.title)).valueChanges().subscribe(
         data => {
         this.item = data;
-        });
+        let text = this.item[0].content;
+        this.tmpC = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
+        console.log(this.tmpC);
+      });
+
+
     }
-    async chat2Me(){
+    async chat2Me() {
       const alert2 = await this.atrCtrl.create({
-        header:'경고!',
+        header: '경고!',
         message: '본인이 작성한 게시글입니다',
-        buttons:[
+        buttons: [
           {
-            text:'Okay',
-            role:'cancel',
-            handler:(blah)=>{
+            text: 'Okay',
+            role: 'cancel',
+            handler: (blah) => {
               console.log('나랑 채팅');
             }
           }
@@ -104,11 +111,11 @@ public likeState: string = 'unliked';
       });
       await alert2.present();
     }
-    async gotoChat(you : string){
-      this.check=false;
+    async gotoChat(you: string) {
+      this.check = false;
       const alert = await this.atrCtrl.create({
           header: '확인!',
-          message: '<strong>'+you+'</strong>'+'와 채팅하시겠습니까??',
+          message: '<strong>' + you + '</strong>' + '와 채팅하시겠습니까??',
           buttons: [
             {
               text: 'Cancel',
@@ -122,45 +129,44 @@ public likeState: string = 'unliked';
               handler: () => {
                 console.log('Confirm Okay');
 
-                var tmp1=this.af.auth.currentUser.email;
-                var tmp2=you;
+                var tmp1 = this.af.auth.currentUser.email;
+                var tmp2 = you;
 
-                if(tmp1===tmp2){
+                if ( tmp1 === tmp2 ) {
                   this.chat2Me();
                 }
-                else{
-                  this.chattingRef=this.fs.collection('chatting',ref=>ref.orderBy('Timestamp')).valueChanges();
-                
-                  const db=firebase.firestore();
-                  const collection=db.collection('chatting');
+                else {
+                  this.chattingRef = this.fs.collection('chatting', ref => ref.orderBy('Timestamp')).valueChanges();
+                  const db = firebase.firestore();
+                  const collection = db.collection('chatting');
 
-                  collection.get().then(snapshot=>{
-                    snapshot.forEach(doc=>{
-                      let get1=doc.data().uid1;
-                      let get2=doc.data().uid2;
-                      this.getuid1=get1;
-                      this.getuid2=get2;
-                      if((tmp1==this.getuid1 && tmp2==this.getuid2) || (tmp1==this.getuid2 && tmp2==this.getuid1)){
-                        this.check=true;
+                  collection.get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                      let get1 = doc.data().uid1;
+                      let get2 = doc.data().uid2;
+                      this.getuid1 = get1;
+                      this.getuid2 = get2;
+                      if ((tmp1 == this.getuid1 && tmp2 == this.getuid2) || (tmp1 == this.getuid2 && tmp2 == this.getuid1)) {
+                        this.check = true;
                       }
                     });
-                    if(this.check===false)
+                    if (this.check === false)
                     {
-                      this.size=snapshot.size;
-                      if(this.size===0){ // 채팅 목록이 한개도 없음
-                        this.index=0;
+                      this.size = snapshot.size;
+                      if (this.size === 0) { // 채팅 목록이 한개도 없음
+                        this.index = 0;
                         this.fs.collection('ListSize').doc('index').set({
-                          index:this.index
+                          index: this.index
                         });
                         this.fs.collection('chatting').doc((this.index).toString()).set({
-                          uid1:this.af.auth.currentUser.email,
-                          uid2:you,
-                          Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                          uid1: this.af.auth.currentUser.email,
+                          uid2: you,
+                          Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                           num: this.index
                         });
                       }
-                      else{ // 채팅 목록이 1개이상 존재할 때
-                        db.collection('ListSize').get().then(snapshot=>{
+                      else { // 채팅 목록이 1개이상 존재할 때
+                        db.collection('ListSize').get().then( snapshot => {
                           snapshot.forEach(doc=>{
                             this.getSize=doc.data().index;
                             this.index=this.getSize;
@@ -177,7 +183,7 @@ public likeState: string = 'unliked';
                           });
                         });
                       }
-                      console.log("new chatting list");  
+                      console.log("new chatting list");
                     }
                   });
                   this.router.navigate(['chat-view',you]);
