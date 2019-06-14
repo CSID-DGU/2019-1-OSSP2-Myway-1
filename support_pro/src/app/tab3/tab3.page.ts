@@ -97,7 +97,7 @@ export class Tab3Page {
     }
     register() {
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
-         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] ) {
+         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] || this.picname==='' ) {
           this.alertCtrl.create({
             header: '',
             message: '내용을 전부 입력해주세요',

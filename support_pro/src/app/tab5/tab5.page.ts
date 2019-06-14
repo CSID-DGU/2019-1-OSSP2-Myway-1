@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['tab5.page.scss']
 })
 export class Tab5Page {
-  public userid: string;
+  public userid: string=null;
   constructor(
     public plat: Platform,
     public stor: Storage,
@@ -23,10 +23,11 @@ export class Tab5Page {
           this.userid = val;
         });
       });
+      
     }
   logout() {
     this.userid = null;
     this.stor.set('id', null);
-    window.location.href = '/tabs/tab5';
+    window.location.href = '/tabs/tab1';
   }
 }

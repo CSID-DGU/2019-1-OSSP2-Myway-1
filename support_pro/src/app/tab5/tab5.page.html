@@ -7,31 +7,45 @@
 </ion-header>
 
 <ion-content>
-  <br>
-  <br>
-  <table align="center" class="type05">
-    <tbody>
-    <tr>
-      <th>아이디</th>
-      <td>{{userid}}
-        <button *ngIf="userid != null" (click)="logout()">Logout</button>
-        <div *ngIf="userid == null">로그인이 필요합니다.</div>
-        <button *ngIf="userid == null" [routerLink]="['/login']" routerDirection="forward">Login</button> 
-        <button *ngIf="userid == null" [routerLink]="['/register']" routerDirection="forward">SignUp</button>
-      </td>
-    </tr>
-    <tr>
-        <th>작성한 글</th>
-        <td>0개</td>
-    </tr>
-    <tr>
-        <th>좋아요한 글</th>
-        <td>0개</td>
-    </tr>
-    <tr>
-        <th>스크랩한 글</th>
-        <td>0개</td>
-    </tr>
-  </tbody>
-  </table>
+  <div class="wrap" *ngIf="userid == null">
+          <button class="butn" onclick="buttonClicked()" [routerLink]="['/login']" routerDirection="forward">로그인</button><br>
+          <button class="butn"onclick="buttonClicked()"  [routerLink]="['/register']" routerDirection="forward">회원가입</button>
+  </div>
+  <div *ngIf="userid!=null">
+    <div id="b">
+    <table width="300px" border="1" rules="none" align="center" bordercolor="#D8D8D8">
+      <tr>
+        <td>
+          <img margin="0px auto" width="70px" height="70px" src="https://firebasestorage.googleapis.com/v0/b/supportingbot.appspot.com/o/userimg%2F%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?alt=media&token=f9e09289-ae6f-4368-858c-74c46ae5242b">
+        </td>
+        <td width="180px">
+          {{userid}}<br><br>
+          <button class="lout" (click)="logout()">로그아웃</button>
+        </td>
+      </tr>
+    </table>
+    <br><br>
+    <table width="300px" border="1" rules="none" align="center" bordercolor="#D8D8D8">
+        <tr>
+          <td width="60px">
+              <ion-icon name="heart"></ion-icon>
+              내가 쓴 글
+          </td>
+        </tr>
+        <tr>
+          <td width="60px">
+              <ion-icon name="heart"></ion-icon>
+              내가 좋아요한 글
+           </td>
+        </tr>
+        <tr>
+            <td width="60px">
+                <ion-icon name="star"></ion-icon>
+               내가 스크랩한 글
+            </td>
+          </tr>
+      </table>
+    
+  </div>
+  </div>
 </ion-content>
