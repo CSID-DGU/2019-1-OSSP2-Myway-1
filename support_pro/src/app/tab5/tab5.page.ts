@@ -27,6 +27,6 @@ export class Tab5Page {
   logout() {
     this.userid = null;
     this.stor.set('id', null);
-    window.location.href = '/tabs/tab5';
+    window.location.href = '/tabs/tab1';
   }
 }

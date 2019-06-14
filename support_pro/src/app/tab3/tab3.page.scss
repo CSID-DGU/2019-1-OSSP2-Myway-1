@@ -1,7 +1,15 @@
 #camera {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 300px;
     height: 200px;
     margin: 0 auto;
     background: black;
 }
+#tagblock {
+    height:30px;
+}
+
 
