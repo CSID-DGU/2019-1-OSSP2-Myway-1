@@ -57,7 +57,7 @@
 
       <ion-item>
         <ion-label position ="floating">깃허브 주소</ion-label>
-        <ion-input type = "text" [(ngModel)]="gitadd"></ion-input>
+        <ion-input type = "url" [(ngModel)]="gitadd" placeholder="https://github.com" pattern="https://.*"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -87,6 +87,6 @@
         </ion-grid>
       </ion-item>
     </ion-card-content>
+    <ion-button expand="block" (click)="register()">글쓰기</ion-button>
   </ion-card> 
-  <ion-button (click)="register()">글쓰기</ion-button>
 </ion-content>
