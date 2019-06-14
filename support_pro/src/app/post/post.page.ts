@@ -53,6 +53,13 @@ export class PostPage implements OnInit {
   Email: string;
   chattingRef: any;
   public userid: string;
+  check=false; // 채팅 목록
+  size:number; // 채팅 목록 수
+  getSize:any;
+  getuid1:string;
+  getuid2:string;
+  index:number;
+  first=true; // 처음 추가되는 채팅목록인지
 // tslint:disable-next-line: variable-name
   tmp_hash_1: number;
   tmp: string;
@@ -81,40 +88,26 @@ public likeState: string = 'unliked';
         this.item = data;
         });
     }
-    async gotoChat(you: string) {
-      const alert = await this.atrCtrl.create({
-          header: 'Confirm!',
-          message: '<strong>' + you + '</strong>' + '와 채팅하시겠습니까??',
-          buttons: [
-            {
-              text: 'Cancel',
-              role: 'cancel',
-              cssClass: 'secondary',
-              handler: (blah) => {
-                console.log('Confirm Cancel: blah');
-              }
-            }, {
-              text: 'Okay',
-              handler: () => {
-                console.log('Confirm Okay');
-                this.chattingRef = this.fs.collection('chatting', ref => ref.orderBy('Timestamp')).valueChanges();
-                this.fs.collection('chatting').add({
-                  uid1: this.af.auth.currentUser.email,
-                  uid2: you,
-                  Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                });
-                this.router.navigate(['chat-view', you]);
-              }
+    async chat2Me(){
+      const alert2 = await this.atrCtrl.create({
+        header:'경고!',
+        message: '본인이 작성한 게시글입니다',
+        buttons:[
+          {
+            text:'Okay',
+            role:'cancel',
+            handler:(blah)=>{
+              console.log('나랑 채팅');
             }
-          ]
-        });
-      await alert.present();
+          }
+        ]
+      });
+      await alert2.present();
     }
-    /*
     async gotoChat(you : string){
       this.check=false;
       const alert = await this.atrCtrl.create({
-          header: 'Confirm!',
+          header: '확인!',
           message: '<strong>'+you+'</strong>'+'와 채팅하시겠습니까??',
           buttons: [
             {
@@ -128,42 +121,73 @@ public likeState: string = 'unliked';
               text: 'Okay',
               handler: () => {
                 console.log('Confirm Okay');
-                this.chattingRef=this.fs.collection('chatting',ref=>ref.orderBy('Timestamp')).valueChanges();
+
                 var tmp1=this.af.auth.currentUser.email;
                 var tmp2=you;
 
-                const db=firebase.firestore();
-                const collection=db.collection('chatting');
+                if(tmp1===tmp2){
+                  this.chat2Me();
+                }
+                else{
+                  this.chattingRef=this.fs.collection('chatting',ref=>ref.orderBy('Timestamp')).valueChanges();
+                
+                  const db=firebase.firestore();
+                  const collection=db.collection('chatting');
 
-                collection.get().then(snapshot=>{
-                  while(this.check===false){
+                  collection.get().then(snapshot=>{
                     snapshot.forEach(doc=>{
-                      console.log("uid1="+doc.data().uid1);
-                      console.log("uid2="+doc.data().uid2);
-                      if((tmp1==doc.data().uid1 && tmp2==doc.data().uid2) || (tmp1==doc.data().uid2 && tmp2==doc.data().uid1)){
-                        console.log("same");
-                        this.router.navigate(['chat-view',you]);
+                      let get1=doc.data().uid1;
+                      let get2=doc.data().uid2;
+                      this.getuid1=get1;
+                      this.getuid2=get2;
+                      if((tmp1==this.getuid1 && tmp2==this.getuid2) || (tmp1==this.getuid2 && tmp2==this.getuid1)){
                         this.check=true;
                       }
                     });
-                  }
-                });
-                if(!this.check)
-                {
-                  console.log("DDD");
-                  this.fs.collection('chatting').add({
-                    uid1:this.af.auth.currentUser.email,
-                    uid2:you,
-                    Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                    if(this.check===false)
+                    {
+                      this.size=snapshot.size;
+                      if(this.size===0){ // 채팅 목록이 한개도 없음
+                        this.index=0;
+                        this.fs.collection('ListSize').doc('index').set({
+                          index:this.index
+                        });
+                        this.fs.collection('chatting').doc((this.index).toString()).set({
+                          uid1:this.af.auth.currentUser.email,
+                          uid2:you,
+                          Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                          num: this.index
+                        });
+                      }
+                      else{ // 채팅 목록이 1개이상 존재할 때
+                        db.collection('ListSize').get().then(snapshot=>{
+                          snapshot.forEach(doc=>{
+                            this.getSize=doc.data().index;
+                            this.index=this.getSize;
+                            this.index=this.index+1;
+                            this.fs.collection('chatting').doc((this.index).toString()).set({
+                              uid1:this.af.auth.currentUser.email,
+                              uid2:you,
+                              Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                              num: this.index
+                            });
+                            this.fs.collection('ListSize').doc('index').set({
+                              index:this.index
+                            });
+                          });
+                        });
+                      }
+                      console.log("new chatting list");  
+                    }
                   });
                   this.router.navigate(['chat-view',you]);
-                }
+                  }
               }
             }
           ]
       });
         await alert.present();
-    }*/
+    }
     toggleLikeState() {
       if (this.likeState === 'unliked') {
         this.likeState = 'liked';
