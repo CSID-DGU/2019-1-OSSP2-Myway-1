@@ -15,7 +15,8 @@ export class PostListPage implements OnInit {
   public userid: string;
 public hashtag: string;
 public query: string;
-items: any;
+temp = [];
+items = [];
   constructor(
     public plat: Platform,
     public stor: Storage,
@@ -30,10 +31,21 @@ items: any;
   }
 
 loadList() {
-this.db.list('regisTxt/', ref => ref.orderByChild('tag').equalTo(this.hashtag)).valueChanges().subscribe(
-  data => {
-  this.items = data;
-  });
+  let i = 0;
+  let index = 0;
+  while (i < 10) {
+    this.db.list('regisTxt/', ref => ref.orderByChild('tag/' + i).equalTo(this.hashtag)).valueChanges().subscribe(
+     data => {
+       this.temp = data;
+       // tslint:disable-next-line:prefer-for-of
+       for ( let j = 0 ; j < this.temp.length ; j++) {
+        console.log(this.temp[j]);
+        this.items[index++] = this.temp[j];
+      }
+       console.log(this.items);
+     });
+    i++;
+   }
 }
 
 getPost(item: any) {

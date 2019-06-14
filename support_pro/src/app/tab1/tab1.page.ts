@@ -47,7 +47,7 @@ export class Tab1Page {
      this.posttags[j] = (JSON.stringify(temp).split('"'))[1];
      this.postnum[this.posttags[j]] = ((JSON.stringify(temp).split(':'))[1]).split('}')[0];
      let i = 0;
-     while (i < 3) {
+     while (i < 10) {
      this.db.list('regisTxt/', ref => ref.orderByChild('tag/' + i).equalTo(this.posttags[j])).valueChanges().subscribe(
       data => {
         this.items = data;
