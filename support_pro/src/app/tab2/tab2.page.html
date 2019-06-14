@@ -29,17 +29,22 @@
         </ion-row>
       </ion-grid>
       <!--처음 시작-->
-      <ion-button *ngIf = "check == -1"> 인기 많은 게시글 </ion-button>
+      <ion-button *ngIf = "check == -1" (click) = "popularContent()"> 인기 많은 게시글 </ion-button>
       <ion-button *ngIf = "check == -1"> 프로젝트 추천 </ion-button>
       <ion-button *ngIf = "check == -1" (click)="manual()"> 앱 설명 </ion-button>
-      <!--깃 버튼 보여주기-->
-      <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}">깃 으로 이동 </ion-button>
-      <ion-button *ngIf = "check == 2" (click) = "goto()"> 1위 </ion-button>
-      <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 2위 </ion-button>
-      <ion-button *ngIf = "check == 2" a href = "https://www.google.com/"> 3위 </ion-button>
+      <!--깃 이돈, 게시글 보여주기-->
+      <ion-button *ngIf = "check == 1" a href = "{{gitaddress}}">git 이동 </ion-button>
+      <ion-button *ngIf = "check == 1" (click) = "goto()"> 게시글 보기 </ion-button>
       <!-- 대답 -->
       <ion-button value = '네!!' *ngIf = "check == 3" (click)="yes()"> 네!! </ion-button>
       <ion-button value = '아니요..' *ngIf = "check == 3" (click)="no()"> 아니요.. </ion-button>
+      <!-- 전공 선택 -->
+      <ion-button  *ngIf = "check == 4" (click)="compu()"> 컴공 </ion-button>
+      <ion-button  *ngIf = "check == 4" (click)="elec()"> 전전 </ion-button>
+      <ion-button  *ngIf = "check == 4" (click)="info()"> 정통 </ion-button>
+      <ion-button  *ngIf = "check == 4" (click)="allgood()"> 노상관 </ion-button>
+     
+      <ion-button  *ngIf = "check == 5" (click)="elec()"> 전전 </ion-button>
     </ion-content>
     
 <ion-footer>

@@ -17,7 +17,9 @@ export class Tab2Page {
   check: number;
   substring = '깃';
   ch: number;
+  decomstr;
   public gitaddress: string;
+
   @ViewChild(IonContent) content: IonContent;
   title: any;
   public userid: string;
@@ -60,15 +62,17 @@ export class Tab2Page {
           createAt: new Date().getTime()
         });
         // 쿼리: 제일 인기있는 게시글 // 쿼리: 깃 주소와 게시글
-        if (this.textTmp.includes('제일 인기있는') || this.textTmp.includes('깃')) {
-          this.gitaddress = this.textTmp;
+        if (this.textTmp.includes('제일 인기있는')) {
+          this.decomstr = this.textTmp.split('\'');
+          this.gitaddress = this.decomstr[3]; // 깃 주소
+          this.title = this.decomstr[1]; // 글 제목
           this.check = 1;
         } else if (this.textTmp.includes('우리 앱은')) { // 쿼리: 앱 설명
            this.check = 3;
         } else if (this.textTmp.includes('좋아요 수')) {
           this.check = 2;
-        } else if (this.text.includes('깃')) { // 아직 안 됨!!!!!!!!!!!!!!!!!!!!!!!
-          this.check = 1;
+        } else if (this.textTmp.includes('어떤 전공의')) {    // 쿼리: 제일 인기있는 게시글?
+          this.check = 4;
         } else {
           this.check = 0;
         }
@@ -83,7 +87,7 @@ export class Tab2Page {
    this.stor.get('id').then((val) => {
     this.userid = val;
   });
-   this.title = '힘을 내자 유나 언니';
+   //this.title = '힘을 내자 유나 언니';
    this.router.navigate(['post', this.title, this.userid]);
   }
   manual() {
@@ -100,6 +104,26 @@ export class Tab2Page {
       this.text = '아니요..';
       this.ask();
      // this.check = 0;
+ }
+ popularContent() {
+   this.text = '인기 많은 게시글';
+   this.ask();
+ }
+ compu() {
+    this.text = '컴퓨터공학과의 인기 많은 게시글';
+    this.ask();
+ }
+ elec() {
+    this.text = '전자전기공학과의 인기 많은 게시글';
+    this.ask();
+ }
+ info() {
+    this.text = '정보통신공학과의 인기 많은 게시글';
+    this.ask();
+ }
+ allgood() {
+    this.text = '전체 게시글 중 인기 많은 게시글';
+    this.ask();
  }
 }
 
