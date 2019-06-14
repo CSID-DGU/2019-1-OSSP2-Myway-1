@@ -43,5 +43,3 @@ getPost(item: any) {
   }
 
 }
-
-

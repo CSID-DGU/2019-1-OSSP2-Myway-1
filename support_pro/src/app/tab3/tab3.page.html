@@ -67,7 +67,9 @@
 
       <ion-item>
         <ion-label position ="floating">해시태그</ion-label>
-        <ion-input type = "text" [(ngModel)]="hashtag"></ion-input>
+        <rl-tag-input
+          [(ngModel)]="hashtag" placeholder="사용한 언어나 기술, 프로젝트를 설명해줄 수 있는 키워드를 입력해주세요">
+        </rl-tag-input>
       </ion-item>
       <ion-item>
           <ion-label position ="floating">이미지</ion-label>

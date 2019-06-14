@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import firebaseConfig from './firebase';
-//import { AngularFireModule } from 'angularfire2'; //
+// import { AngularFireModule } from 'angularfire2'; //
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from 'angularfire2/database'; //
 import { AngularFirestoreModule} from '@angular/fire/firestore';
@@ -20,6 +20,7 @@ import { config } from './firebase.credentials';
 import { IonicStorageModule } from '@ionic/storage';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {RlTagInputModule} from 'angular2-tag-input';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RlTagInputModule
   ],
   providers: [
     Camera,
