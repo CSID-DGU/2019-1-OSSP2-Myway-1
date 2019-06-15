@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import {FavoriteService}from './../../favorite.service';
 
 
 @Component({
@@ -66,6 +67,13 @@ export class PostPage implements OnInit {
   public tmpC: string;
 // tslint:disable-next-line:no-inferrable-types
 public likeState: string = 'unliked';
+public iconName: string = 'heart-empty';
+public scrapState: string = 'unscrap';
+public starName: string = 'star-outline';
+
+isFavorite=false;
+isScrapped = false;
+
     constructor(
       public plat: Platform,
       public activatedRoute: ActivatedRoute,
@@ -74,16 +82,25 @@ public likeState: string = 'unliked';
       public atrCtrl: AlertController,
       public fs: AngularFirestore,
       public af: AngularFireAuth,
-      public router: Router) {
+      public router: Router,
+      public favoriteProvider:FavoriteService
+      ) {
       this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
       var strArray = this.userid.split('@');
       this.userid = strArray[0];
       this.title = this.activatedRoute.snapshot.paramMap.get('title');
       this.load();
+
+      this.favoriteProvider.isFavorite(this.title).then(isFav=>{
+        this.isFavorite=isFav;
+      })
+
+      this.favoriteProvider.isScrapped(this.title).then(isScrap=>{
+        this.isScrapped=isScrap;
+      })
+
       }
-      public iconName: string = 'heart-empty';
-      public scrapState: string = 'unscrap';
-      public starName: string = 'star-outline';
+     
     load() {
       this.db.list('regisTxt/', ref => ref.orderByChild('title').equalTo(this.title)).valueChanges().subscribe(
         data => {
@@ -92,9 +109,30 @@ public likeState: string = 'unliked';
         this.tmpC = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
         console.log(this.tmpC);
       });
-
-
     }
+
+    favoritePost(){
+      this.favoriteProvider.favoritePost(this.title).then(()=>{
+        this.isFavorite=true;
+      });
+    }
+    unfavoritePost(){
+      this.favoriteProvider.unfavoritePost(this.title).then(()=>{
+        this.isFavorite=false;
+      });
+    }
+
+    scrapPost(){
+      this.favoriteProvider.scrapPost(this.title).then(()=>{
+        this.isScrapped=true;
+      });
+    }
+    unscrapPost(){
+      this.favoriteProvider.unscrapPost(this.title).then(()=>{
+        this.isScrapped=false;
+      });
+    }
+
     async chat2Me() {
       const alert2 = await this.atrCtrl.create({
         header: '경고!',
