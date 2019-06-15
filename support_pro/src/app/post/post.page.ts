@@ -8,7 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import {FavoriteService}from './../../favorite.service';
+import {FavoriteService} from './../../favorite.service';
 
 
 @Component({
@@ -111,25 +111,64 @@ isScrapped = false;
       });
     }
 
-    favoritePost(){
-      this.favoriteProvider.favoritePost(this.title).then(()=>{
-        this.isFavorite=true;
+    favoritePost() {
+      this.favoriteProvider.favoritePost(this.title).then(() => {
+        this.isFavorite = true;
       });
+      /*각 게시글 별 좋아요 수 계산 (더하기)*/
+      firebase.database().ref().once('value').then((snapshot) => {
+        // tslint:disable-next-line: prefer-const
+                  let c = snapshot.child('contentCount').val();  //전체 게시글 수
+                  this.tmp_hash_1 = c;
+        // tslint:disable-next-line: align
+                  for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+        // tslint:disable-next-line: prefer-const
+                    let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+                    this.tmp = tmpLikeCount1;
+                    if ( this.title === this.tmp ) {
+        // tslint:disable-next-line: no-var-keyword
+                         var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
+                         likeCount = likeCount + 1;
+                         this.db.object(`regisTxt/${i}/like`).set(likeCount);
+                       }
+                }
+                });
     }
-    unfavoritePost(){
-      this.favoriteProvider.unfavoritePost(this.title).then(()=>{
-        this.isFavorite=false;
+    unfavoritePost() {
+      this.favoriteProvider.unfavoritePost(this.title).then(() => {
+        this.isFavorite = false;
       });
+       /*각 게시글 별 좋아요 수 계산(빼기)*/
+       firebase.database().ref().once('value').then((snapshot) => {
+        // tslint:disable-next-line: prefer-const
+                  let c = snapshot.child('contentCount').val();  // 전체 게시글 수
+                  this.tmp_hash_1 = c;
+        // tslint:disable-next-line: align
+                  for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+        // tslint:disable-next-line: prefer-const
+                    let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+                    this.tmp = tmpLikeCount1;
+                    if ( this.title === this.tmp) {
+        // tslint:disable-next-line: no-var-keyword
+                         var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
+                         if ( likeCount !== 0) {
+                         likeCount = likeCount - 1;
+                         this.db.object(`regisTxt/${i}/like`).set(likeCount);
+                         }
+                       }
+                }
+            });
+
     }
 
-    scrapPost(){
+    scrapPost() {
       this.favoriteProvider.scrapPost(this.title).then(()=>{
-        this.isScrapped=true;
+        this.isScrapped = true;
       });
     }
-    unscrapPost(){
+    unscrapPost() {
       this.favoriteProvider.unscrapPost(this.title).then(()=>{
-        this.isScrapped=false;
+        this.isScrapped = false;
       });
     }
 
@@ -236,47 +275,11 @@ isScrapped = false;
       if (this.likeState === 'unliked') {
         this.likeState = 'liked';
         this.iconName = 'heart';
-        /*각 게시글 별 좋아요 수 계산 (더하기)*/
-        firebase.database().ref().once('value').then((snapshot) => {
-          // tslint:disable-next-line: prefer-const
-                    let c = snapshot.child('contentCount').val();  //전체 게시글 수
-                    this.tmp_hash_1 = c;
-          // tslint:disable-next-line: align
-                    for ( let i = 0; i < this.tmp_hash_1; i++ ) {
-          // tslint:disable-next-line: prefer-const
-                      let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
-                      this.tmp = tmpLikeCount1;
-                      if ( this.title === this.tmp ) {
-          // tslint:disable-next-line: no-var-keyword
-                           var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
-                           likeCount = likeCount + 1;
-                           this.db.object(`regisTxt/${i}/like`).set(likeCount);
-                         }
-                  }
-                  });
+        
       } else {
         this.likeState = 'unliked';
         this.iconName = 'heart-empty';
-         /*각 게시글 별 좋아요 수 계산(빼기)*/
-         firebase.database().ref().once('value').then((snapshot) => {
-          // tslint:disable-next-line: prefer-const
-                    let c = snapshot.child('contentCount').val();  // 전체 게시글 수
-                    this.tmp_hash_1 = c;
-          // tslint:disable-next-line: align
-                    for ( let i = 0; i < this.tmp_hash_1; i++ ) {
-          // tslint:disable-next-line: prefer-const
-                      let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
-                      this.tmp = tmpLikeCount1;
-                      if ( this.title === this.tmp) {
-          // tslint:disable-next-line: no-var-keyword
-                           var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
-                           if ( likeCount !== 0) {
-                           likeCount = likeCount - 1;
-                           this.db.object(`regisTxt/${i}/like`).set(likeCount);
-                           }
-                         }
-                  }
-              });
+        
       }
     }
 
