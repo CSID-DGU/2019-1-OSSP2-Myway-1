@@ -22,6 +22,7 @@ import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RlTagInputModule} from 'angular2-tag-input';
 
+import{FavoriteService} from './../favorite.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -42,6 +43,7 @@ import {RlTagInputModule} from 'angular2-tag-input';
     StatusBar,
     SplashScreen,
     AngularFirestore,
+    FavoriteService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
