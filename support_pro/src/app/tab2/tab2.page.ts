@@ -31,8 +31,6 @@ export class Tab2Page {
       createAt: new Date().getTime()
     });
   }
-
-
   ask() {
     //this.check = 0;
     if (this.text !== '') {

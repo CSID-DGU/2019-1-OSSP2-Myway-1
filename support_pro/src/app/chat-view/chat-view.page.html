@@ -25,10 +25,12 @@
 </ion-content>
 
 <ion-footer>
-  <ion-item>
-    <ion-input placeholder="Type.." [(ngModel)]="text"></ion-input>
-    <ion-button (click)="send()" fill="clear" icon-only slot="end">
-      <ion-icon name="send"></ion-icon>
-    </ion-button>
-  </ion-item>
+  <ion-toolbar color="light">
+    <ion-item>
+      <ion-input placeholder="Type.." [(ngModel)]="text" (keyup.enter)="send()"></ion-input>
+      <ion-button (click)="send()" fill="clear" icon-only slot="end">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
 </ion-footer>

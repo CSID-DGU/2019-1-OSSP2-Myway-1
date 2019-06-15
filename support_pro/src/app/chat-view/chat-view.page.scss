@@ -8,7 +8,7 @@
         align-self:flex-end;
         padding:6px 10px 7px;
         border-radius: 15px 15px 0;
-        background:#32db64;
+        background:#A6E3E9;
         font-size:medium;
         line-height:1.4;
     }
@@ -19,7 +19,7 @@
         align-self:flex-start;
         padding:6px 10px 7px;
         border-radius: 15px 15px 15px 0;
-        background: rgba(50,219,100,0.5);
+        background: #DEFCFC;
         font-size:medium;
         line-height:1.4; 
     }
@@ -28,4 +28,11 @@
         font-weight:bold;
         
     }
+}
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+
 }

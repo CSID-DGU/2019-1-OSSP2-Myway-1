@@ -7,13 +7,13 @@
 </ion-header>
 
 <ion-content>
-  {{Email}}
   <ion-list>
+    <br>
     <div class="chatting" *ngFor="let chatting of chattingRef | async">
       <div  class="you" ion-item *ngIf="Email==chatting.uid1">
           {{chatting.uid2}}
           <span style="float:right">
-            <ion-button (click)="openChat(chatting.uid2)">
+            <ion-button color="medium" (click)="openChat(chatting.uid2)">
               <ion-icon name="arrow-forward"></ion-icon>
             </ion-button>
           </span>
@@ -21,7 +21,7 @@
       <div  class="you" ion-item *ngIf="Email==chatting.uid2">
           {{chatting.uid1}}
           <span style="float:right">
-            <ion-button (click)="openChat(chatting.uid1)">
+            <ion-button color="medium" (click)="openChat(chatting.uid1)">
               <ion-icon name="arrow-forward"></ion-icon>
             </ion-button>
           </span>
