@@ -7,17 +7,9 @@
 </ion-header>
 
 <ion-content>
-   {{Email}} <!-- 현재 로그인한 이메일 확인 용-->
+  {{Email}}
   <ion-list>
     <div class="chatting" *ngFor="let chatting of chattingRef | async">
-      <!--<div  class="you" ion-item *ngIf="Email==chatting.me">
-        {{chatting.you}}
-        <span style="float:right">
-          <ion-button (click)="openChat(chatting.you)">
-            <ion-icon name="arrow-forward"></ion-icon>
-          </ion-button>
-        </span>
-      </div>-->
       <div  class="you" ion-item *ngIf="Email==chatting.uid1">
           {{chatting.uid2}}
           <span style="float:right">

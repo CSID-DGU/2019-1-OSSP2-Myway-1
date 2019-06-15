@@ -13,44 +13,41 @@
   </div>
   <div *ngIf="userid!=null">
     <div id="b">
-    <table width="300px" border="1" rules="none" align="center" bordercolor="#D8D8D8">
-      <tr>
-        <td width="100px">
-          <img margin="0px" width="90px" height="80px" src="https://firebasestorage.googleapis.com/v0/b/supportingbot.appspot.com/o/userimg%2F%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?alt=media&token=f9e09289-ae6f-4368-858c-74c46ae5242b">
-        </td>
-        <td width="190px">
-          <ion-card>
-            <ion-card-content>
-              <ion-item>
-                {{userid}}
-              </ion-item>
-              <ion-item>
-                <button class="lout" (click)="logout()">로그아웃</button>
-              </ion-item>
-            </ion-card-content>
-          </ion-card>
-        </td>
-      </tr>
-    </table>
-    <br><br>
-    <table width="300px" border="1" rules="none" align="center" bordercolor="#D8D8D8">
       <ion-card>
         <ion-card-content>
           <ion-item>
-            <ion-icon name="heart" color="assertive"></ion-icon>
+            <div id="text">
+              {{userid}}
+            </div>
+          </ion-item>
+          <ion-item>
+            <button class="lout" (click)="logout()">로그아웃</button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    <br><br>
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <ion-buttons slot="end" size="large">
+              <ion-icon name="list" (click)="toText()"></ion-icon>
+            </ion-buttons>
              내가 쓴 글
           </ion-item>
           <ion-item>
-            <ion-icon name="heart" color="assertive"></ion-icon>
-               내가 좋아요한 글
+            <ion-buttons slot="end" size="large">
+              <ion-icon name="heart-empty" (click)="toLike()"></ion-icon>
+            </ion-buttons>
+              내가 좋아요한 글
           </ion-item>
           <ion-item>
-            <ion-icon name="star" color="energized"></ion-icon>
+            <ion-buttons slot="end" size="large">
+              <ion-icon name="star-outline" (click)="toScrap()"></ion-icon>
+            </ion-buttons>
               내가 스크랩한 글
           </ion-item>
         </ion-card-content>
       </ion-card>
-    </table>
   </div>
   </div>
 </ion-content>

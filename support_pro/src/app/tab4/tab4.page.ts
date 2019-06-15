@@ -23,9 +23,9 @@ export class Tab4Page {
     public nav:NavController, 
     public router:Router
     ){
-
-    this.Email=this.af.auth.currentUser.email,
-    this.chattingRef=this.fs.collection('chatting',ref=>ref.orderBy('Timestamp')).valueChanges();
+    
+      this.Email=this.af.auth.currentUser.email,
+      this.chattingRef=this.fs.collection('chatting',ref=>ref.orderBy('Timestamp')).valueChanges();
   }
   openChat(you: string){
     
