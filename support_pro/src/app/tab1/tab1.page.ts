@@ -23,6 +23,7 @@ export class Tab1Page {
   postnum = {};
   imgurls = {};
   constructor(
+    private alertCtrl: AlertController,
     public plat: Platform,
     public stor: Storage,
     public activatedRoute: ActivatedRoute,
@@ -67,6 +68,18 @@ export class Tab1Page {
   loadList(item: any) {
     // this.stor.set('hashtag',items.tag);
     // this.navCtrl.navigateForward('/post-list');
+    if (!this.userid) {
+      this.alertCtrl.create({
+        header: '',
+        message: '로그인 후 이용해주세요',
+        buttons: [{
+          text: '확인',
+          role: 'cancel'
+        }]
+      }).then(alertEI => {
+        alertEI.present();
+      });
+    }
     this.router.navigate(['post-list', item, this.userid]);
   }
 
