@@ -44,7 +44,7 @@ export class Tab5Page {
     await alert.present();
   }
   logout() {
-    console.log("logout");
+    console.log('logout');
     this.userid = null;
     this.stor.set('id', null);
     // tslint:disable-next-line:only-arrow-functions
