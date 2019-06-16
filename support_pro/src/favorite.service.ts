@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { post } from 'selenium-webdriver/http';
 
 const STORAGE_KEY = 'favoritePosts'; 
@@ -9,8 +10,11 @@ const STORAGE_KEY2 = 'scrapPosts';
   providedIn: 'root'
 })
 export class FavoriteService {
-
-  constructor(public storage:Storage) {   }
+userid="una";
+  constructor(
+    public storage:Storage,
+    public db: AngularFireDatabase,
+    ) {   }
 
   isFavorite(postId){
     return this.getAllFavoritePost().then(result=>{
@@ -25,9 +29,15 @@ export class FavoriteService {
         return this.storage.set(STORAGE_KEY,result);
 
       }else {
+
+        this.db.list('userInfo/${this.userid}/like').push(postId);
         return this.storage.set(STORAGE_KEY,[postId]);
       }
     });
+
+
+
+
   }
 unfavoritePost(postId){
   return this.getAllFavoritePost().then(result=>{

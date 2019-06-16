@@ -108,7 +108,6 @@ tempcontentNum: number;
         this.item = data;
         let text = this.item[0].content;
         this.tmpC = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
-        console.log(this.tmpC);
       });
     }
 
