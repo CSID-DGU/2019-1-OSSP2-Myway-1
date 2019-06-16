@@ -71,9 +71,11 @@ public iconName: string = 'heart-empty';
 public scrapState: string = 'unscrap';
 public starName: string = 'star-outline';
 
-isFavorite=false;
+isFavorite = false;
 isScrapped = false;
-
+contentnum: number;
+out: boolean;
+tempcontentNum: number;
     constructor(
       public plat: Platform,
       public activatedRoute: ActivatedRoute,
@@ -83,7 +85,7 @@ isScrapped = false;
       public fs: AngularFirestore,
       public af: AngularFireAuth,
       public router: Router,
-      public favoriteProvider:FavoriteService
+      public favoriteProvider: FavoriteService
       ) {
       this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
       var strArray = this.userid.split('@');
@@ -91,16 +93,15 @@ isScrapped = false;
       this.title = this.activatedRoute.snapshot.paramMap.get('title');
       this.load();
 
-      this.favoriteProvider.isFavorite(this.title).then(isFav=>{
-        this.isFavorite=isFav;
-      })
+      this.favoriteProvider.isFavorite(this.title).then(isFav => {
+        this.isFavorite = isFav;
+      });
 
-      this.favoriteProvider.isScrapped(this.title).then(isScrap=>{
-        this.isScrapped=isScrap;
-      })
+      this.favoriteProvider.isScrapped(this.title).then(isScrap => {
+        this.isScrapped = isScrap;
+      });
 
       }
-     
     load() {
       this.db.list('regisTxt/', ref => ref.orderByChild('title').equalTo(this.title)).valueChanges().subscribe(
         data => {
@@ -118,21 +119,27 @@ isScrapped = false;
       /*각 게시글 별 좋아요 수 계산 (더하기)*/
       firebase.database().ref().once('value').then((snapshot) => {
         // tslint:disable-next-line: prefer-const
-                  let c = snapshot.child('contentCount').val();  //전체 게시글 수
-                  this.tmp_hash_1 = c;
-        // tslint:disable-next-line: align
-                  for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+            let c = snapshot.child('contentCount').val();  //전체 게시글 수
+            this.tmp_hash_1 = c;
         // tslint:disable-next-line: prefer-const
-                    let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
-                    this.tmp = tmpLikeCount1;
-                    if ( this.title === this.tmp ) {
+            let k = snapshot.child(`userInfo/${this.userid}/liketotal`).val(); // 각 유저의 전체 좋아요 수
+            this.contentnum = k;
+        // tslint:disable-next-line: align
+            for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+        // tslint:disable-next-line: prefer-const
+              let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+              this.tmp = tmpLikeCount1;
+              if ( this.title === this.tmp ) {
         // tslint:disable-next-line: no-var-keyword
-                         var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
-                         likeCount = likeCount + 1;
-                         this.db.object(`regisTxt/${i}/like`).set(likeCount);
-                       }
-                }
-                });
+                  var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
+                  likeCount = likeCount + 1;
+                  this.db.object(`regisTxt/${i}/like`).set(likeCount);
+                  this.db.object(`userInfo/${this.userid}/like/${this.contentnum}`).set(i);   // 좋아요 누른 게시글 인덱스 저장
+                  this.db.object(`userInfo/${this.userid}/liketotal`).set(this.contentnum + 1);
+
+                 }
+              }
+        });
     }
     unfavoritePost() {
       this.favoriteProvider.unfavoritePost(this.title).then(() => {
@@ -141,23 +148,41 @@ isScrapped = false;
        /*각 게시글 별 좋아요 수 계산(빼기)*/
        firebase.database().ref().once('value').then((snapshot) => {
         // tslint:disable-next-line: prefer-const
-                  let c = snapshot.child('contentCount').val();  // 전체 게시글 수
-                  this.tmp_hash_1 = c;
+            let c = snapshot.child('contentCount').val();  // 전체 게시글 수
+            this.tmp_hash_1 = c;
+          // tslint:disable-next-line: prefer-const
+            let k = snapshot.child(`userInfo/${this.userid}/liketotal`).val(); // 각 유저의 전체 좋아요 수
+            this.contentnum = k;
         // tslint:disable-next-line: align
-                  for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+            for ( let i = 0; i < this.tmp_hash_1; i++ ) {
         // tslint:disable-next-line: prefer-const
-                    let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
-                    this.tmp = tmpLikeCount1;
-                    if ( this.title === this.tmp) {
+              let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+              this.tmp = tmpLikeCount1;
+              if ( this.title === this.tmp) {
         // tslint:disable-next-line: no-var-keyword
-                         var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
-                         if ( likeCount !== 0) {
-                         likeCount = likeCount - 1;
-                         this.db.object(`regisTxt/${i}/like`).set(likeCount);
-                         }
-                       }
+                  var likeCount = snapshot.child(`regisTxt/${i}/like`).val(); // 좋아요 수
+                  if ( likeCount !== 0) {
+                    likeCount = likeCount - 1;
+                    this.db.object(`regisTxt/${i}/like`).set(likeCount);
+                      }
+                  this.out = true;
+                  for (let j = 0; j < this.contentnum; j++) { // 유저 내 좋아요 삭제
+                  // tslint:disable-next-line: prefer-const
+                      let check = snapshot.child(`userInfo/${this.userid}/like/${j}`).val();
+                      this.tempcontentNum = check;
+                      if ( this.tempcontentNum === i) {
+                          this.db.object(`userInfo/${this.userid}/like/${j}`).set(null); // 좋아요 취소한 게시글 인덱스 삭제
+                          this.db.object(`userInfo/${this.userid}/liketotal`).set(k - 1);
+                          break;
+                           }
+                      }
+                  }
+              if (this.out === true) {
+                  break;
                 }
-            });
+              }
+            this.out = false;
+        });
 
     }
 
@@ -211,8 +236,7 @@ isScrapped = false;
 
                 if ( tmp1 === tmp2 ) {
                   this.chat2Me();
-                }
-                else {
+                } else {
                   this.chattingRef = this.fs.collection('chatting', ref => ref.orderBy('Timestamp')).valueChanges();
                   const db = firebase.firestore();
                   const collection = db.collection('chatting');
@@ -223,7 +247,7 @@ isScrapped = false;
                       let get2 = doc.data().uid2;
                       this.getuid1 = get1;
                       this.getuid2 = get2;
-                      if ((tmp1 == this.getuid1 && tmp2 == this.getuid2) || (tmp1 == this.getuid2 && tmp2 == this.getuid1)) {
+                      if ((tmp1 === this.getuid1 && tmp2 === this.getuid2) || (tmp1 === this.getuid2 && tmp2 === this.getuid1)) {
                         this.check = true;
                       }
                     });
@@ -241,26 +265,25 @@ isScrapped = false;
                           Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                           num: this.index
                         });
-                      }
-                      else { // 채팅 목록이 1개이상 존재할 때
+                      } else { // 채팅 목록이 1개이상 존재할 때
                         db.collection('ListSize').get().then( snapshot => {
-                          snapshot.forEach(doc=>{
-                            this.getSize=doc.data().index;
-                            this.index=this.getSize;
-                            this.index=this.index+1;
+                          snapshot.forEach(doc => {
+                            this.getSize = doc.data().index;
+                            this.index = this.getSize;
+                            this.index = this.index + 1;
                             this.fs.collection('chatting').doc((this.index).toString()).set({
-                              uid1:this.af.auth.currentUser.email,
-                              uid2:you,
-                              Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
+                              uid1: this.af.auth.currentUser.email,
+                              uid2: you,
+                              Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                               num: this.index
                             });
                             this.fs.collection('ListSize').doc('index').set({
-                              index:this.index
+                              index: this.index
                             });
                           });
                         });
                       }
-                      console.log("new chatting list");
+                      console.log('new chatting list');
                     }
                   });
                   this.router.navigate(['chat-view',you]);
@@ -269,17 +292,15 @@ isScrapped = false;
             }
           ]
       });
-        await alert.present();
+      await alert.present();
     }
     toggleLikeState() {
       if (this.likeState === 'unliked') {
         this.likeState = 'liked';
         this.iconName = 'heart';
-        
       } else {
         this.likeState = 'unliked';
         this.iconName = 'heart-empty';
-        
       }
     }
 
@@ -287,7 +308,6 @@ isScrapped = false;
       if (this.scrapState === 'unscrap') {
         this.scrapState = 'scrap';
         this.starName = 'star';
-        this.db.object(`userInfo/${this.userid}/like`).set(this.item);
       } else {
         this.scrapState = 'unscrap';
         this.starName = 'star-outline';
