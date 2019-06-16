@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 })
 export class SearchViewPage implements OnInit {
   queryText:string;
+  userid:string;
 titles:any;
   constructor( public plat: Platform,
     public stor: Storage,
@@ -20,6 +21,7 @@ titles:any;
     public db: AngularFireDatabase,
     public router: Router,
     public atrCtrl:AlertController) {
+      this.userid=this.activatedRoute.snapshot.paramMap.get('userid');
       // this.generateTopics();
      }
 
@@ -50,7 +52,7 @@ titles:any;
         }
       }
       gotoSearchList(title){
-        this.router.navigate(['search-list', title]);
+        this.router.navigate(['search-list', title,this.userid]);
 }
     
 

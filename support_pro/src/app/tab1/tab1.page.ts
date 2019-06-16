@@ -89,7 +89,7 @@ export class Tab1Page {
     }
   }
   searchView(){
-    this.router.navigate(['search-view']);
+    this.router.navigate(['search-view',this.userid]);
   }
 }
 

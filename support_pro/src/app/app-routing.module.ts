@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'my-text', loadChildren: './my-text/my-text.module#MyTextPageModule' },
   { path: 'my-like', loadChildren: './my-like/my-like.module#MyLikePageModule' },
   { path: 'my-scrap', loadChildren: './my-scrap/my-scrap.module#MyScrapPageModule' },
-  { path: 'search-view', loadChildren: './search-view/search-view.module#SearchViewPageModule' },
-  { path: 'search-list/:title', loadChildren: './search-list/search-list.module#SearchListPageModule' }
+  { path: 'search-view/:userid', loadChildren: './search-view/search-view.module#SearchViewPageModule' },
+  { path: 'search-list/:title/:userid', loadChildren: './search-list/search-list.module#SearchListPageModule' }
 
 
 ];

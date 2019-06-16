@@ -17,6 +17,7 @@ import * as firebase from 'firebase';
 export class SearchListPage implements OnInit {
 search:string;
 items=[];
+userid:string;
   constructor(  public plat: Platform,
     public stor: Storage,
     public activatedRoute: ActivatedRoute,
@@ -27,18 +28,16 @@ items=[];
     this.search=this.activatedRoute.snapshot.paramMap.get('title');
     this.db.list('regisTxt/', ref => ref.orderByChild('classN').equalTo(this.search)).valueChanges().subscribe(
       data => {
-        
-        
-        
  this.items=data;
       });
+this.userid=this.activatedRoute.snapshot.paramMap.get('userid');
 
-
+      
 
   }
 
   getPost(item){
-    this.router.navigate(['post', item.title]);
+    this.router.navigate(['post', item.title,this.userid]);
   }
 
   ngOnInit() {
