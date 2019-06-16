@@ -23,13 +23,13 @@ export class Tab1Page {
   postnum = {};
   imgurls = {};
   constructor(
-    private alertCtrl: AlertController,
     public plat: Platform,
     public stor: Storage,
     public activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
     public db: AngularFireDatabase,
-    public router: Router
+    public router: Router,
+    public atrCtrl: AlertController
     ) {
       this.getData();
       this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
@@ -63,24 +63,32 @@ export class Tab1Page {
   }
     });
   }
-
+  async havetoLgin() {
+    const alert = await this.atrCtrl.create({
+      header: '경고!!',
+      message: '로그인 후 사용가능합니다.',
+      buttons: [
+        {
+          text: 'Okay',
+          role: 'cancel',
+          handler: (blah) => {
+            console.log('move');
+            this.router.navigateByUrl('tabs/tab5');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
   // tag누르면 다음페이지로 이동
   loadList(item: any) {
     // this.stor.set('hashtag',items.tag);
     // this.navCtrl.navigateForward('/post-list');
-    if (!this.userid) {
-      this.alertCtrl.create({
-        header: '',
-        message: '로그인 후 이용해주세요',
-        buttons: [{
-          text: '확인',
-          role: 'cancel'
-        }]
-      }).then(alertEI => {
-        alertEI.present();
-      });
+    if (this.userid === null) {
+      this.havetoLgin();
+    } else {
+      this.router.navigate(['post-list', item, this.userid]);
     }
-    this.router.navigate(['post-list', item, this.userid]);
   }
 
 }

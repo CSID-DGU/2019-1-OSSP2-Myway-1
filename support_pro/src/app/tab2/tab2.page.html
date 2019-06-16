@@ -51,7 +51,7 @@
     </ion-content>
     
 <ion-footer>
-  <ion-toolbar color="light">
+ <!--<ion-toolbar color="light">--> 
         <ion-item> 
         <ion-input type="text" autosize maxRows="4" [(ngModel)]="text" class="message-input" (keyup.enter)="ask()"></ion-input>
         <ion-button expand="block" fill="clear" color = "primary" [disabled]="text ===''"  class ="msg-btn"
@@ -59,6 +59,6 @@
          <ion-icon name="send" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-item>
-  </ion-toolbar>
+ <!-- </ion-toolbar>-->
 </ion-footer>
 

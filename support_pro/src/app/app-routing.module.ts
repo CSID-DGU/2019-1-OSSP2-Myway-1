@@ -8,7 +8,10 @@ const routes: Routes = [
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'post-list/:tag/:userid', loadChildren: './post-list/post-list.module#PostListPageModule' },
   { path: 'chat-view/:you', loadChildren: './chat-view/chat-view.module#ChatViewPageModule' },
-  { path: 'post/:title/:userid', loadChildren: './post/post.module#PostPageModule' }
+  { path: 'post/:title/:userid', loadChildren: './post/post.module#PostPageModule' },  { path: 'my-text', loadChildren: './my-text/my-text.module#MyTextPageModule' },
+  { path: 'my-like', loadChildren: './my-like/my-like.module#MyLikePageModule' },
+  { path: 'my-scrap', loadChildren: './my-scrap/my-scrap.module#MyScrapPageModule' }
+
 
 ];
 @NgModule({

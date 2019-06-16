@@ -26,15 +26,12 @@ export class Tab2Page {
   constructor(public navCtrl: NavController, public ngZone: NgZone, public router: Router, public stor: Storage) {
     this.check = -1;
     this.messages.push({
-      text: '무엇이 궁금한 가? \n 직접 물어봐도 되고, 아래 버튼을 눌러보고 싶으면 눌러보게..',
+      text: '무엇이 궁금한가? \n 직접 물어봐도 되고, 아래 버튼을 눌러보고 싶으면 눌러보게..',
       sender: 'api',
       createAt: new Date().getTime()
     });
   }
-
-
   ask() {
-    //this.check = 0;
     if (this.text !== '') {
     this.messages.push({
       text: this.text,
@@ -69,15 +66,15 @@ export class Tab2Page {
           this.check = 1;
         } else if (this.textTmp.includes('우리 앱은')) { // 쿼리: 앱 설명
            this.check = 3;
-        } else if (this.textTmp.includes('좋아요 수')) {
+        } else if (this.textTmp.includes('좋아요 수')) { // 쿼리: 제일 인기있는 게시글?
           this.check = 2;
-        } else if (this.textTmp.includes('어떤 전공의')) {    // 쿼리: 제일 인기있는 게시글?
+        } else if (this.textTmp.includes('어떤 전공의')) {
           this.check = 4;
         } else if (this.textTmp.includes('태그들 관련')) {
           this.check = 5;
         } else if (this.textTmp.includes('태그의')) {
           this.check = 6;
-        }else if (this.textTmp.includes('좋다')) {
+        } else if (this.textTmp.includes('좋다')) { // 게시글 추천
           this.check = 7;
         } else {
           this.check = 0;
