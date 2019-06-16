@@ -99,6 +99,18 @@ export class Tab3Page {
       return true;
     }
     register() {
+      if (this.hashtag.length > 10) {
+        this.alertCtrl.create({
+          header: '',
+          message: '해시태그는 열개까지 가능합니다',
+          buttons: [{
+            text: '확인',
+            role: 'cancel'
+          }]
+        }).then(alertEI => {
+          alertEI.present();
+        });
+      }
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
          this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] || this.picname==='' ) {
           this.alertCtrl.create({

@@ -29,7 +29,7 @@ export class Tab1Page {
     public navCtrl: NavController,
     public db: AngularFireDatabase,
     public router: Router,
-    public atrCtrl:AlertController
+    public atrCtrl: AlertController
     ) {
       this.getData();
       this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
@@ -63,7 +63,7 @@ export class Tab1Page {
   }
     });
   }
-  async havetoLgin(){
+  async havetoLgin() {
     const alert = await this.atrCtrl.create({
       header: '경고!!',
       message: '로그인 후 사용가능합니다.',
@@ -84,11 +84,11 @@ export class Tab1Page {
   loadList(item: any) {
     // this.stor.set('hashtag',items.tag);
     // this.navCtrl.navigateForward('/post-list');
-    if(this.userid===null){
+    if (this.userid === null) {
       this.havetoLgin();
-    }
-    else
+    } else {
       this.router.navigate(['post-list', item, this.userid]);
+    }
   }
 
 }

@@ -13,7 +13,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab5.page.scss']
 })
 export class Tab5Page {
-  public userid: string=null;
+  public userid: string = null;
   constructor(
     public plat: Platform,
     public stor: Storage,
@@ -27,8 +27,7 @@ export class Tab5Page {
         this.userid = val;
       });
     }
-  
-  async atrLout(){
+  async atrLout() {
     const alert = await this.atrCtrl.create({
       header: '확인',
       message: '로그아웃되었습니다',
@@ -48,18 +47,19 @@ export class Tab5Page {
     console.log("logout");
     this.userid = null;
     this.stor.set('id', null);
-    firebase.auth().signOut().then(function(){ // 채팅 못하도록 함
-      console.log("Sign-out successful");
+    // tslint:disable-next-line:only-arrow-functions
+    firebase.auth().signOut().then(function() { // 채팅 못하도록 함
+      console.log('Sign-out successful');
     });
     window.location.href = '/tabs/tab1';
   }
-  toText(){
+  toText() {
     this.router.navigateByUrl('/my-text');
   }
-  toLike(){
+  toLike() {
     this.router.navigateByUrl('/my-like');
   }
-  toScrap(){
+  toScrap() {
     this.router.navigateByUrl('/my-scrap');
   }
 }

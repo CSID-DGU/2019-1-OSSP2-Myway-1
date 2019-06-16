@@ -18,8 +18,13 @@
       <ion-item>  
         <ion-label>전공</ion-label>
         <ion-select placeholder="Select One" [(ngModel)]="majorInput" >
-          <ion-select-option value="컴퓨터공학과">컴퓨터공학</ion-select-option>
-          <ion-select-option value="기계로봇공학과">기계로봇</ion-select-option>
+          <ion-select-option value="컴퓨터공학과">컴퓨터공학과</ion-select-option>
+          <ion-select-option value="기계로봇공학과">기계로봇공학과</ion-select-option>
+          <ion-select-option value="건축공학과">건축공학과</ion-select-option>
+          <ion-select-option value="화공생물공학과">화공생물공학과</ion-select-option>
+          <ion-select-option value="전기전자공학부">전기전자공학부</ion-select-option>
+          <ion-select-option value="멀티미디어공학과">멀티미디어공학과</ion-select-option>
+         
         </ion-select>
       </ion-item>
 
@@ -29,6 +34,10 @@
         <div *ngIf="majorInput == '컴퓨터공학과'">
           <ion-select placeholder="Select One" [(ngModel)]="classInput">
             <ion-select-option value="공개소프트웨어">공개sw</ion-select-option>
+            <ion-select-option value="종합설계1">종합설계1</ion-select-option>
+            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
+            <ion-select-option value="객체지향설계와패턴">객체지향설계와패턴</ion-select-option>
+            <ion-select-option value="알고리즘">알고리즘</ion-select-option>
             <ion-select-option value="심화프로그래밍"> 심화프로그래밍</ion-select-option>
           </ion-select>
         </div>
@@ -36,8 +45,50 @@
           <ion-select placeholder="Select One" [(ngModel)]="classInput">
             <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
             <ion-select-option value="로봇프로그래밍"> 로봇프로그래밍</ion-select-option>
+            <ion-select-option value="CAE"> CAE</ion-select-option>
+            <ion-select-option value="기계설계"> 기계설계</ion-select-option>
+            <ion-select-option value="특화설계"> 특화설계</ion-select-option>
+            <ion-select-option value="트랙별설계프로젝트"> 트랙별설계프로젝트</ion-select-option>
           </ion-select>
         </div>
+        <div *ngIf="majorInput == '건축공학과'">
+          <ion-select placeholder="Select One" [(ngModel)]="classInput">
+            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
+            <ion-select-option value="철근콘크리트구조설계">철근콘크리트구조설계</ion-select-option>
+            <ion-select-option value="건축공학종합설계1">건축공학종합설계1</ion-select-option>
+            <ion-select-option value="건축설계1">건축설계1</ion-select-option>
+         
+          </ion-select>
+        </div>
+        <div *ngIf="majorInput == '화공생물공학과'">
+          <ion-select placeholder="Select One" [(ngModel)]="classInput">
+            <ion-select-option value="화공생물공학종합설계1">화공생물공학종합설계1</ion-select-option>
+            <ion-select-option value="종합설계1">단위조작실험1</ion-select-option>
+  
+          </ion-select>
+        </div>
+        <div *ngIf="majorInput == '전기전자공학부'">
+          <ion-select placeholder="Select One" [(ngModel)]="classInput">
+            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
+            <ion-select-option value="전기회로실험">전기회로실험</ion-select-option>
+            <ion-select-option value="디지털신호처리및설계">디지털신호처리및설계</ion-select-option>
+            <ion-select-option value="로봇공학">로봇공학</ion-select-option>
+            <ion-select-option value="캡스톤디자인">캡스톤디자인</ion-select-option>
+          </ion-select>
+        </div>
+
+        <div *ngIf="majorInput == '멀티미디어공학과'">
+          <ion-select placeholder="Select One" [(ngModel)]="classInput">
+            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
+            <ion-select-option value="게임및로봇지능">게임및로봇지능</ion-select-option>
+            <ion-select-option value="종합설계">종합설계</ion-select-option>
+         
+          </ion-select>
+        </div>
+
+
+
+
       </ion-item>
       
       <ion-item>  

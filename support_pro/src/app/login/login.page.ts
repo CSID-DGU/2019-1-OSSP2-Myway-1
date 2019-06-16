@@ -35,13 +35,13 @@ export class LoginPage implements OnInit {
         const res = await this.afAuth.auth.signInWithEmailAndPassword(username, password);
         this.stor.set('id', username);
         this.alertCtrl.create({
-          header:'',
-          message:'로그인되었습니다',
-          buttons:[{
-            text:'확인',
-            role:'cancel'
+          header: '',
+          message: '로그인되었습니다',
+          buttons: [{
+            text: '확인',
+            role: 'cancel'
           }]
-        }).then(alertEl=>{
+        }).then(alertEl => {
           alertEl.present();
         });
         this.router.navigateByUrl('tabs/tab1');
