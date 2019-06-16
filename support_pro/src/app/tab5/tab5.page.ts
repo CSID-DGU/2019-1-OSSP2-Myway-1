@@ -51,8 +51,7 @@ export class Tab5Page {
     firebase.auth().signOut().then(function() { // 채팅 못하도록 함
       console.log('Sign-out successful');
     });
-    this.atrLout();
-    window.location.href = '/tabs/tab5';
+    window.location.href = '/tabs/tab1';
   }
   toText() {
     this.router.navigateByUrl('/my-text');

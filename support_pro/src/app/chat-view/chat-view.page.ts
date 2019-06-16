@@ -40,7 +40,7 @@ export class ChatViewPage implements OnInit {
     public router: Router,
     public db:AngularFireDatabase
     ) { 
-    this.Email=this.af.auth.currentUser.email;
+    //this.Email=this.af.auth.currentUser.email;
     this.chatRef=this.fs.collection('chats',ref=>ref.orderBy('Timestamp')).valueChanges();
     let you=this.ac.snapshot.paramMap.get('you');
     this.you=you;
@@ -50,17 +50,6 @@ export class ChatViewPage implements OnInit {
   ngOnInit() {
   }
 
-  /*send(){
-    if(this.text!=''){
-      this.fs.collection('chats').add({
-        Email:this.af.auth.currentUser.email,
-        You:this.you,
-        Message:this.text,
-        Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-      });
-      this.text='';
-    }
-  }*/
   send(){
     if(this.text!=''){
       const db=firebase.firestore();
@@ -116,7 +105,8 @@ export class ChatViewPage implements OnInit {
           role:'cancel',
           handler:(blah)=>{
             console.log('채팅방 삭제');
-            window.location.href = '/tabs/tab1';
+            //window.location.href = '/tabs/tab1';
+            this.router.navigateByUrl('tabs/tab1');
           }
         }
       ]
