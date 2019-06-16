@@ -73,7 +73,7 @@ export class Tab1Page {
           role: 'cancel',
           handler: (blah) => {
             console.log('move');
-            this.router.navigateByUrl('tabs/tab5');
+            window.location.href = '/tabs/tab5';
           }
         }
       ]
