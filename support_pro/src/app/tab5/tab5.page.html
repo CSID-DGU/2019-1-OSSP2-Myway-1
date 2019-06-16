@@ -8,8 +8,8 @@
 
 <ion-content>
   <div class="wrap" *ngIf="userid == null">
-          <button class="butn" onclick="buttonClicked()" [routerLink]="['/login']" routerDirection="forward">로그인</button><br>
-          <button class="butn"onclick="buttonClicked()"  [routerLink]="['/register']" routerDirection="forward">회원가입</button>
+    <button class="butn" [routerLink]="['/login']" routerDirection="forward">로그인</button><br>
+    <button class="butn" [routerLink]="['/register']" routerDirection="forward">회원가입</button>
   </div>
   <div *ngIf="userid!=null">
     <div id="b">
@@ -21,7 +21,9 @@
             </div>
           </ion-item>
           <ion-item>
-            <button class="lout" (click)="logout()">로그아웃</button>
+            <div id="text">
+              <ion-button color="medium" expand="full" (click)="logout()">로그아웃</ion-button>
+            </div> 
           </ion-item>
         </ion-card-content>
       </ion-card>

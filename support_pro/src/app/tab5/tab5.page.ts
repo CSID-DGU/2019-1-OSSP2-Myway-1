@@ -22,13 +22,10 @@ export class Tab5Page {
     public router: Router,
     public atrCtrl: AlertController
     ) {
-      this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
-      this.plat.ready().then(() => {
-        this.stor.get('id').then((val) => {
-          this.userid = val;
-        });
+     // this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
+      this.stor.get('id').then((val) => {
+        this.userid = val;
       });
-      
     }
   
   async atrLout(){
@@ -48,14 +45,14 @@ export class Tab5Page {
     await alert.present();
   }
   logout() {
+    console.log("logout");
     this.userid = null;
     this.stor.set('id', null);
     firebase.auth().signOut().then(function(){ // 채팅 못하도록 함
       console.log("Sign-out successful");
     });
-    //window.location.href = '/tabs/tab1';
     this.atrLout();
-    this.router.navigateByUrl('/tabs/tab1');
+    window.location.href = '/tabs/tab5';
   }
   toText(){
     this.router.navigateByUrl('/my-text');
