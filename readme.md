@@ -14,7 +14,7 @@
 
 사용한 플랫폼
 ------------
-아이오닉, 파이어베이스, dialog flow
+아이오닉4, 파이어베이스, dialog flow
 ![platform](./image/platform.JPG)
 
 애플리케이션 구성도
