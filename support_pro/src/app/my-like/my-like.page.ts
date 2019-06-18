@@ -49,8 +49,8 @@ userid;
       }
 
         ionViewWillEnter(){
-          this.stor.get('id').then((val)=>{
-            this.userid=val;
+          this.stor.get('id').then((val) => {
+            this.userid = val;
           })
         }
 

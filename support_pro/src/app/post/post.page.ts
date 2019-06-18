@@ -82,7 +82,7 @@ tempcontentNum: number;
         let text2=this.item[0].con3;
         console.log(text2);
         this.tmpC = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
-        this.tmpC2 = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
+        this.tmpC2 = text2.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
       });
     }
 
