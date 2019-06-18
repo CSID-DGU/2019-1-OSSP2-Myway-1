@@ -7,7 +7,6 @@ import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import {FavoriteService} from '../../favorite.service';
-import { threadId } from 'worker_threads';
 import { AngularFireDatabase } from 'angularfire2/database';
 @Component({
   selector: 'app-my-scrap',
