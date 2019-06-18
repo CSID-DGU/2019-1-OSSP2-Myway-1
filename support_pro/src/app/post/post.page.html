@@ -56,12 +56,7 @@
               <b>수행기간&nbsp;</b>{{item.sdate}}~{{item.edate}}
           </ion-label>
       </ion-item>
-      <ion-item>
-          <ion-label position ="floating">
-              <b>깃허브&nbsp;</b> <a href="{{item.git}}">{{item.git}}</a>
-          </ion-label>
-      </ion-item>
-      <ion-item>
+      <!--<ion-item>
           <ion-label>
           <b>내용</b>
           <ion-content
@@ -72,7 +67,50 @@
              {{tmpC}}
           </ion-content>
       </ion-label>   
+      </ion-item>-->
+      <ion-item>
+        <ion-label position ="floating">
+            <b>사용한 언어&nbsp;</b>{{item.con2}}
+        </ion-label>
       </ion-item>
+
+      <ion-item>
+          <ion-label>
+          <b>프로젝트에 대한 설명</b>
+          <ion-content
+              [scrollEvents]="true"
+              (ionScrollStart)="logScrollStart()"
+              (ionScroll)="logScrolling($event)"
+              (ionScrollEnd)="logScrollEnd()" class="content">
+             {{tmpC}}
+          </ion-content>
+      </ion-label>   
+      </ion-item>
+
+      <ion-item>
+            <ion-label>
+            <b>프로젝트 실행 방법</b>
+            <ion-content
+                [scrollEvents]="true"
+                (ionScrollStart)="logScrollStart()"
+                (ionScroll)="logScrolling($event)"
+                (ionScrollEnd)="logScrollEnd()" class="content">
+               {{tmpC2}}
+            </ion-content>
+        </ion-label>   
+        </ion-item>
+        
+        <ion-item>
+            <ion-label position ="floating">
+                <b>실행환경&nbsp;</b>{{item.con4}}
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label position ="floating">
+                <b>깃허브&nbsp;</b> <a href="{{item.git}}">{{item.git}}</a>
+            </ion-label>
+        </ion-item>
+            
       <ion-item>
           <ion-label position ="floating">
               <b>해시태그&nbsp;</b> 
@@ -85,7 +123,7 @@
               </ion-content>
           </ion-label>
       </ion-item>
-  
+
     </ion-card-content>
   </ion-card>
   </ion-content>

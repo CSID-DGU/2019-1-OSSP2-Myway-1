@@ -30,22 +30,18 @@
       <ion-button *ngIf = "check == -1" (click) = "recommand()"> 프로젝트 추천 </ion-button>
       <ion-button *ngIf = "check == -1" (click)="manual()"> 앱 설명 </ion-button>
       <!--깃 이돈, 게시글 보여주기-->
-      <ion-button *ngIf = "check == 1 || check == 7" a href = "{{gitaddress}}">git 이동 </ion-button>
-      <ion-button *ngIf = "check == 1 || check == 7" (click) = "goto()"> 게시글 보기 </ion-button>
+      <ion-button *ngIf = "check == 1 || check == 7 || check == 6" a href = "{{gitaddress}}">git 이동 </ion-button>
+      <ion-button *ngIf = "check == 1 || check == 7 || check == 6" (click) = "goto()"> 게시글 보기 </ion-button>
       <!-- 대답 -->
       <ion-button value = '네!!' *ngIf = "check == 3 " (click)="yes()"> 네!! </ion-button>
       <ion-button value = '아니요..' *ngIf = "check == 3" (click)="no()"> 아니요.. </ion-button>
       <!-- 전공 선택 -->
-      <ion-button  *ngIf = "check == 4" (click)="compu()"> 컴공 </ion-button>
-      <ion-button  *ngIf = "check == 4" (click)="elec()"> 전전 </ion-button>
-      <ion-button  *ngIf = "check == 4" (click)="info()"> 정통 </ion-button>
-      <ion-button  *ngIf = "check == 4" (click)="allgood()"> 노상관 </ion-button>
-     
-      <ion-button value = '관심 많습니다!!' *ngIf = "check == 5 " (click)="many()"> 관심 많습니다!! </ion-button>
-
-      <ion-button  *ngIf = "check == 6 " (click)="good()"> 좋아요 </ion-button>
+      <ion-button  *ngIf = "check == 4 || check == 5" (click)="compu()"> 컴공 </ion-button>
+      <ion-button  *ngIf = "check == 4 || check == 5" (click)="elec()"> 멀미 </ion-button>
+      <ion-button  *ngIf = "check == 4 || check == 5" (click)="info()"> 정통 </ion-button>
+      <ion-button  *ngIf = "check == 4 " (click)="allgood()"> 노상관 </ion-button>
       <ion-button *ngIf = "check == 6" (click)="bad()"> 다시 추천해 주세요 </ion-button>
-    </ion-content>
+     </ion-content>
     
 <ion-footer>
  <!--<ion-toolbar color="light">--> 

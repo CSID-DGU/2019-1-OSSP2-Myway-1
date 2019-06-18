@@ -44,13 +44,13 @@ export class ChatViewPage implements OnInit {
     this.chatRef=this.fs.collection('chats',ref=>ref.orderBy('Timestamp')).valueChanges();
     let you=this.ac.snapshot.paramMap.get('you');
     this.you=you;
-    //this.currentU=this.af.auth.currentUser.email;
+    this.currentU=this.af.auth.currentUser.email;
   }
-  ionViewWillEnter(){
+  /*ionViewWillEnter(){
     this.stor.get('id').then((val) => {
       this.currentU = val;
     });
-  }
+  }*/
   ngOnInit(){}
   send(){
     if(this.text!=''){
@@ -71,7 +71,7 @@ export class ChatViewPage implements OnInit {
             num:this.index
           });
           this.text='';
-          console.log("size0일 떄 : "+this.index);
+          console.log("size0일 때 : "+this.index);
         }
         else{
           db.collection('ChatSize').get().then(snapshot=>{
@@ -89,10 +89,10 @@ export class ChatViewPage implements OnInit {
                 Timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                 num:this.index
               });
-              this.text='';
-              console.log("size 0아닐떄: "+this.index);
+              console.log("size 0아닐때: "+this.index);
             });
           });
+          this.text='';
         }
       });
     }

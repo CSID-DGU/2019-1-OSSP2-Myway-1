@@ -15,14 +15,16 @@ export class Tab2Page {
   text: string;
   textTmp: string;
   check: number;
+  checkmajor: number;
   substring = '깃';
   ch = 0; // 싫어요 체크
   decomstr;
   public gitaddress: string;
-
+  ppp = 0; // 어느 대답에 대한 버튼인지 구분하기 위해
   @ViewChild(IonContent) content: IonContent;
   title: any;
   public userid: string;
+// tslint:disable-next-line: max-line-length
   constructor(public navCtrl: NavController, public ngZone: NgZone, public router: Router, public stor: Storage) {
     this.check = -1;
     this.messages.push({
@@ -31,9 +33,9 @@ export class Tab2Page {
       createAt: new Date().getTime()
     });
   }
-  reload() {
-    window.location.href="/tabs/tab2";
-  }
+  async reload() {
+             window.location.href = '/tabs/tab2';
+}
   ask() {
     if (this.text !== '') {
     this.messages.push({
@@ -49,6 +51,7 @@ export class Tab2Page {
   }
   }
   goToDia( str: string) {
+   // this.check = 0;
     ApiAIPromises.requestText({
       query: this.text
     })
@@ -73,14 +76,19 @@ export class Tab2Page {
           this.check = 2;
         } else if (this.textTmp.includes('어떤 전공의')) {
           this.check = 4;
-        } else if (this.textTmp.includes('태그들 관련')) {
-          this.check = 5;
-        } else if (this.textTmp.includes('태그의')) {
+        } else if (this.textTmp.includes('전공이 뭐야?')) {  // 프로젝트 추천
+          this.check = 5; this.ppp = 1;
+        } else if (this.textTmp.includes('이건 어떤가')) {
+          this.decomstr = this.textTmp.split('\'');
+          this.gitaddress = this.decomstr[3]; // 깃 주소
+          this.title = this.decomstr[1]; // 글 제목
           this.check = 6;
         } else if (this.textTmp.includes('좋다')) { // 게시글 추천
           this.check = 7;
         } else {
           this.check = 0;
+          this.checkmajor = 0;
+          this.ppp = 0;
         }
         setTimeout(() => {
           this.content.scrollToBottom(200);
@@ -93,7 +101,6 @@ export class Tab2Page {
    this.stor.get('id').then((val) => {
     this.userid = val;
   });
-   //this.title = '힘을 내자 유나 언니';
    this.router.navigate(['post', this.title, this.userid]);
   }
   manual() {
@@ -116,16 +123,37 @@ export class Tab2Page {
    this.ask();
  }
  compu() {
+   if ( this.ppp === 1 ) {
+      this.text = '컴퓨터공학과 프로젝트 추천';
+      this.ask();
+      this.ppp = 0;
+      this.checkmajor = 0;
+   } else {
     this.text = '컴퓨터공학과의 인기 많은 게시글';
     this.ask();
+   }
  }
  elec() {
-    this.text = '전자전기공학과의 인기 많은 게시글';
+   if ( this.ppp === 1 ) {
+     this.text = '멀티미디어공학과 프로젝트 추천';
+     this.ask();
+     this.ppp = 0;
+     this.checkmajor = 1;
+   } else {
+    this.text = '멀티미디어공학과의 인기 많은 게시글';
     this.ask();
+   }
  }
  info() {
+   if ( this.ppp === 1) {
+    this.text = '정보통신공학과 프로젝트 추천';
+    this.ask();
+    this.ppp = 0;
+    this.checkmajor = 2;
+   } else {
     this.text = '정보통신공학과의 인기 많은 게시글';
     this.ask();
+   }
  }
  allgood() {
     this.text = '전체 게시글 중 인기 많은 게시글';
@@ -149,9 +177,17 @@ export class Tab2Page {
     this.ask();
     this.ch = 0;
    } else {
-  this.text = '다시 추천해 주세요';
-  this.ask();
-  this.ch = this.ch + 1;
+     if ( this.checkmajor === 0) {
+      this.text = '컴퓨터공학과 프로젝트 추천';
+      this.ask();
+     } else if (this.checkmajor === 1 ) {
+       this.text = '멀티미디어공학과 프로젝트 추천';
+       this.ask();
+     } else {
+        this.text = '정보통신공학과 프로젝트 추천';
+        this.ask();
+     }
+     this.ch = this.ch + 1;
    }
  }
 }
