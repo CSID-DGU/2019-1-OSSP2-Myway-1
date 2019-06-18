@@ -17,11 +17,15 @@
                   <img src="{{item.img}}"/>
             </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item >
             <ion-label position ="floating">
                 <table>
                   <tr>
-                      <td><ion-button (click)="gotoChat(item.user)"><ion-icon name="contact"></ion-icon>{{item.user}}</ion-button></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td><ion-button  shape="round" fill="outline"(click)="gotoChat(item.user)"><ion-icon name="contact"></ion-icon>{{item.user}}</ion-button></td>
+                        <td>
+  
+                      <!-- <td><ion-button (click)="gotoChat(item.user)"><ion-icon name="contact"></ion-icon>{{item.user}}</ion-button></td> -->
                       <td>
                         <ion-icon (click)="unfavoritePost()" *ngIf="isFavorite" name="heart" size="large" class=
                         "fullheart" ></ion-icon>
