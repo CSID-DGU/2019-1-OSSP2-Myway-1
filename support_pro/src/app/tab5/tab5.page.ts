@@ -22,21 +22,12 @@ export class Tab5Page {
     public router: Router,
     public atrCtrl: AlertController
     ) {
-     // this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
     }
-<<<<<<< HEAD
     ionViewWillEnter() {
       this.stor.get('id').then((val) => {
         this.userid = val;
       });
     }
-=======
-  ionViewWillEnter(){
-    this.stor.get('id').then((val) => {
-      this.userid = val;
-    });
-  }
->>>>>>> 4e45568cfd19130fda58dab7e06a489d8db78076
   async atrLout() {
     const alert = await this.atrCtrl.create({
       header: '확인',
