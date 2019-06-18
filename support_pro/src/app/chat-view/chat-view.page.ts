@@ -87,8 +87,8 @@ export class ChatViewPage implements OnInit {
               });
               console.log("size 0아닐때: "+this.index);
             });
+            this.text='';
           });
-          this.text='';
         }
       });
     }
