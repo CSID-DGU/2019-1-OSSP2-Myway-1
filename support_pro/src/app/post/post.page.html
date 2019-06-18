@@ -1,8 +1,9 @@
 
 <ion-header>
     <ion-toolbar>
-          <ion-buttons slot="start">
-              <ion-back-button defaultHref="/"></ion-back-button>
+          <ion-buttons (click)="toMain()" slot="start">
+              <!--<ion-back-button defaultHref="tabs/tab1"></ion-back-button>-->
+              <ion-icon name="arrow-back" size="large"></ion-icon>
           </ion-buttons>
       <ion-title>
      {{title}}
@@ -21,7 +22,7 @@
             <ion-label position ="floating">
                 <table>
                   <tr>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                         <td><ion-button  shape="round" fill="outline"(click)="gotoChat(item.user)"><ion-icon name="contact"></ion-icon>{{item.user}}</ion-button></td>
                         <td>
   

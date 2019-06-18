@@ -54,8 +54,9 @@ export class PostListPage implements OnInit {
   getPost(item: any) {
     
     this.title=item.title;
-    window.location.href = 'post/' + this.title + '/' + this.userid;
-    //this.router.navigate(['post',this.title,this.userid]);
+    console.log(this.title);
+    //window.location.href = 'post/'+this.title+'/'+this.userid;
+    this.router.navigate(['post',this.title,this.userid]);
   }
     ngOnInit() {
     }
