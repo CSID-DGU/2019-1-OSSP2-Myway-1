@@ -12,23 +12,18 @@
                            
       <ion-item>
          <ion-label position ="floating">제목</ion-label>
-         <ion-input type = "text" [(ngModel)]="titleInput"></ion-input>
+         <ion-input type = "text" [(ngModel)]="titleInput" placeholder="프로젝트명"></ion-input>
       </ion-item>
       <!-- 전공 먼저 선택 후 수업 선택 가능하게-->
       <ion-item>  
         <ion-label>전공</ion-label>
         <ion-select placeholder="Select One" [(ngModel)]="majorInput" >
           <ion-select-option value="컴퓨터공학과">컴퓨터공학과</ion-select-option>
-          <ion-select-option value="기계로봇공학과">기계로봇공학과</ion-select-option>
-          <ion-select-option value="건축공학과">건축공학과</ion-select-option>
-          <ion-select-option value="화공생물공학과">화공생물공학과</ion-select-option>
-          <ion-select-option value="전기전자공학부">전기전자공학부</ion-select-option>
+          <ion-select-option value="정보통신공학과">정보통신공학과</ion-select-option>
           <ion-select-option value="멀티미디어공학과">멀티미디어공학과</ion-select-option>
-         
         </ion-select>
       </ion-item>
 
-      <!-- default로 보이는게 있게끔 -->
       <ion-item>  
         <ion-label >수업명</ion-label>
         <div class="placeholder" *ngIf="majorInput == '컴퓨터공학과'">
@@ -41,54 +36,20 @@
             <ion-select-option value="심화프로그래밍"> 심화프로그래밍</ion-select-option>
           </ion-select>
         </div>
-        <div *ngIf="majorInput == '기계로봇공학과'">
-          <ion-select placeholder="Select One" [(ngModel)]="classInput">
-            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
-            <ion-select-option value="로봇프로그래밍"> 로봇프로그래밍</ion-select-option>
-            <ion-select-option value="CAE"> CAE</ion-select-option>
-            <ion-select-option value="기계설계"> 기계설계</ion-select-option>
-            <ion-select-option value="특화설계"> 특화설계</ion-select-option>
-            <ion-select-option value="트랙별설계프로젝트"> 트랙별설계프로젝트</ion-select-option>
-          </ion-select>
-        </div>
-        <div *ngIf="majorInput == '건축공학과'">
-          <ion-select placeholder="Select One" [(ngModel)]="classInput">
-            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
-            <ion-select-option value="철근콘크리트구조설계">철근콘크리트구조설계</ion-select-option>
-            <ion-select-option value="건축공학종합설계1">건축공학종합설계1</ion-select-option>
-            <ion-select-option value="건축설계1">건축설계1</ion-select-option>
-         
-          </ion-select>
-        </div>
-        <div *ngIf="majorInput == '화공생물공학과'">
-          <ion-select placeholder="Select One" [(ngModel)]="classInput">
-            <ion-select-option value="화공생물공학종합설계1">화공생물공학종합설계1</ion-select-option>
-            <ion-select-option value="종합설계1">단위조작실험1</ion-select-option>
-  
-          </ion-select>
-        </div>
-        <div *ngIf="majorInput == '전기전자공학부'">
-          <ion-select placeholder="Select One" [(ngModel)]="classInput">
-            <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
-            <ion-select-option value="전기회로실험">전기회로실험</ion-select-option>
-            <ion-select-option value="디지털신호처리및설계">디지털신호처리및설계</ion-select-option>
-            <ion-select-option value="로봇공학">로봇공학</ion-select-option>
-            <ion-select-option value="캡스톤디자인">캡스톤디자인</ion-select-option>
-          </ion-select>
-        </div>
-
         <div *ngIf="majorInput == '멀티미디어공학과'">
           <ion-select placeholder="Select One" [(ngModel)]="classInput">
             <ion-select-option value="창의적공학설계">창의적공학설계</ion-select-option>
             <ion-select-option value="게임및로봇지능">게임및로봇지능</ion-select-option>
             <ion-select-option value="종합설계">종합설계</ion-select-option>
-         
           </ion-select>
         </div>
-
-
-
-
+        <div *ngIf="majorInput == '정보통신공학과'">
+          <ion-select placeholder="Select One" [(ngModel)]="classInput">
+            <ion-select-option value="ICT와소프트웨어">ICT와소프트웨어</ion-select-option>
+            <ion-select-option value="캡스톤디자인">캡스톤디자인</ion-select-option>
+            <ion-select-option value="머신러닝">머신러닝</ion-select-option>
+            </ion-select>
+        </div>
       </ion-item>
       
       <ion-item>  
@@ -106,15 +67,35 @@
         <ion-datetime displayFormat="MM/DD/YYYY" [min]="sdateInput" [(ngModel)]="edateInput"></ion-datetime>
       </ion-item>
 
+      <!--<ion-item>
+        <ion-label position ="floating">내용</ion-label>
+        <ion-textarea rows="8" [(ngModel)]="conInput" placeholder="프로젝트에 대한 설명+<br>+프로젝트 실행방법\n 실행 시 유의사항\n 사용한 기존 오픈소스\n"></ion-textarea>
+      </ion-item> -->
+
       <ion-item>
-        <ion-label position ="floating">깃허브 주소</ion-label>
-        <ion-input type = "url" [(ngModel)]="gitadd" placeholder="https://github.com" pattern="https://.*"></ion-input>
+        <ion-label position="floating">사용한 언어</ion-label>
+        <ion-input type="text" [(ngModel)]="con2" placeholder="C언어"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position ="floating">내용</ion-label>
-        <ion-textarea rows="8" [(ngModel)]="conInput" placeholder=""></ion-textarea>
+        <ion-label position="floating">프로젝트에 대한 설명</ion-label>
+        <ion-textarea rows="8" [(ngModel)]="con1" placeholder="간단한 설명"></ion-textarea>
+      </ion-item>      
+
+      <ion-item>
+        <ion-label position="floating">프로젝트 실행 방법</ion-label>
+        <ion-textarea rows="8" [(ngModel)]="con3" placeholder="실행 방법"></ion-textarea>
       </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">실행환경</ion-label>
+        <ion-input type="text" [(ngModel)]="con4" placeholder="실행환경"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position ="floating">깃허브 주소</ion-label>
+        <ion-input type = "url" [(ngModel)]="gitadd" placeholder="https://github.com" pattern="https://.*"></ion-input>
+        </ion-item>
 
       <ion-item>
         <ion-label position ="floating">해시태그</ion-label>
@@ -123,6 +104,7 @@
           [(ngModel)]="hashtag" placeholder="언어나 기술,키워드입력">
         </rl-tag-input>
       </ion-item>
+
       <ion-item>
           <ion-label position ="floating">이미지</ion-label>
           <br><br>

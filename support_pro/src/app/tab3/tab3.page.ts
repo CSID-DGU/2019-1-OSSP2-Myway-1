@@ -17,7 +17,7 @@ export class Tab3Page {
   contentImg;
   download;
   pictureRef;
-  picname;
+  picname:string='';
   imageURI;
   hcount = 0; // 해시태그 여러개 입력한 경우를 위한 카운트
   // tslint:disable-next-line: variable-name
@@ -42,6 +42,7 @@ export class Tab3Page {
   titleInput: string = '' ; profInput: string = ''; sdateInput: string = ''; edateInput: string = '';
    // tslint:disable-next-line:no-inferrable-types
    conInput: string = ''; hashtag = []; classInput: string = ''; majorInput: string = '';
+   con1:string=''; con2:string=''; con3:string=''; con4:string='';
    // tslint:disable-next-line:no-inferrable-types
    gitadd: string = '';
     regisTxt = {
@@ -52,7 +53,10 @@ export class Tab3Page {
       prof: '',
       sdate: '',
       edate: '',
-      content: '',
+      con1: '',
+      con2:'',
+      con3:'',
+      con4:'',
       tag: [],
       img: '',
       git: '',
@@ -133,7 +137,7 @@ export class Tab3Page {
         return 0;
       }
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
-         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] || this.picname==='' ) {
+         this.sdateInput === '' || this.edateInput === '' || this.con1 === '' ||this.con2 === '' ||this.con3 === '' ||this.con4 === '' || this.hashtag === []) {
           this.alertCtrl.create({
             header: '',
             message: '내용을 전부 입력해주세요',
@@ -155,7 +159,11 @@ export class Tab3Page {
         this.regisTxt.prof = this.profInput;
         this.regisTxt.sdate = this.sdateInput;
         this.regisTxt.edate = this.edateInput;
-        this.regisTxt.content = this.conInput.replace('\n', '<br>');
+        //this.regisTxt.content = this.conInput.replace('\n', '<br>');
+        this.regisTxt.con1=this.con1.replace('\n','<br>');
+        this.regisTxt.con2=this.con2;
+        this.regisTxt.con3=this.con3.replace('\n','<br>');
+        this.regisTxt.con4=this.con4;
         this.regisTxt.tag = this.hashtag;
         this.regisTxt.img = this.picname;
         this.regisTxt.git = this.gitadd;
@@ -170,7 +178,8 @@ export class Tab3Page {
           console.log(val, this.tmp_hash_1, this.hash_1);
           // 전체 게시글 저장
           this.db.object(`regisTxt/${this.tmp_hash_1}`).set(this.regisTxt);
-          this.showImage();
+          if(this.regisTxt.img!='')
+            this.showImage();
           this.tmp_hash_1 += 1;
           console.log('전체 게시글?' + this.classInput, this.tmp_hash_1);
           // 전체 게시글 수 저장
@@ -180,8 +189,6 @@ export class Tab3Page {
           return 0;
      });
         this.contentCount = false;
-
-       // this.db.list('regisTxt').push(this.regisTxt);
 
         /* 수업별 게시글 카운트*/
         this.db.object(`classList/${this.classInput}/`).valueChanges().subscribe(val => {
@@ -248,7 +255,8 @@ export class Tab3Page {
                 }
           this.hcount = 0;
               });
-        this.router.navigate(['post', this.titleInput, this.Userid]);
+        //this.router.navigate(['post', this.titleInput, this.Userid]);
+        this.router.navigateByUrl('/tabs/tab1');
       } // else
     }
     /* 방금 저장한 이미지 url 불러오나 확인*/

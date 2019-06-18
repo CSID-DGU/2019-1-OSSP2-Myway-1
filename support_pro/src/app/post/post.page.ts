@@ -34,6 +34,7 @@ export class PostPage implements OnInit {
   tmp_hash_1: number;
   tmp: string;
   public tmpC: string;
+  public tmpC2:string;
 // tslint:disable-next-line:no-inferrable-types
 public likeState: string = 'unliked';
 public iconName: string = 'heart-empty';
@@ -75,8 +76,13 @@ tempcontentNum: number;
       this.db.list('regisTxt/', ref => ref.orderByChild('title').equalTo(this.title)).valueChanges().subscribe(
         data => {
         this.item = data;
-        let text = this.item[0].content;
+        console.log(this.item[0]);
+        let text = this.item[0].con1;
+        console.log(text);
+        let text2=this.item[0].con3;
+        console.log(text2);
         this.tmpC = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
+        this.tmpC2 = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
       });
     }
 

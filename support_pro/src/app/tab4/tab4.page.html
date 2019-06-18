@@ -26,6 +26,9 @@
             </ion-button>
           </span>
       </div>
+      <div class="you" ion-item *ngIf="Email!=chatting.uid1 && Email!=chatting.uid2">
+        채팅목록이 없습니다.
+      </div>
     </div>
   </ion-list>
 </ion-content>
