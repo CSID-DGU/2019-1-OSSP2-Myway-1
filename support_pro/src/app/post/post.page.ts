@@ -182,11 +182,9 @@ tempcontentNum: number;
                 if ( this.title === this.tmp ) {
                     this.db.object(`userInfo/${this.userid}/scrap/${this.contentnum}`).set(i);   // 스크랩 누른 게시글 인덱스 저장
                     this.db.object(`userInfo/${this.userid}/scraptotal`).set(this.contentnum + 1);
-  
                    }
                 }
           });
-  
     }
     unscrapPost() {
       this.favoriteProvider.unscrapPost(this.title).then(()=>{

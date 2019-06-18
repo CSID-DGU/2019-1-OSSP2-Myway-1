@@ -51,7 +51,8 @@ loadList() {
 }
 
 getPost(item: any) {
-  window.location.href = 'post/' + item.title + '/' + this.userid;
+  this.router.navigate(['post', item.title, this.userid]);
+  // window.location.href = 'post/' + item.title + '/' + this.userid;
 }
   ngOnInit() {
   }
