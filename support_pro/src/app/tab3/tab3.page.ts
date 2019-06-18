@@ -17,7 +17,8 @@ export class Tab3Page {
   contentImg;
   download;
   pictureRef;
-  picname;
+  // tslint:disable-next-line:max-line-length
+  picname: string = 'https://firebasestorage.googleapis.com/v0/b/supportingbot.appspot.com/o/userimg%2F%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?alt=media&token=f9e09289-ae6f-4368-858c-74c46ae5242b';
   imageURI;
   hcount = 0; // 해시태그 여러개 입력한 경우를 위한 카운트
   // tslint:disable-next-line: variable-name
@@ -93,6 +94,7 @@ export class Tab3Page {
         document.getElementById('imgboard').setAttribute('src', 'data:image/jpeg;base64,' + imageURI);
         this.imageURI = imageURI;
         this.picname = newName;
+        console.log(this.picname);
         // this.st.ref(`${newName}`).put(imageURI)
         // .then((savedPicture) => {
 
@@ -133,7 +135,7 @@ export class Tab3Page {
         return 0;
       }
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
-         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] || this.picname==='' ) {
+         this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] ) {
           this.alertCtrl.create({
             header: '',
             message: '내용을 전부 입력해주세요',
@@ -170,7 +172,10 @@ export class Tab3Page {
           console.log(val, this.tmp_hash_1, this.hash_1);
           // 전체 게시글 저장
           this.db.object(`regisTxt/${this.tmp_hash_1}`).set(this.regisTxt);
+          // tslint:disable-next-line:max-line-length
+          if (this.regisTxt.img !== 'https://firebasestorage.googleapis.com/v0/b/supportingbot.appspot.com/o/userimg%2F%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?alt=media&token=f9e09289-ae6f-4368-858c-74c46ae5242b') {
           this.showImage();
+          }
           this.tmp_hash_1 += 1;
           console.log('전체 게시글?' + this.classInput, this.tmp_hash_1);
           // 전체 게시글 수 저장

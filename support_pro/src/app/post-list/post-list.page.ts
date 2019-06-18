@@ -27,13 +27,16 @@ items = [];
   ) {
     this.hashtag = this.activatedRoute.snapshot.paramMap.get('tag');
     this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
-    this.loadList();
+    // this.loadList();
   }
-
+ionViewWillEnter() {
+  this.loadList();
+}
 loadList() {
-  let i = 0;
+  let i = -1;
   let index = 0;
   while (i < 10) {
+    i++;
     this.db.list('regisTxt/', ref => ref.orderByChild('tag/' + i).equalTo(this.hashtag)).valueChanges().subscribe(
      data => {
        this.temp = data;
@@ -44,12 +47,11 @@ loadList() {
       }
        console.log(this.items);
      });
-    i++;
    }
 }
 
 getPost(item: any) {
-  this.router.navigate(['post', item.title, this.userid]);
+  window.location.href = 'post/' + item.title + '/' + this.userid;
 }
   ngOnInit() {
   }
