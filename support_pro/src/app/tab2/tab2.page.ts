@@ -105,6 +105,8 @@ export class Tab2Page {
           this.check = 6;
         } else if (this.textTmp.includes('좋다')) { // 게시글 추천
           this.check = 7;
+        } else if (this.textTmp.includes('괜찮다면 게시글을 둘러보게')) { // 좋아요 수 게시글 추천
+          this.check = 8;
         } else {
           this.check = 0;
           this.checkmajor = 0;
