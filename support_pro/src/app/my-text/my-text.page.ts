@@ -29,7 +29,6 @@ export class MyTextPage implements OnInit {
     let i=0;
     firebase.database().ref().once('value').then((snapshot)=>{
       //const c=snapshot.child('contentCount').val();
-      console.log(c);
         //const temp=snapshot.child('regisTxt/'+j+'/user/').val();
       this.db.list('regisTxt/',ref=>ref.orderByChild('user').equalTo(this.userid)).valueChanges().subscribe(
         data=>{
