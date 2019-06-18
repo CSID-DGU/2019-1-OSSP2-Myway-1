@@ -22,7 +22,6 @@ export class Tab5Page {
     public router: Router,
     public atrCtrl: AlertController
     ) {
-     // this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
     }
     ionViewWillEnter() {
       this.stor.get('id').then((val) => {
