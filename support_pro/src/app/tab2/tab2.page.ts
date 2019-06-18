@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { IonContent, NavController } from '@ionic/angular';
+import { IonContent, NavController, AlertController } from '@ionic/angular';
 import {Router} from '@angular/router';
 import { Storage } from '@ionic/storage';
 declare var ApiAIPromises: any;
@@ -25,7 +25,7 @@ export class Tab2Page {
   title: any;
   public userid: string;
 // tslint:disable-next-line: max-line-length
-  constructor(public navCtrl: NavController, public ngZone: NgZone, public router: Router, public stor: Storage) {
+  constructor(public navCtrl: NavController, public ngZone: NgZone, public router: Router, public stor: Storage, public atrCtrl:AlertController) {
     this.check = -1;
     this.messages.push({
       text: '무엇이 궁금한가? \n 직접 물어봐도 되고, 아래 버튼을 눌러보고 싶으면 눌러보게..',
@@ -54,6 +54,7 @@ export class Tab2Page {
       }
     ]
     });
+    await alert.present();
   }
   ask() {
     if (this.text !== '') {

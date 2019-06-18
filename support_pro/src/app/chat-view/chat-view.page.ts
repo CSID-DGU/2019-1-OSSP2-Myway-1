@@ -46,11 +46,7 @@ export class ChatViewPage implements OnInit {
     this.you=you;
     this.currentU=this.af.auth.currentUser.email;
   }
-  /*ionViewWillEnter(){
-    this.stor.get('id').then((val) => {
-      this.currentU = val;
-    });
-  }*/
+ 
   ngOnInit(){}
   send(){
     if(this.text!=''){
