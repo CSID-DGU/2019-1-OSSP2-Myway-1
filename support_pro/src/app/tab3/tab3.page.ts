@@ -139,7 +139,8 @@ export class Tab3Page {
         return 0;
       }
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
-         this.sdateInput === '' || this.edateInput === '' || this.con1 === '' ||this.con2 === '' ||this.con3 === '' ||this.con4 === '' || this.hashtag === []) {
+         this.sdateInput === '' || this.edateInput === '' || this.con1 === '' ||this.con2 === '' ||this.con3 === '' ||
+         this.con4 === '' || this.hashtag === []) {
           this.alertCtrl.create({
             header: '',
             message: '내용을 전부 입력해주세요',
@@ -161,7 +162,7 @@ export class Tab3Page {
         this.regisTxt.prof = this.profInput;
         this.regisTxt.sdate = this.sdateInput;
         this.regisTxt.edate = this.edateInput;
-        //this.regisTxt.content = this.conInput.replace('\n', '<br>');
+        // this.regisTxt.content = this.conInput.replace('\n', '<br>');
         this.regisTxt.con1=this.con1.replace('\n','<br>');
         this.regisTxt.con2=this.con2;
         this.regisTxt.con3=this.con3.replace('\n','<br>');
@@ -180,8 +181,10 @@ export class Tab3Page {
           console.log(val, this.tmp_hash_1, this.hash_1);
           // 전체 게시글 저장
           this.db.object(`regisTxt/${this.tmp_hash_1}`).set(this.regisTxt);
-          if(this.regisTxt.img!='')
-            this.showImage();
+          // tslint:disable-next-line:max-line-length
+          if (this.regisTxt.img !== 'https://firebasestorage.googleapis.com/v0/b/supportingbot.appspot.com/o/userimg%2F%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?alt=media&token=f9e09289-ae6f-4368-858c-74c46ae5242b') {
+          this.showImage();
+          }
           this.tmp_hash_1 += 1;
           console.log('전체 게시글?' + this.classInput, this.tmp_hash_1);
           // 전체 게시글 수 저장
@@ -257,7 +260,7 @@ export class Tab3Page {
                 }
           this.hcount = 0;
               });
-        //this.router.navigate(['post', this.titleInput, this.Userid]);
+        // this.router.navigate(['post', this.titleInput, this.Userid]);
         this.router.navigateByUrl('/tabs/tab1');
       } // else
     }
