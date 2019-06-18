@@ -1,25 +1,18 @@
 ﻿2019-1-OSSP2-Myway-1
 ====================
-npm install --save-dev @angular-devkit/build-angular
+##프로젝트명
 
-### 사진 업로드
-ionic cordova plugin add cordova-plugin-camera
+##팀원
+  
+2017112113 유소영 - 팀장, 태그별 분류
+2017112120 정유나 - 좋아요/스크랩 기능
+2017112142 하유진 - 채팅
+2017112131 이민주 - 챗봇
 
-npm install @ionic-native/camera
+##실행환경
 
-### 세션 유지(IonicStorageModule)
+##프로젝트 설명
 
-ionic cordova plugin add cordova-sqlite-storage
+##프로젝트 실행 방법
 
-npm install --save @ionic/storage
-
-### CHATBOT FOR QUESTIONS
-
-npm install api-ai-javascript -D
-
-npm install rxjs-compat --save
-
-npm install milligram
-
-### 실행 방법
-ionic cordova run [<platform>] [options]
+##사용한 기존 오픈 소스
