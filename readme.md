@@ -15,11 +15,11 @@
 사용한 플랫폼
 ------------
 아이오닉, 파이어베이스, dialog flow
-![platform](./image/platform.jpeg)
+![platform](./image/platform.JPG)
 
 애플리케이션 구성도
 ------------------
-![apptable](./image/apptable.jpeg)
+![apptable](./image/apptable.JPG)
 
 주요 기능
 ---------
