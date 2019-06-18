@@ -97,6 +97,7 @@ tempcontentNum: number;
             this.tmp_hash_1 = c;
         // tslint:disable-next-line: prefer-const
             let k = snapshot.child(`userInfo/${this.userid}/liketotal`).val(); // 각 유저의 전체 좋아요 수
+            if (k === null) { k = 0; }
             this.contentnum = k;
         // tslint:disable-next-line: align
             for ( let i = 0; i < this.tmp_hash_1; i++ ) {
@@ -164,11 +165,63 @@ tempcontentNum: number;
       this.favoriteProvider.scrapPost(this.title).then(()=>{
         this.isScrapped = true;
       });
+        /*각 게시글 별 스크랩 수 계산 (더하기)*/
+        firebase.database().ref().once('value').then((snapshot) => {
+          // tslint:disable-next-line: prefer-const
+              let c = snapshot.child('contentCount').val();  //전체 게시글 수
+              this.tmp_hash_1 = c;
+          // tslint:disable-next-line: prefer-const
+              let k = snapshot.child(`userInfo/${this.userid}/scraptotal`).val(); // 각 유저의 전체 스크랩 수
+              if (k === null) { k = 0; }
+              this.contentnum = k;
+          // tslint:disable-next-line: align
+              for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+          // tslint:disable-next-line: prefer-const
+                let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+                this.tmp = tmpLikeCount1;
+                if ( this.title === this.tmp ) {
+                    this.db.object(`userInfo/${this.userid}/scrap/${this.contentnum}`).set(i);   // 스크랩 누른 게시글 인덱스 저장
+                    this.db.object(`userInfo/${this.userid}/scraptotal`).set(this.contentnum + 1);
+  
+                   }
+                }
+          });
+  
     }
     unscrapPost() {
       this.favoriteProvider.unscrapPost(this.title).then(()=>{
         this.isScrapped = false;
       });
+        /*각 게시글 별 스크랩 수 계산(빼기)*/
+        firebase.database().ref().once('value').then((snapshot) => {
+          // tslint:disable-next-line: prefer-const
+              let c = snapshot.child('contentCount').val();  // 전체 게시글 수
+              this.tmp_hash_1 = c;
+            // tslint:disable-next-line: prefer-const
+              let k = snapshot.child(`userInfo/${this.userid}/scraptotal`).val(); // 각 유저의 전체 스크랩 수
+              if (k === null) { k = 0; }
+              this.contentnum = k;
+          // tslint:disable-next-line: align
+              for ( let i = 0; i < this.tmp_hash_1; i++ ) {
+          // tslint:disable-next-line: prefer-const
+                let tmpLikeCount1 = snapshot.child(`regisTxt/${i}/title`).val();
+                this.tmp = tmpLikeCount1;
+                if ( this.title === this.tmp) { // 타이틀이 같다면
+                    for (let j = 0; j < this.contentnum; j++) { // 유저 내 좋아요 삭제
+                    // tslint:disable-next-line: prefer-const
+                        let check = snapshot.child(`userInfo/${this.userid}/scrap/${j}`).val();
+                        this.tempcontentNum = check;
+                        if ( this.tempcontentNum === i) {
+                            this.db.object(`userInfo/${this.userid}/scrap/${j}`).set(null); // 좋아요 취소한 게시글 인덱스 삭제
+                            if (k !== 0) {
+                            this.db.object(`userInfo/${this.userid}/scraptotal`).set(k - 1);
+                            }
+                            break;
+                             }
+                        }
+                    }
+                }
+          });
     }
 
     async chat2Me() {
