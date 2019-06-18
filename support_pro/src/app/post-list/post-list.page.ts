@@ -13,48 +13,50 @@ import { defineBase, query } from '@angular/core/src/render3';
 })
 export class PostListPage implements OnInit {
   public userid: string;
-public hashtag: string;
-public query: string;
-temp = [];
-items = [];
-  constructor(
-    public plat: Platform,
-    public stor: Storage,
-    public activatedRoute: ActivatedRoute,
-    public navCtrl: NavController,
-    public db: AngularFireDatabase,
-    public router: Router
-  ) {
-    this.hashtag = this.activatedRoute.snapshot.paramMap.get('tag');
-    this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
-    // this.loadList();
+  public hashtag: string;
+  public query: string;
+  temp = [];
+  items = [];
+  public title:string;
+    constructor(
+      public plat: Platform,
+      public stor: Storage,
+      public activatedRoute: ActivatedRoute,
+      public navCtrl: NavController,
+      public db: AngularFireDatabase,
+      public router: Router
+    ) {
+      this.hashtag = this.activatedRoute.snapshot.paramMap.get('tag');
+      this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
+      // this.loadList();
+    }
+  ionViewWillEnter() {
+    this.loadList();
   }
-ionViewWillEnter() {
-  this.loadList();
-}
-loadList() {
-  let i = -1;
-  let index = 0;
-  while (i < 10) {
-    i++;
-    this.db.list('regisTxt/', ref => ref.orderByChild('tag/' + i).equalTo(this.hashtag)).valueChanges().subscribe(
-     data => {
-       this.temp = data;
-       // tslint:disable-next-line:prefer-for-of
-       for ( let j = 0 ; j < this.temp.length ; j++) {
-        console.log(this.temp[j]);
-        this.items[index++] = this.temp[j];
-      }
-       console.log(this.items);
-     });
-   }
-}
-
-getPost(item: any) {
-  this.router.navigate(['post', item.title, this.userid]);
-  // window.location.href = 'post/' + item.title + '/' + this.userid;
-}
-  ngOnInit() {
+  loadList() {
+    let i = -1;
+    let index = 0;
+    while (i < 10) {
+      i++;
+      this.db.list('regisTxt/', ref => ref.orderByChild('tag/' + i).equalTo(this.hashtag)).valueChanges().subscribe(
+      data => {
+        this.temp = data;
+        // tslint:disable-next-line:prefer-for-of
+        for ( let j = 0 ; j < this.temp.length ; j++) {
+          console.log(this.temp[j]);
+          this.items[index++] = this.temp[j];
+        }
+        console.log(this.items);
+      });
+    }
   }
 
-}
+  getPost(item: any) {
+    this.title = item.title;
+    window.location.href = 'post/' + this.title + '/' + this.userid;
+    //this.router.navigate(['post',this.title,this.userid]);
+  }
+    ngOnInit() {
+    }
+
+  }

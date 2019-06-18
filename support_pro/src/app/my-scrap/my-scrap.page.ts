@@ -27,6 +27,10 @@ export class MyScrapPage implements OnInit {
                  public atrCtrl: AlertController,
                  public db: AngularFireDatabase,
                  public favoriteProvider: FavoriteService) {
+
+                  this.stor.get('id').then((val) => {
+                    this.userid = val;
+                  });
         favoriteProvider.getAllScrapPost().then(result => {
           this.temp = result;
           console.log(result);

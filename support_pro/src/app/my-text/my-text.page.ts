@@ -22,9 +22,9 @@ export class MyTextPage implements OnInit {
     public stor: Storage
     ) {
 
-    /*this.stor.get('id').then((val) => {
+    this.stor.get('id').then((val) => {
       this.userid = val;
-    });*/
+    });
     console.log(this.userid);
     const i = 0;
     firebase.database().ref().once('value').then((snapshot) => {
