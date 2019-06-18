@@ -86,6 +86,9 @@ tempcontentNum: number;
       });
     }
 
+    toMain(){
+      this.router.navigateByUrl('tabs/tab1');
+    }
     favoritePost() {
       this.favoriteProvider.favoritePost(this.title).then(() => {
         this.isFavorite = true;
@@ -111,7 +114,6 @@ tempcontentNum: number;
                   this.db.object(`regisTxt/${i}/like`).set(likeCount);
                   this.db.object(`userInfo/${this.userid}/like/${this.contentnum}`).set(i);   // 좋아요 누른 게시글 인덱스 저장
                   this.db.object(`userInfo/${this.userid}/liketotal`).set(this.contentnum + 1);
-
                  }
               }
         });

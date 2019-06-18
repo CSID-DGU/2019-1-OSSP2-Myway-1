@@ -1,8 +1,9 @@
 
 <ion-header>
     <ion-toolbar>
-          <ion-buttons slot="start">
-              <ion-back-button defaultHref="/"></ion-back-button>
+          <ion-buttons (click)="toMain()" slot="start">
+              <!--<ion-back-button defaultHref="tabs/tab1"></ion-back-button>-->
+              <ion-icon name="arrow-back" size="large"></ion-icon>
           </ion-buttons>
       <ion-title>
      {{title}}
