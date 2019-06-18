@@ -139,8 +139,8 @@ export class Tab3Page {
         return 0;
       }
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
-         // tslint:disable-next-line:max-line-length
-         this.sdateInput === '' || this.edateInput === '' || this.con1 === '' ||this.con2 === '' ||this.con3 === '' ||this.con4 === '' || this.hashtag === []) {
+         this.sdateInput === '' || this.edateInput === '' || this.con1 === '' ||this.con2 === '' ||this.con3 === '' ||
+         this.con4 === '' || this.hashtag === []) {
           this.alertCtrl.create({
             header: '',
             message: '내용을 전부 입력해주세요',
@@ -260,7 +260,7 @@ export class Tab3Page {
                 }
           this.hcount = 0;
               });
-        //this.router.navigate(['post', this.titleInput, this.Userid]);
+        // this.router.navigate(['post', this.titleInput, this.Userid]);
         this.router.navigateByUrl('/tabs/tab1');
       } // else
     }
