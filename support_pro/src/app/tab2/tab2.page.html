@@ -10,12 +10,6 @@
 </ion-header>
 
 <ion-content>
-   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button ion-fab color="danger">
-          <ion-icon name="mic"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
- 
       <ion-grid>
         <ion-row  *ngFor="let message of messages">
           <ion-col size ="8" *ngIf = "message.sender == 'api'" class = "message other-message">
