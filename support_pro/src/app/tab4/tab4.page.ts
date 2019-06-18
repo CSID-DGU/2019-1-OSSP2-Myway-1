@@ -12,29 +12,31 @@ import {Router} from '@angular/router';
   styleUrls: ['tab4.page.scss']
 })
 export class Tab4Page {
-  
-  chattingRef:any;
-  Email:string;
-  you:string;
+  chattingRef: any;
+  Email: string;
+  you: string;
   constructor(
-    public fs:AngularFirestore,
-    public af:AngularFireAuth, 
-    public nav:NavController, 
-    public router:Router,
+    public fs: AngularFirestore,
+    public af: AngularFireAuth,
+    public nav: NavController,
+    public router: Router,
     public stor: Storage,
-    public atrCtrl:AlertController
-    ){
-    
-      //this.Email=this.af.auth.currentUser.email,
-      this.stor.get('id').then((val)=>{
-        this.Email=val;
+    public atrCtrl: AlertController
+    ) {
+      // this.Email=this.af.auth.currentUser.email,
+      this.stor.get('id').then((val) => {
+        this.Email = val;
       });
-      this.chattingRef=this.fs.collection('chatting',ref=>ref.orderBy('Timestamp')).valueChanges();
+      this.chattingRef = this.fs.collection('chatting', ref => ref.orderBy('Timestamp')).valueChanges();
   }
-  openChat(you: string){
-    
-    this.you=you;
-    this.router.navigate(['chat-view',this.you]);
+  ionViewWillEnter() {
+    this.stor.get('id').then((val) => {
+      this.Email = val;
+    });
+  }
+  openChat(you: string) {
+    this.you = you;
+    this.router.navigate(['chat-view', this.you]);
 
   }
 }

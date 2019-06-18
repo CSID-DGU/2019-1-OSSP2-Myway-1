@@ -27,6 +27,11 @@ export class Tab5Page {
         this.userid = val;
       });
     }
+    ionViewWillEnter() {
+      this.stor.get('id').then((val) => {
+        this.userid = val;
+      });
+    }
   async atrLout() {
     const alert = await this.atrCtrl.create({
       header: '확인',
@@ -51,7 +56,7 @@ export class Tab5Page {
     firebase.auth().signOut().then(function() { // 채팅 못하도록 함
       console.log('Sign-out successful');
     });
-    window.location.href = '/tabs/tab1';
+    this.router.navigateByUrl('tabs/tab1');
   }
   toText() {
     this.router.navigateByUrl('/my-text');
