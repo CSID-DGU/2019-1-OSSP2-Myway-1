@@ -31,6 +31,9 @@ export class Tab2Page {
       createAt: new Date().getTime()
     });
   }
+  reload(){
+    window.location.href="/tabs/tab2";
+  }
   ask() {
     if (this.text !== '') {
     this.messages.push({
