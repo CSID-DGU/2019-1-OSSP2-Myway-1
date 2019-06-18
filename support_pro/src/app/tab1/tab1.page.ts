@@ -39,6 +39,11 @@ export class Tab1Page {
         });
       });
     }
+  ionViewWillEnter() {
+    this.stor.get('id').then((val) => {
+      this.userid = val;
+    });
+  }
     // tag별로 보여주는거
   getData() {
     firebase.database().ref().once('value').then((snapshot) => {

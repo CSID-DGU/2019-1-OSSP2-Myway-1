@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import {AlertController } from '@ionic/angular';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -62,9 +63,15 @@ export class Tab3Page {
     private alertCtrl: AlertController,
     public db: AngularFireDatabase,
     public st: AngularFireStorage,
+    public router: Router,
     private camera: Camera
     ) {
     this.stor.get('id').then((val) => { // 로그인한 user id 받아옴
+      this.Userid = val;
+    });
+  }
+  ionViewWillEnter() {
+    this.stor.get('id').then((val) => {
       this.Userid = val;
     });
   }
@@ -99,6 +106,19 @@ export class Tab3Page {
       return true;
     }
     register() {
+      if (!this.Userid) {
+        this.alertCtrl.create({
+          header: '',
+          message: '로그인 후 이용해주세요',
+          buttons: [{
+            text: '확인',
+            role: 'cancel'
+          }]
+        }).then(alertEI => {
+          alertEI.present();
+        });
+        return 0;
+      }
       if (this.hashtag.length > 10) {
         this.alertCtrl.create({
           header: '',
@@ -110,6 +130,7 @@ export class Tab3Page {
         }).then(alertEI => {
           alertEI.present();
         });
+        return 0;
       }
       if (this.titleInput === '' || this.majorInput === '' || this.classInput === '' || this.profInput === '' ||
          this.sdateInput === '' || this.edateInput === '' || this.conInput === '' || this.hashtag === [] || this.picname==='' ) {
@@ -123,6 +144,7 @@ export class Tab3Page {
           }).then(alertEI => {
             alertEI.present();
           });
+          return 0;
       } else {
         this.sdateInput = this.sdateInput.substring(0, 10);
         this.edateInput = this.edateInput.substring(0, 10);
@@ -226,7 +248,7 @@ export class Tab3Page {
                 }
           this.hcount = 0;
               });
-
+        this.router.navigate(['post', this.titleInput, this.Userid]);
       } // else
     }
     /* 방금 저장한 이미지 url 불러오나 확인*/

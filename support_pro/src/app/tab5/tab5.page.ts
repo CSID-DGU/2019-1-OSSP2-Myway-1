@@ -24,11 +24,19 @@ export class Tab5Page {
     ) {
      // this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
     }
+<<<<<<< HEAD
+    ionViewWillEnter() {
+      this.stor.get('id').then((val) => {
+        this.userid = val;
+      });
+    }
+=======
   ionViewWillEnter(){
     this.stor.get('id').then((val) => {
       this.userid = val;
     });
   }
+>>>>>>> 4e45568cfd19130fda58dab7e06a489d8db78076
   async atrLout() {
     const alert = await this.atrCtrl.create({
       header: '확인',
@@ -53,8 +61,8 @@ export class Tab5Page {
     firebase.auth().signOut().then(function() { // 채팅 못하도록 함
       console.log('Sign-out successful');
     });
+    this.router.navigateByUrl('tabs/tab1');
     this.atrLout();
-   // window.location.href = '/tabs/tab1';
   }
   toText() {
     this.router.navigateByUrl('/my-text');
