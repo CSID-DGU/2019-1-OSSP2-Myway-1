@@ -123,7 +123,8 @@ export class Tab3Page {
         }).then(alertEI => {
           alertEI.present();
         });
-        return 0;
+        //return 0;
+        this.router.navigateByUrl('tabs/tab5');
       }
       if (this.hashtag.length > 10) {
         this.alertCtrl.create({

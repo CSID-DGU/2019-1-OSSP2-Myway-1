@@ -27,6 +27,11 @@ userid;
     public atrCtrl: AlertController,
     public db : AngularFireDatabase,
     public favoriteProvider:FavoriteService) { 
+
+      this.stor.get('id').then((val) => {
+        this.userid = val;
+      });
+
       favoriteProvider.getAllFavoritePost().then(result=>{
         this.temp=result;
         console.log(result);
@@ -40,9 +45,7 @@ userid;
           )
         }
       });
-            
-            
-   
+
       }
 
         ionViewWillEnter(){
@@ -50,7 +53,6 @@ userid;
             this.userid=val;
           })
         }
-
 
         getPost(item: any) {
           this.router.navigate(['post', item.title, this.userid]);
