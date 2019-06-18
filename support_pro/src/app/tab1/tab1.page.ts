@@ -53,7 +53,6 @@ export class Tab1Page {
       data => {
         this.items = data;
         this.imgurls[this.posttags[j]] = this.items[0].img;
-        console.log(this.imgurls[this.posttags[j]]);
       });
      i++;
      if (this.imgurls[this.posttags[j]]) {
@@ -72,7 +71,6 @@ export class Tab1Page {
           text: 'Okay',
           role: 'cancel',
           handler: (blah) => {
-            console.log('move');
             window.location.href = '/tabs/tab5';
           }
         }
@@ -90,6 +88,8 @@ export class Tab1Page {
       this.router.navigate(['post-list', item, this.userid]);
     }
   }
-
+  searchView(){
+    this.router.navigate(['search-view',this.userid]);
+  }
 }
 

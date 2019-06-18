@@ -11,11 +11,11 @@
     <ion-col *ngFor="let item of items" col-12 no-padding>
         <ion-card (click)="getPost(item)"  >
           <img src="{{item.img}}" width="100px" height="150px"/>
-<ion-card-content >
- 
-          {{item.title}}
-        
-</ion-card-content>
+          <ion-card-content >
+          
+                    {{item.title}}
+                  
+          </ion-card-content>
         </ion-card>
       </ion-col>
 

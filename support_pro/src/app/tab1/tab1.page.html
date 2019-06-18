@@ -1,18 +1,15 @@
 
 <ion-header>
   <ion-toolbar  style="height: 50px;">
-    <!-- <ion-title >
-      <br>
-      붓 다 
-    </ion-title> -->
+   
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid style = "height: 200%">
     <ion-row justify-content-center align-items-start >
-      <ion-searchbar placeholder="전공, 프로젝트를 검색해보세요"></ion-searchbar>
-    </ion-row>
+      <ion-searchbar (click)="searchView()" placeholder="수업명을 검색해보세요"></ion-searchbar>
+        </ion-row>
 
     <ion-row>
       <ion-col *ngFor="let item of posttags" col-6 no-padding>

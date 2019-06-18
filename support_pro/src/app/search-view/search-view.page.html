@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+        </ion-buttons>
+    <ion-title>검색</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+    <ion-searchbar (ionInput)="getTopics($event)"></ion-searchbar>
+
+    <ion-list>
+        <ion-item (click)="gotoSearchList(title)" *ngFor="let title of titles">{{title}}</ion-item>
+      </ion-list>
+    
+
+</ion-content>
