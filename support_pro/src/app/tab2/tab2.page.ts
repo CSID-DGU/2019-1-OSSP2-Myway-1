@@ -96,7 +96,7 @@ export class Tab2Page {
           this.check = 2;
         } else if (this.textTmp.includes('어떤 전공의')) {
           this.check = 4;
-        } else if (this.textTmp.includes('전공이 뭐야?')) {  // 프로젝트 추천
+        } else if (this.textTmp.includes('전공이 무엇이냐?')) {  // 프로젝트 추천
           this.check = 5; this.ppp = 1;
         } else if (this.textTmp.includes('이건 어떤가')) {
           this.decomstr = this.textTmp.split('\'');
@@ -182,14 +182,6 @@ export class Tab2Page {
  recommand() {
     this.text = '프로젝트 추천';
     this.ask();
- }
- many() {
-  this.text = '관심 많습니다!!';
-  this.ask();
- }
- good() {
-  this.text = '좋은 생각이에요!';
-  this.ask();
  }
  bad() {
    if (this.ch === 2) {
