@@ -44,12 +44,14 @@ export class ChatViewPage implements OnInit {
     this.chatRef=this.fs.collection('chats',ref=>ref.orderBy('Timestamp')).valueChanges();
     let you=this.ac.snapshot.paramMap.get('you');
     this.you=you;
-    this.currentU=this.af.auth.currentUser.email;
+    //this.currentU=this.af.auth.currentUser.email;
   }
-
-  ngOnInit() {
+  ionViewWillEnter(){
+    this.stor.get('id').then((val) => {
+      this.currentU = val;
+    });
   }
-
+  ngOnInit(){}
   send(){
     if(this.text!=''){
       const db=firebase.firestore();

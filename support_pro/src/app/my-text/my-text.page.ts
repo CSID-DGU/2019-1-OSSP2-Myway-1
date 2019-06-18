@@ -22,14 +22,13 @@ export class MyTextPage implements OnInit {
     public stor:Storage
     ) { 
 
-    //this.userid=this.af.auth.currentUser.email;
-    this.stor.get('id').then((val) => {
+    /*this.stor.get('id').then((val) => {
       this.userid = val;
-    });
+    });*/
     console.log(this.userid);
     let i=0;
     firebase.database().ref().once('value').then((snapshot)=>{
-      const c=snapshot.child('contentCount').val();
+      //const c=snapshot.child('contentCount').val();
       console.log(c);
         //const temp=snapshot.child('regisTxt/'+j+'/user/').val();
       this.db.list('regisTxt/',ref=>ref.orderByChild('user').equalTo(this.userid)).valueChanges().subscribe(
@@ -37,6 +36,11 @@ export class MyTextPage implements OnInit {
           console.log(data);
           this.items=data;
        });  
+    });
+  }
+  ionViewWillEnter(){
+    this.stor.get('id').then((val) => {
+      this.userid = val;
     });
   }
   getPost(item: any) {

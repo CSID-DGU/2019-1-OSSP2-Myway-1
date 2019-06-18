@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-my-like',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyLikePage implements OnInit {
 
-  constructor() { }
+  userid:string;
+  constructor(public stor:Storage) { }
 
   ngOnInit() {
   }
-
+  ionViewWillEnter(){
+    this.stor.get('id').then((val) => {
+      this.userid = val;
+    });
+  }
 }

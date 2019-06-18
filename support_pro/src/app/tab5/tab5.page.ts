@@ -23,15 +23,20 @@ export class Tab5Page {
     public atrCtrl: AlertController
     ) {
      // this.userid = this.activatedRoute.snapshot.paramMap.get('userid');
-      this.stor.get('id').then((val) => {
-        this.userid = val;
-      });
     }
+<<<<<<< HEAD
     ionViewWillEnter() {
       this.stor.get('id').then((val) => {
         this.userid = val;
       });
     }
+=======
+  ionViewWillEnter(){
+    this.stor.get('id').then((val) => {
+      this.userid = val;
+    });
+  }
+>>>>>>> 4e45568cfd19130fda58dab7e06a489d8db78076
   async atrLout() {
     const alert = await this.atrCtrl.create({
       header: '확인',
@@ -42,6 +47,7 @@ export class Tab5Page {
           role: 'cancel',
           handler: (blah) => {
             console.log('logout');
+            this.router.navigateByUrl('/tabs/tab1');
           }
         }
       ]
@@ -49,7 +55,6 @@ export class Tab5Page {
     await alert.present();
   }
   logout() {
-    console.log('logout');
     this.userid = null;
     this.stor.set('id', null);
     // tslint:disable-next-line:only-arrow-functions
@@ -57,6 +62,7 @@ export class Tab5Page {
       console.log('Sign-out successful');
     });
     this.router.navigateByUrl('tabs/tab1');
+    this.atrLout();
   }
   toText() {
     this.router.navigateByUrl('/my-text');
