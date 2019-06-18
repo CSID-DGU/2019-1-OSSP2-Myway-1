@@ -33,9 +33,28 @@ export class Tab2Page {
       createAt: new Date().getTime()
     });
   }
-  async reload() {
-             window.location.href = '/tabs/tab2';
-}
+  async delcheck(){
+    const alert=await this.atrCtrl.create({
+      header:'확인!',
+      message:'정말 삭제하시겠습니까?',
+      buttons:[{
+        text:'Cancel',
+        role:'cancel',
+        cssClass:'secondary',
+        handler:(blah)=>{
+          console.log("삭제No");
+        }
+      },
+      {
+        text:'Okay',
+        handler:()=>{
+          console.log('삭제');
+          window.location.href = '/tabs/tab2';
+        }
+      }
+    ]
+    });
+  }
   ask() {
     if (this.text !== '') {
     this.messages.push({

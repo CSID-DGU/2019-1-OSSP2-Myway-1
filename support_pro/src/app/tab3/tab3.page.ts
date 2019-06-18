@@ -18,7 +18,7 @@ export class Tab3Page {
   download;
   pictureRef;
   // tslint:disable-next-line:max-line-length
-  picname: string = 'https://firebasestorage.googleapis.com/v0/b/supportingbot.appspot.com/o/userimg%2F%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?alt=media&token=f9e09289-ae6f-4368-858c-74c46ae5242b';
+  picname: string = 'https://firebasestorage.googleapis.com/v0/b/supportingbot.appspot.com/o/userimg%2FKakaoTalk_20190618_181333718.png?alt=media&token=7e083c1f-08d2-4c83-8b6f-dc05b883ee92';
   imageURI;
   hcount = 0; // 해시태그 여러개 입력한 경우를 위한 카운트
   // tslint:disable-next-line: variable-name
