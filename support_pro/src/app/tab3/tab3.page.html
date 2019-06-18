@@ -30,8 +30,8 @@
 
       <!-- default로 보이는게 있게끔 -->
       <ion-item>  
-        <ion-label>수업명</ion-label>
-        <div *ngIf="majorInput == '컴퓨터공학과'">
+        <ion-label >수업명</ion-label>
+        <div class="placeholder" *ngIf="majorInput == '컴퓨터공학과'">
           <ion-select placeholder="Select One" [(ngModel)]="classInput">
             <ion-select-option value="공개소프트웨어">공개sw</ion-select-option>
             <ion-select-option value="종합설계1">종합설계1</ion-select-option>
@@ -113,7 +113,7 @@
 
       <ion-item>
         <ion-label position ="floating">내용</ion-label>
-        <ion-textarea rows="8" [(ngModel)]="conInput"></ion-textarea>
+        <ion-textarea rows="8" [(ngModel)]="conInput" placeholder=""></ion-textarea>
       </ion-item>
 
       <ion-item>

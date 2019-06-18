@@ -14,7 +14,12 @@ userid="una";
   constructor(
     public storage:Storage,
     public db: AngularFireDatabase,
-    ) {   }
+    
+    ) {   
+      this.storage.get('id').then((val) => {
+        this.userid = val;
+      });
+    }
 
   isFavorite(postId){
     return this.getAllFavoritePost().then(result=>{

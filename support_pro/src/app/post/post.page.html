@@ -26,17 +26,9 @@
                         <ion-icon (click)="unfavoritePost()" *ngIf="isFavorite" name="heart" size="large" class=
                         "fullheart" ></ion-icon>
                         <ion-icon (click)="favoritePost()" *ngIf="!isFavorite" name="heart-empty" size="large" class="fullheart"></ion-icon>
-                  
-                        
                         <ion-icon (click)="unscrapPost()" *ngIf="isScrapped" name="star" size="large" class=
                         "fullstar" ></ion-icon>
                         <ion-icon (click)="scrapPost()" *ngIf="!isScrapped" name="star-outline" size="large" class="fullstar"></ion-icon>
-                  
-  
-  
-                        <ion-icon (click)="toggleLikeState()" tappable [@heart]="likeState" size="large" name="heart"></ion-icon>
-                        <ion-icon (click)="toggleScrapState()" tappable [@star]="scrapState" size="large" name="star" class=
-                        "fullstar"></ion-icon>
                     </td>
                   </tr>
   

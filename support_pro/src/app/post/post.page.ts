@@ -16,37 +16,6 @@ import {FavoriteService} from './../../favorite.service';
   templateUrl: './post.page.html',
   styleUrls: ['./post.page.scss'],
 
-
-  animations: [
-    trigger('heart', [
-        state('unliked', style({
-            color: '#F6CECE',
-            opacity: '1',
-            transform: 'scale(1)'
-        })),
-        state('liked', style({
-            color: '#e74c3c',
-            opacity: '1',
-            transform: 'scale(1.1)'
-        })),
-        transition('unliked <=> liked', animate('100ms ease-out'))
-    ]),
-
-    trigger('star', [
-      state('unscrap', style({
-          color: '#F2F5A9',
-          opacity: '1',
-          transform: 'scale(1)'
-      })),
-      state('scrap', style({
-          color: '#FFFF00',
-          opacity: '1',
-          transform: 'scale(1.1)'
-      })),
-      transition('unscrap <=> scrap', animate('100ms ease-out'))
-  ])
-  ]
-
 })
 export class PostPage implements OnInit {
   public title: string;
