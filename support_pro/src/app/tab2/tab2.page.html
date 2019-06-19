@@ -34,8 +34,8 @@
     <ion-button *ngIf = "check == -1" (click) = "recommand()"> 프로젝트 추천 </ion-button>
     <ion-button *ngIf = "check == -1" (click)="manual()"> 앱 설명 </ion-button>
     <!--깃 이돈, 게시글 보여주기-->
-    <ion-button *ngIf = "check == 1 || check == 7 || check == 6" a href = "{{gitaddress}}">git 이동 </ion-button>
-    <ion-button *ngIf = "check == 1 || check == 7 || check == 6 || check == 8" (click) = "goto()"> 게시글 보기 </ion-button>
+    <ion-button *ngIf = "check == 1 || check == 7 || check == 6 || check == 10" a href = "{{gitaddress}}">git 이동 </ion-button>
+    <ion-button *ngIf = "check == 1 || check == 7 || check == 6 || check == 8 || check == 10" (click) = "goto()"> 게시글 보기 </ion-button>
     <!-- 대답 -->
     <ion-button value = '네!!' *ngIf = "check == 3 " (click)="yes()"> 네!! </ion-button>
     <ion-button value = '아니요..' *ngIf = "check == 3" (click)="no()"> 아니요.. </ion-button>

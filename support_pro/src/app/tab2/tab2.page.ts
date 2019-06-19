@@ -89,10 +89,15 @@ export class Tab2Page {
           this.decomstr = this.textTmp.split('\'');
           this.gitaddress = this.decomstr[3]; // 깃 주소
           this.title = this.decomstr[1]; // 글 제목
-          if (this.textTmp.includes('깃허브 주소는 없다네')){
+          if (this.textTmp.includes('깃허브 주소는 없다네')) {
             this.check = 8;
           } else { this.check = 1; }
-        } else if (this.textTmp.includes('우리 앱은')) { // 쿼리: 앱 설명
+        }  else if (this.textTmp.includes('이 수업의')) { // 쿼리: 앱 설명
+          this.decomstr = this.textTmp.split('\'');
+          this.gitaddress = this.decomstr[3]; // 깃 주소
+          this.title = this.decomstr[1]; // 글 제목
+          this.check = 10;
+       } else if (this.textTmp.includes('우리 앱은')) { // 쿼리: 앱 설명
            this.check = 3;
         } else if (this.textTmp.includes('좋아요 수')) { // 쿼리: 제일 인기있는 게시글?
           this.check = 2;
