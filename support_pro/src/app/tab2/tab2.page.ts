@@ -89,7 +89,9 @@ export class Tab2Page {
           this.decomstr = this.textTmp.split('\'');
           this.gitaddress = this.decomstr[3]; // 깃 주소
           this.title = this.decomstr[1]; // 글 제목
-          this.check = 1;
+          if (this.textTmp.includes('깃허브 주소는 없다네')){
+            this.check = 8;
+          } else { this.check = 1; }
         } else if (this.textTmp.includes('우리 앱은')) { // 쿼리: 앱 설명
            this.check = 3;
         } else if (this.textTmp.includes('좋아요 수')) { // 쿼리: 제일 인기있는 게시글?
@@ -102,11 +104,18 @@ export class Tab2Page {
           this.decomstr = this.textTmp.split('\'');
           this.gitaddress = this.decomstr[3]; // 깃 주소
           this.title = this.decomstr[1]; // 글 제목
-          this.check = 6;
+          if (this.textTmp.includes('깃허브 주소는 없다네')) {
+            this.check = 8;
+          } else { this.check = 6; }
+          
         } else if (this.textTmp.includes('좋다')) { // 게시글 추천
           this.check = 7;
         } else if (this.textTmp.includes('괜찮다면 게시글을 둘러보게')) { // 좋아요 수 게시글 추천
           this.check = 8;
+        } else if (this.textTmp.includes('인기 많은 해시태그는')) {
+          this.decomstr = this.textTmp.split('\'');
+          this.title = this.decomstr[1]; // 해시
+          this.check = 9;
         } else {
           this.check = 0;
           this.checkmajor = 0;
@@ -124,6 +133,13 @@ export class Tab2Page {
     this.userid = val;
   });
    this.router.navigate(['post', this.title, this.userid]);
+  }
+  golist() {
+    this.stor.get('id').then((val) => {
+      this.userid = val;
+    });
+    this.router.navigate(['post-list', this.title, this.userid]);
+
   }
   manual() {
       this.text = '앱 설명';
@@ -205,5 +221,6 @@ export class Tab2Page {
    }
  }
 }
+
 
 

@@ -45,6 +45,7 @@
     <ion-button  *ngIf = "check == 4 || check == 5" (click)="info()"> 정통 </ion-button>
     <ion-button  *ngIf = "check == 4 " (click)="allgood()"> 노상관 </ion-button>
     <ion-button *ngIf = "check == 6" (click)="bad()"> 다시 추천해 주세요 </ion-button>
+    <ion-button *ngIf = "check == 9" (click)="golist()"> 게시글 보기 </ion-button>
         <ion-item> 
         <ion-input type="text" autosize maxRows="4" [(ngModel)]="text" class="message-input" (keyup.enter)="ask()"></ion-input>
         <ion-button expand="block" fill="clear" color = "primary" [disabled]="text ===''"  class ="msg-btn"
@@ -54,4 +55,5 @@
       </ion-item>
  <!-- </ion-toolbar>-->
 </ion-footer>
+
 
