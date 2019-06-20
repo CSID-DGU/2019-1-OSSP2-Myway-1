@@ -148,9 +148,18 @@ tempcontentNum: number;
                       let check = snapshot.child(`userInfo/${this.userid}/like/${j}`).val();
                       this.tempcontentNum = check;
                       if ( this.tempcontentNum === i) {
-                          this.db.object(`userInfo/${this.userid}/like/${j}`).set(null); // 좋아요 취소한 게시글 인덱스 삭제
-                          this.db.object(`userInfo/${this.userid}/liketotal`).set(k - 1);
-                          break;
+                        if (j !== k - 1) {
+                          // tslint:disable-next-line: prefer-const
+                              let change = snapshot.child(`userInfo/${this.userid}/like/${k - 1}`).val();
+                              this.tempcontentNum = change;
+                              this.db.object(`userInfo/${this.userid}/like/${j}`).set(this.tempcontentNum);
+                              this.db.object(`userInfo/${this.userid}/like/${k - 1}`).set(null); // 좋아요 취소한 게시글 인덱스 삭제
+                              this.db.object(`userInfo/${this.userid}/liketotal`).set(k - 1);
+                            } else {
+                                this.db.object(`userInfo/${this.userid}/like/${j}`).set(null); // 좋아요 취소한 게시글 인덱스 삭제
+                                this.db.object(`userInfo/${this.userid}/liketotal`).set(k - 1);
+                              }
+                        break;
                            }
                       }
                   }
@@ -212,10 +221,19 @@ tempcontentNum: number;
                         let check = snapshot.child(`userInfo/${this.userid}/scrap/${j}`).val();
                         this.tempcontentNum = check;
                         if ( this.tempcontentNum === i) {
-                            this.db.object(`userInfo/${this.userid}/scrap/${j}`).set(null); // 좋아요 취소한 게시글 인덱스 삭제
-                            if (k !== 0) {
+                          if (j !== k - 1) {
+                            // tslint:disable-next-line: prefer-const
+                                let change = snapshot.child(`userInfo/${this.userid}/scrap/${k - 1}`).val();
+                                this.tempcontentNum = change;
+                                this.db.object(`userInfo/${this.userid}/scrap/${j}`).set(this.tempcontentNum);
+                                this.db.object(`userInfo/${this.userid}/scrap/${k - 1}`).set(null); // 스크랩 취소한 게시글 인덱스 삭제
+                              } else {
+                            this.db.object(`userInfo/${this.userid}/scrap/${j}`).set(null); // 스크랩 취소한 게시글 인덱스 삭제
                             this.db.object(`userInfo/${this.userid}/scraptotal`).set(k - 1);
-                            }
+                          }
+                          if (k !== 0) {
+                                this.db.object(`userInfo/${this.userid}/scraptotal`).set(k - 1);
+                          }
                             break;
                              }
                         }
