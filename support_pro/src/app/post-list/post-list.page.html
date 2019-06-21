@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-back-button text="" defaultHref="/tabs/tab1"></ion-back-button>
         </ion-buttons>
-    <ion-title>{{hashtag}}</ion-title>
+    <ion-title>#{{hashtag}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,9 +12,12 @@
         <ion-card (click)="getPost(item)"  >
           <img src="{{item.img}}" width="100px" height="150px"/>
           <ion-card-content >
-          
-                    <ion-col>{{item.title}}   </ion-col> &nbsp;&nbsp;&nbsp; <ion-col> 좋아요:{{item.like}} </ion-col><ion-col></ion-col>
-               
+          <ion-row>
+                    <ion-col width-100><h1>{{item.title}}  </h1> </ion-col>  
+\                  </ion-row>
+                    <ion-row>
+                      <ion-col width-30><h4>{{item.major}}&nbsp;&nbsp;{{item.classN}} &nbsp;&nbsp;<ion-icon name="heart"></ion-icon>{{item.like}} </h4></ion-col>
+                    </ion-row>
           </ion-card-content>
         </ion-card>
       </ion-col>
