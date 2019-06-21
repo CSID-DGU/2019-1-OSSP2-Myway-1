@@ -74,7 +74,7 @@ $ ionic cordova run android //android용
 ```
 1. 과별 가장 인기 있는 게시물
 
-![chat1](./image/chat1.JPG)
+![chat1](./image/chat1.JPG){: width="100" height="100"}
 
 2. 전공별 프로젝트 추천
 
