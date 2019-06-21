@@ -72,16 +72,9 @@ $ ionic cordova run android //android용
 - 게시글 이외에 사용자가 궁금해하는 정보를 제공해주는 챗봇
 - 현재 붓다봇에서 제공하는 다이얼로그 플로우는 아래와 같다.    
 ```
-1. 과별 가장 인기 있는 게시물
-<img src="./image/chat1.JPG" height="40%" width="30%">
-2. 전공별 프로젝트 추천
-<img src="./image/chat2.JPG" height="40%" width="30%">
-3. 과별 게시글 개수
-<img src="./image/chat3.JPG" height="40%" width="30%">
-4. 수업별 게시글 개수
-<img src="./image/chat4.JPG" height="40%" width="30%">
-5. 요즘 핫한 태그
-<img src="./image/chat5.JPG" height="40%" width="30%">
-6. 수업별 프로젝트 추천
-<img src="./image/chat6.JPG" height="40%" width="30%">
-
+| 1. 과별 가장 인기 있는 게시물 | 2. 전공별 프로젝트 추천 | 3. 과별 게시글 개수 |
+| :----------: | :----------: | :----------: |
+| <img src="./image/chat1.JPG" height="40%" width="30%"> | <img src="./image/chat2.JPG" height="40%" width="30%"> | <img src="./image/chat3.JPG" height="40%" width="30%"> |
+| 4. 수업별 게시글 개수 | 5. 요즘 핫한 태그 | 6. 수업별 프로젝트 추천 |
+| :----------: | :----------: | :----------: |
+| <img src="./image/chat4.JPG" height="40%" width="30%"> | <img src="./image/chat5.JPG" height="40%" width="30%"> | <img src="./image/chat6.JPG" height="40%" width="30%"> |
