@@ -42,7 +42,7 @@ $ ionic cordova run android //android용
 
 애플리케이션 구성도
 ------------------
-![apptable](./image/apptable.JPG)
+<img src="./image/apptable.JPG" width="70%">
 
 주요 기능
 ---------
