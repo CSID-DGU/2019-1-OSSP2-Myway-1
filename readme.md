@@ -75,6 +75,7 @@ $ ionic cordova run android //android용
 | 1. 과별 가장 인기 있는 게시물 | 2. 전공별 프로젝트 추천 | 3. 과별 게시글 개수 |
 | :----------: | :----------: | :----------: |
 | <img src="./image/chat1.JPG" height="40%" width="30%"> | <img src="./image/chat2.JPG" height="40%" width="30%"> | <img src="./image/chat3.JPG" height="40%" width="30%"> |
+
 | 4. 수업별 게시글 개수 | 5. 요즘 핫한 태그 | 6. 수업별 프로젝트 추천 |
 | :----------: | :----------: | :----------: |
 | <img src="./image/chat4.JPG" height="40%" width="30%"> | <img src="./image/chat5.JPG" height="40%" width="30%"> | <img src="./image/chat6.JPG" height="40%" width="30%"> |
