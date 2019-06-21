@@ -64,14 +64,14 @@ $ ionic cordova run android //android용
 - 현재 붓다봇에서 제공하는 다이얼로그 플로우는 아래와 같다.    
 ```
 - 과별 가장 인기 있는 게시물
-  ![chat1](./image/chat1.JPG)
+  - ![chat1](./image/chat1.JPG)
 - 전공별 프로젝트 추천
-  ![chat2](./image/chat2.JPG)
+  - ![chat2](./image/chat2.JPG)
 - 과별 게시글 개수
-  ![chat3](./image/chat3.JPG)
+  - ![chat3](./image/chat3.JPG)
 - 수업별 게시글 개수
-  ![chat4](./image/chat4.JPG)
+  - ![chat4](./image/chat4.JPG)
 - 요즘 핫한 태그
-  ![chat5](./image/chat5.JPG)
+  - ![chat5](./image/chat5.JPG)
 - 수업별 프로젝트 추천
-  ![chat6](./image/chat6.JPG)
+  - ![chat6](./image/chat6.JPG)
