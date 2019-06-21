@@ -24,6 +24,9 @@
 $ git clone https://github.com/CSID-DGU/2019-1-OSSP2-Myway-1.git
 $ cd 2019-1-OSSP2-Myway-1.git/support_pro
 $ npm install --save-dev @angular-devkit/build-angular
+```
+
+```bash
 $ ionic cordova run ios //ios용
 $ ionic cordova run android //android용
 ```
