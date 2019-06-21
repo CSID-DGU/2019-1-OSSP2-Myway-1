@@ -17,7 +17,7 @@ export class PostListPage implements OnInit {
   public query: string;
   temp = [];
   items = [];
-  public title:string;
+  public title: string;
     constructor(
       public plat: Platform,
       public stor: Storage,
@@ -54,7 +54,7 @@ export class PostListPage implements OnInit {
   getPost(item: any) {
     this.title = item.title;
     // window.location.href = 'post/' + this.title + '/' + this.userid;
-    this.router.navigate(['post',this.title,this.userid]);
+    this.router.navigate(['post', this.title, this.userid]);
   }
     ngOnInit() {
     }

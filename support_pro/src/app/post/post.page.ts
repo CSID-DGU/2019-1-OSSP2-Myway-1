@@ -79,7 +79,7 @@ tempcontentNum: number;
         console.log(this.item[0]);
         let text = this.item[0].con1;
         console.log(text);
-        let text2=this.item[0].con3;
+        let text2 = this.item[0].con3;
         console.log(text2);
         this.tmpC = text.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
         this.tmpC2 = text2.replace(/(<br>|<br\/>|<br\/>)/g, '\n');
@@ -96,7 +96,7 @@ tempcontentNum: number;
       /*각 게시글 별 좋아요 수 계산 (더하기)*/
       firebase.database().ref().once('value').then((snapshot) => {
         // tslint:disable-next-line: prefer-const
-            let c = snapshot.child('contentCount').val();  //전체 게시글 수
+            let c = snapshot.child('contentCount').val();  // 전체 게시글 수
             this.tmp_hash_1 = c;
         // tslint:disable-next-line: prefer-const
             let k = snapshot.child(`userInfo/${this.userid}/liketotal`).val(); // 각 유저의 전체 좋아요 수
@@ -173,13 +173,13 @@ tempcontentNum: number;
     }
 
     scrapPost() {
-      this.favoriteProvider.scrapPost(this.title).then(()=>{
+      this.favoriteProvider.scrapPost(this.title).then(() => {
         this.isScrapped = true;
       });
         /*각 게시글 별 스크랩 수 계산 (더하기)*/
         firebase.database().ref().once('value').then((snapshot) => {
           // tslint:disable-next-line: prefer-const
-              let c = snapshot.child('contentCount').val();  //전체 게시글 수
+              let c = snapshot.child('contentCount').val();  // 전체 게시글 수
               this.tmp_hash_1 = c;
           // tslint:disable-next-line: prefer-const
               let k = snapshot.child(`userInfo/${this.userid}/scraptotal`).val(); // 각 유저의 전체 스크랩 수
@@ -234,7 +234,7 @@ tempcontentNum: number;
                           if (k !== 0) {
                                 this.db.object(`userInfo/${this.userid}/scraptotal`).set(k - 1);
                           }
-                            break;
+                          break;
                              }
                         }
                     }
