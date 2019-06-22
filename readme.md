@@ -39,9 +39,16 @@ $ npm install --save-dev @angular-devkit/build-angular
 $ ionic cordova run ios //ios용
 $ ionic cordova run android //android용
 ```
-<b>실행 시 유의사항</b>
+오류 해결방법
+------------
 
-반드시 cordova 플러그인을 이용하여 실행해야 함
+아이폰이랑 연결 시 cordova가 돌아가지 않는 경우 
+
+```bash
+$ sudo npm install -g ios-deploy //이 과정을 반드시 거쳐야 합니다
+$ ionic cordova build ios —prod  //이 과정이 끝나면, 프로젝트파일/platforms/ios에서 xcodeproj를 열고 아이폰과 연결합니다 
+$ ionic cordova run ios —device
+```
 
 애플리케이션 구성도
 ------------------
