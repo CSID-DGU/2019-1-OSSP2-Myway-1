@@ -40,7 +40,8 @@ $ ionic cordova run ios //ios용
 $ ionic cordova run android //android용
 ```
 <b>실행시 주의사항</b>
-반드시 cordova 플러그인을 이용하여 실행해야 
+
+반드시 cordova 플러그인을 이용하여 실행해야 함
 
 애플리케이션 구성도
 ------------------
