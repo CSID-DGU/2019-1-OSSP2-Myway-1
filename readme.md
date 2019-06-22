@@ -79,3 +79,11 @@ $ ionic cordova run android //android용
 | 4. 수업별 게시글 개수 | 5. 요즘 핫한 태그 | 6. 수업별 프로젝트 추천 |
 | :----------: | :----------: | :----------: |
 | <img src="./image/chat4.JPG" width="55%"> | <img src="./image/chat5.JPG" width="55%"> | <img src="./image/chat6.JPG" width="55%"> |
+
+문의
+------------------
+```
+유소영 yooso020599@naver.com
+이민주 napbest@naver.com
+정유나 yoona607@naver.com
+하유진 hoj2887@naver.com
