@@ -58,7 +58,7 @@ $ ionic cordova run ios —device
 애플리케이션 구성도
 ------------------
 <img src="./image/apptable.JPG" width="70%">
-<img src="./image/챗봇.GIF">
+<img src="./image/챗봇.gif">
 
 주요 기능
 ---------
@@ -84,7 +84,7 @@ $ ionic cordova run ios —device
 - 게시글에 대한 추가적인 질문이 있는 경우, 채팅 기능을 통해 심층적인 대화를 통해 궁금증을 해소할 수 있음.
 ```
 ### 5. 챗봇 (붓다봇) (TAB2)
-<img src="./image/챗봇.GIF">
+<img src="./image/챗봇.gif">
 
 ```
 - 게시글 이외에 사용자가 궁금해하는 정보를 제공해주는 챗봇
