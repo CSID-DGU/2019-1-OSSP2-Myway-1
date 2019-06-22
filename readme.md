@@ -58,7 +58,6 @@ $ ionic cordova run ios —device
 애플리케이션 구성도
 ------------------
 <img src="./image/apptable.JPG" width="70%">
-<img src="./image/챗봇.gif" width="30%">
 
 주요 기능
 ---------
@@ -67,11 +66,13 @@ $ ionic cordova run ios —device
 ```
 - 프로젝트를 진행했던 학생들이 직접 프로젝트에 대한 정보를 기록.
 ```
+<img src="./image/tab3.gif">
 ### 2. 태그별 게시글 분류 (TAB1)
 ```
 - 작성한 게시글을 해시태그별로 분류하여 해시태그 이름과 해당하는 해시태그의 대표 사진, 게시글 수를 보여줌.
 - 사용자가 프로젝트를 키워드를 통해 찾을 수 있도록 함.
 ```
+<img src="./image/tab1.gif">
 ### 3. 게시글 좋아요, 스크랩 (POST -> TAB5(mypage))
 ```
 - 프로젝트 게시글을 확인할 수 있는 페이지에서 좋아요나 스크랩 버튼을 누르면 비어있던 하트, 별이 채워진다.
@@ -84,8 +85,6 @@ $ ionic cordova run ios —device
 - 게시글에 대한 추가적인 질문이 있는 경우, 채팅 기능을 통해 심층적인 대화를 통해 궁금증을 해소할 수 있음.
 ```
 ### 5. 챗봇 (붓다봇) (TAB2)
-<img src="./image/챗봇.gif">
-
 ```
 - 게시글 이외에 사용자가 궁금해하는 정보를 제공해주는 챗봇
 - 현재 붓다봇에서 제공하는 다이얼로그 플로우는 아래와 같다.    
@@ -97,6 +96,8 @@ $ ionic cordova run ios —device
 | 4. 수업별 게시글 개수 | 5. 요즘 핫한 태그 | 6. 수업별 프로젝트 추천 |
 | :----------: | :----------: | :----------: |
 | <img src="./image/chat4.JPG" width="55%"> | <img src="./image/chat5.JPG" width="55%"> | <img src="./image/chat6.JPG" width="55%"> |
+
+<img src="./image/챗봇.gif">
 
 문의
 ------------------
