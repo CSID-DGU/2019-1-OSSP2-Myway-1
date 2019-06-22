@@ -25,7 +25,7 @@
 사용한 플랫폼
 ------------
 아이오닉4, 파이어베이스, dialog flow
-<img src="./image/platform.JPG" width="30%">
+<img src="./image/platform.JPG" width="70%">
 
 실행 방법
 ---------
@@ -58,7 +58,7 @@ $ ionic cordova run ios —device
 애플리케이션 구성도
 ------------------
 <img src="./image/apptable.JPG" width="70%">
-<img src="./image/챗봇.gif">
+<img src="./image/챗봇.gif" width="30%">
 
 주요 기능
 ---------
