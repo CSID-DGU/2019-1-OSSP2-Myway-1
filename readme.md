@@ -25,7 +25,7 @@
 사용한 플랫폼
 ------------
 아이오닉4, 파이어베이스, dialog flow
-<img src="./image/platform.JPG" width="70%">
+<img src="./image/platform.JPG" width="75%">
 
 실행 방법
 ---------
